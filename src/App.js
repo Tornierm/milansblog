@@ -23,6 +23,7 @@ const Site= styled.div`
   --s-dark: #af4448;
   --s-light: #ffa4a2;
 `
+
 const Main = styled.main`
   min-height: calc(100vh);
 `
