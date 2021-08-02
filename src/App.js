@@ -2,6 +2,8 @@ import Posts from './components/Posts'
 import Navbar from './components/Nav/Navbar'
 import Footer from './components/Footer'
 import PostPage from './components/PostPage'
+import About from './components/About'
+
 
 import styled from 'styled-components'
 
@@ -26,6 +28,8 @@ const Site= styled.div`
 
 const Main = styled.main`
   min-height: calc(100vh);
+  background-color:var(--primary50);
+  padding:1em;
 `
 
 function App() {
@@ -36,6 +40,7 @@ function App() {
         <Router>
           <Switch>
             <Route exact path="/">
+              <About/>
               <Posts/>
             </Route>
             <Route path="/post/:id" component={PostPage}/>

@@ -15,7 +15,7 @@ const TopNav = styled.div`
     background-color:var(--primary);
     border-bottom: 2px white solid;
 
-    @media (max-width: 42em) {
+    @media (max-width: 45em) {
         flex-direction:column;
         height:auto;
     }
@@ -47,13 +47,13 @@ const NavLink = styled.a`
         background-color:var(--p-dark);
         border-radius:.3em;
     }
-    @media (max-width: 42em) {
+    @media (max-width: 45em) {
         width:100%;
     }
 `
 const Logo = styled(NavLink)`
     margin-right: auto;
-    @media (max-width: 42em) {
+    @media (max-width: 45em) {
         width:8em;
     }
 `
@@ -64,7 +64,7 @@ flex-direction:row;
 margin-left:auto;
 background-color:var(--primary);
 
-@media (max-width: 42em) {
+@media (max-width: 45em) {
     flex-direction:column;
     margin-left:0;
     margin-bot:5em;
@@ -86,7 +86,7 @@ const Burger = styled.a`
     transition: all 0.3s ease;
     text-decoration: none;
     padding:.8em;
-    @media (max-width: 42em) {
+    @media (max-width: 45em) {
         display:inline;
     }
     :hover{

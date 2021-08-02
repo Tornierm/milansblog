@@ -77,3 +77,33 @@ export async function retrieveNavbar(){
     }
     return res.data
 }
+
+export async function retrievePage(id){
+    const res = await axios(url+`/wp-json/wp/v2/pages/${id}`)    
+    .catch(err => console.error(err))
+    if (!res) {
+        return null;
+    }
+    return res.data
+}
+
+export async function retrievePages(){
+    const res = await axios.get(url+'/wp-json/wp/v2/pages')
+    .catch(err => console.error(err))
+    if (!res) {
+        return null;
+    }
+    return res.data
+}
+
+export async function retrieveAboutPage(){
+
+    const pages = await retrievePages()
+    for(const page of pages){
+        if(page.title.rendered==="Welcome"){
+            return retrievePage(page.id);
+        }
+    }
+    console.log('return null')
+    return null;
+}

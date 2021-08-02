@@ -61,7 +61,7 @@ export default function CommentForm(props) {
         })
         await(postComment(data))
         .then(res => props.updateComments(res))
-      }
+    }
 
         return (
             <Form onSubmit={handleSubmit.bind(this)}>

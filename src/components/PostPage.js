@@ -23,12 +23,14 @@ const Header = styled.div`
     position:fixed;
     height:100vh;
     width:100vw;
-    z-index:-9;
+    z-index:1;
 `
 
 const Margin = styled.div`
     padding:.5em;
     background-color: rgba(255,255,255,0.8);
+    z-index:2;
+
 `
 
 const Article = styled.article`
@@ -36,6 +38,7 @@ const Article = styled.article`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    z-index:2;
 `
 
 const Info = styled.div`
@@ -46,6 +49,7 @@ const Info = styled.div`
     max-height:100%;
     height: 100vh;
     width: 100vw;
+    z-index:2;
 `
 
 const Title = styled.h1`
@@ -66,6 +70,7 @@ export default function PostPage ({match}) {
     const [depth] = useState(0);
 
     useEffect( () => {
+
         const { id } = match.params;
         retrievePost(id)
         .then( res =>{
@@ -76,6 +81,7 @@ export default function PostPage ({match}) {
             setImageUrl(res.media_details.sizes.full.source_url)
             setIsLoaded(true)
         })
+        
     },[match.params])
 
     if(isLoaded){
