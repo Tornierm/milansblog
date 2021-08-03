@@ -2,7 +2,7 @@ import Posts from './components/Posts'
 import Navbar from './components/Nav/Navbar'
 import Footer from './components/Footer'
 import PostPage from './components/PostPage'
-import About from './components/About'
+import Welcome from './components/Welcome'
 
 
 import styled from 'styled-components'
@@ -40,7 +40,9 @@ function App() {
         <Router>
           <Switch>
             <Route exact path="/">
-              <About/>
+              <Welcome/>
+            </Route>
+            <Route exact path="/blog">
               <Posts/>
             </Route>
             <Route path="/post/:id" component={PostPage}/>

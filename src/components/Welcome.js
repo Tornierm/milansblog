@@ -1,10 +1,9 @@
 import React, {useState, useEffect} from 'react'
 import styled from 'styled-components'
-import { retrieveFeaturedMedia, retrieveAboutPage } from '../service/WPService';
+import { retrieveFeaturedMedia, retrieveWelcomePage } from '../service/WPService';
 import {Loading} from './Styled'
 
-
-const AboutContainer = styled.section`
+const WelcomeContainer = styled.section`
     Display:flex;
     height: calc(100vh - 8em);
     margin:5em 1em 0em 1em;
@@ -91,16 +90,16 @@ const Text = styled.p`
 `
 
 
-export default function About() {
+export default function Welcome() {
 
-    const [about, setAbout] = useState()
+    const [welcome, setWelcome] = useState()
     const [isLoaded, setIsLoaded] = useState(false)
     const [imageUrl, setImageUrl] = useState('');
 
     const setStuff = async () => {
-        const page = await retrieveAboutPage();
+        const page = await retrieveWelcomePage();
         console.log(page)
-        setAbout(page)
+        setWelcome(page)
         if(page===null){
             return;
         }
@@ -121,21 +120,21 @@ export default function About() {
 
     if(isLoaded){
         return (
-            <AboutContainer>
+            <WelcomeContainer>
                 <TextContainer>
                     <Title>
-                        {about.title.rendered}
+                        {welcome.title.rendered}
                     </Title>
-                    <Text dangerouslySetInnerHTML={{__html: about.content.rendered}}>
+                    <Text dangerouslySetInnerHTML={{__html: welcome.content.rendered}}>
                     </Text>
                 </TextContainer>
                 <ImageContainer>
                     <Image src={imageUrl}/>
                 </ImageContainer>
-            </AboutContainer>
+            </WelcomeContainer>
         )
     }
     else{
-        return null
+        return <Loading></Loading>
     }
 }

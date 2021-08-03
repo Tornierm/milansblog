@@ -75,6 +75,7 @@ export async function retrieveNavbar(){
     if (!res) {
         return null;
     }
+    console.log(res.data)
     return res.data
 }
 
@@ -96,7 +97,7 @@ export async function retrievePages(){
     return res.data
 }
 
-export async function retrieveAboutPage(){
+export async function retrieveWelcomePage(){
 
     const pages = await retrievePages()
     for(const page of pages){
