@@ -18,8 +18,8 @@ export const Loading = styled.section`
 `
 
 export const Button = styled.button`
-    background-color: var(--secondary);
-    border: 1px var(--secondary) solid;
+    background-color: var(--s-dark);
+    border: 1px var(--s-dark) solid;
     color:white;
     border-radius: .4em;
     display: inline-block;

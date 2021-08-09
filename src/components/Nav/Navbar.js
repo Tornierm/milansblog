@@ -12,7 +12,7 @@ const TopNav = styled.div`
     height:60px;
     width:100%;
     display:flex;
-    background-color:var(--primary);
+    background-color:var(--p);
     border-bottom: 2px white solid;
 
     @media (max-width: 45em) {
@@ -52,6 +52,7 @@ const NavLink = styled.a`
     }
 `
 const Logo = styled(NavLink)`
+    font-family: w3-cursive;
     margin-right: auto;
     @media (max-width: 45em) {
         width:8em;
@@ -62,7 +63,7 @@ const Right = styled.div`
 display:flex;
 flex-direction:row;
 margin-left:auto;
-background-color:var(--primary);
+background-color:var(--p);
 
 @media (max-width: 45em) {
     flex-direction:column;
@@ -126,7 +127,7 @@ export default function Navbar () {
                 <TopNav>
                     <Left>
                         <NavItem>
-                            <Logo mr href='/'>Logo</Logo>
+                            <Logo mr href='/'>Milan Tornier</Logo>
                         </NavItem>
                         <NavItem>
                             <Burger onClick={showLinks}><ReorderIcon/></Burger>

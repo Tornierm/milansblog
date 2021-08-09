@@ -13,7 +13,7 @@ const Button = styled.button`
     align-self:flex-end;
     border: none;
     background-color: transparent;
-    color: var(--secondary);
+    color: var(--s-dark);
     max-width:8em;
 `
 

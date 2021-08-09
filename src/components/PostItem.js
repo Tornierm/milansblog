@@ -11,7 +11,7 @@ const Info = styled.div`
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    border:2px solid var(--primary);
+    border:2px solid var(--p);
     transform: translate(0em, 2.5em);
     background-color:white;
     padding:0em 1em 1em 1em;
@@ -44,7 +44,7 @@ const Image = styled.img`
     }
 `
 const Item = styled.div`
-    background: linear-gradient(90deg, var(--primary) 10em, transparent 10em);
+    background: linear-gradient(90deg, var(--p) 10em, transparent 10em);
     max-width: 800px;
     display: flex;
     margin: 10em 0em 0em 0em;
@@ -55,7 +55,7 @@ const Item = styled.div`
        margin:2.5em 0;
     }
     :nth-child(even){
-        background: linear-gradient(to left, var(--primary) 10em, transparent 10em);
+        background: linear-gradient(to left, var(--p) 10em, transparent 10em);
         margin: 0em 0em 20em 0em;
         margin-left:auto;
         margin-right:0;
@@ -100,7 +100,7 @@ const Excerpt = styled.p`
 `
 
 const ReadMore = styled(Link)`
-    background-color: var(--secondary600);
+    background-color: var(--s-dark);
     color:white;
     border-radius: .4em;
     display: inline-block;
@@ -112,7 +112,7 @@ const ReadMore = styled(Link)`
     padding:.5em;
     :hover{
         background-color: Black;
-        color:var(--secondary600);
+        color:var(--s-dark);
         transition: .5s;
     }
 `

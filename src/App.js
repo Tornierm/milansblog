@@ -14,28 +14,28 @@ import {
 } from "react-router-dom";
 
 const Site= styled.div`
-  --primary: #78909c;
-  --primary50: #cfd8dc;
-  --secondary: #f57c00;
   --secondary600: #bb4d00;
+
   --p: #78909c;
-  --p-dark: #4b636e;
+  --p-vlight:#cfd8dc;
   --p-light: #a7c0cd;
+  --p-dark: #4b636e;
   --s: #f57c00;
-  --s-dark: #af4448;
-  --s-light: #ffa4a2;
+  --s-vlight: white;
+  --s-light: #ffad42;
+  --s-dark: #bb4d00;
 `
 
 const Main = styled.main`
   min-height: calc(100vh);
-  background-color:var(--primary50);
+  background-color:var(--p-vlight);
   padding:1em;
 `
 
 function App() {
   return (
     <Site>
-      <Navbar/>
+      <Navbar navItems=""/>
       <Main>
         <Router>
           <Switch>

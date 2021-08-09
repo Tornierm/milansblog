@@ -5,6 +5,7 @@ import Comments from './Comments/Comments'
 import { retrieveFeaturedMedia, retrievePost } from '../service/WPService';
 
 const PostWrapper = styled(Wrapper)`
+    max-width:50em;
     display:flex;
     flex-direction:column;
 `
@@ -55,6 +56,7 @@ const Info = styled.div`
 const Title = styled.h1`
     background-color:white;
     border-radius:.1em;
+    padding:.2em;
 `
 
 const Content = styled.div`
@@ -62,6 +64,9 @@ const Content = styled.div`
     max-width:100%;
     background-color: rgba(255,255,255,1);
     padding:2em;
+    p{
+        text-align: justify;
+    }
 `
 export default function PostPage ({match}) {
     const [post, setPost] = useState('');
