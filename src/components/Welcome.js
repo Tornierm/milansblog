@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import styled from 'styled-components'
-import { retrieveFeaturedMedia, retrieveWelcomePage } from '../service/WPService';
+import { retrieveFeaturedMedia, retrievePageByName } from '../service/WPService';
 import {Loading} from './Styled'
 
 const WelcomeContainer = styled.section`
@@ -97,7 +97,7 @@ export default function Welcome() {
     const [imageUrl, setImageUrl] = useState('');
 
     const setStuff = async () => {
-        const page = await retrieveWelcomePage();
+        const page = await retrievePageByName("Welcome");
         console.log(page)
         setWelcome(page)
         if(page===null){

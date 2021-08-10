@@ -3,6 +3,8 @@ import Navbar from './components/Nav/Navbar'
 import Footer from './components/Footer'
 import PostPage from './components/PostPage'
 import Welcome from './components/Welcome'
+import BlogCardContainer from './components/CategoryList/BlogCardContainer'
+
 
 
 import styled from 'styled-components'

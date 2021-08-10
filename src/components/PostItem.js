@@ -140,7 +140,7 @@ export default function PostItem (props) {
                     <Titel>
                         {post.title.rendered}
                     </Titel>
-                    <Excerpt dangerouslySetInnerHTML={{__html: post.excerpt.rendered.substring(0,300)+'...' }}/>
+                    <Excerpt dangerouslySetInnerHTML={{__html: post.excerpt.rendered.substring(0,300) }}/>
                     <ReadMore to={{
                         pathname: `/post/${post.id}`
                     }}>

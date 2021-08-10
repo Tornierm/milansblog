@@ -79,7 +79,7 @@ export async function retrieveNavbar(){
     return res.data
 }
 
-export async function retrievePage(id){
+export async function retrievePageById(id){
     const res = await axios(url+`/wp-json/wp/v2/pages/${id}`)    
     .catch(err => console.error(err))
     if (!res) {
@@ -97,12 +97,12 @@ export async function retrievePages(){
     return res.data
 }
 
-export async function retrieveWelcomePage(){
+export async function retrievePageByName(name){
 
     const pages = await retrievePages()
     for(const page of pages){
-        if(page.title.rendered==="Welcome"){
-            return retrievePage(page.id);
+        if(page.title.rendered===name){
+            return retrievePageById(page.id);
         }
     }
     console.log('return null')

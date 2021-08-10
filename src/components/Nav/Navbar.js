@@ -57,6 +57,12 @@ const Logo = styled(NavLink)`
     @media (max-width: 45em) {
         width:8em;
     }
+    :hover{
+        color: var(--s);
+        transition:1s;
+        -webkit-transition:1s;
+        background-color:var(--p);
+    }
 `
 
 const Right = styled.div`
