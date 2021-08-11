@@ -13,7 +13,6 @@ export default function BlogCardContainer() {
 
     const [categories, setCategories] = useState()
     const [isLoaded, setIsLoaded] = useState(true)
-    const [imageUrl, setImageUrl] = useState('');
 
     useEffect( () => {   
       

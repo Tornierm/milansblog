@@ -8,6 +8,7 @@ const PostWrapper = styled(Wrapper)`
     max-width:50em;
     display:flex;
     flex-direction:column;
+    padding-top:5em
 `
 
 const Header = styled.div`
@@ -29,7 +30,7 @@ const Header = styled.div`
 
 const Margin = styled.div`
     padding:.5em;
-    background-color: rgba(255,255,255,0.8);
+    background-color: var(--p-7);
     z-index:2;
 
 `
@@ -54,17 +55,19 @@ const Info = styled.div`
 `
 
 const Title = styled.h1`
-    background-color:white;
+    background-color:var(--p-9);
     border-radius:.1em;
     padding:.2em;
+    color:var(--p-1);
 `
 
 const Content = styled.div`
     width:100vw;
     max-width:100%;
-    background-color: rgba(255,255,255,1);
+    background-color:var(--p-9);
     padding:2em;
     p{
+        color:var(--p-1);
         text-align: justify;
     }
 `
@@ -95,7 +98,7 @@ export default function PostPage ({match}) {
                 <Header img={imageUrl}>
                 </Header>
                 <Info>
-                    <Title>{post.title.rendered}</Title>
+                    <Title dangerouslySetInnerHTML={{__html: post.title.rendered}}/>
                 </Info>
                 <Article>
                     <Content dangerouslySetInnerHTML={{__html: post.content.rendered}}/>

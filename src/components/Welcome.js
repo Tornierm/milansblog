@@ -7,7 +7,7 @@ const WelcomeContainer = styled.section`
     Display:flex;
     height: calc(100vh - 8em);
     margin:5em 1em 0em 1em;
-    background: linear-gradient(90deg, transparent 75%, var(--p-light) 10em);
+    background: linear-gradient(90deg, var(--p-9) 75%, var(--p-5) 10em);
     @media (max-width: 45em) {
         min-height: calc(100vh - 6em);
         height:auto;
@@ -16,7 +16,7 @@ const WelcomeContainer = styled.section`
         justify-content:space-between;
         margin:4em 0 0 0;
     }
-    border:2px white solid;
+    border:2px var(--p-3) solid;
 `
 
 const ImageContainer = styled.div`
@@ -26,7 +26,7 @@ const ImageContainer = styled.div`
     height:100%;
     width:50%;
     @media (max-width: 45em) {
-        background:  var(--p-light);
+        background:  var(--p-7);
         justify-content:center;
         width:100%;
         height:50%;
@@ -66,14 +66,15 @@ const Image = styled.img`
     max-height:24em;
     max-width:24em;
     border-radius:50%;
-    background-color:black;
+    border: 2px var(--p-9) solid;
     @media (max-width: 45em) {
         height:16em;
         width:16em;
     }
 `
 
-const Title = styled.h1`
+const Title = styled.h1`    
+    color:var(--p-1);
     align-self:center;
     margin-bottom:2em;
     @media (max-width: 45em) {
@@ -81,7 +82,10 @@ const Title = styled.h1`
     }
 `
 
-const Text = styled.p`
+const Text = styled.div`
+    p{
+        color:var(--p-1);
+    }
     max-width: 30em;
     text-align:left;
     @media (max-width: 45em) {
@@ -122,11 +126,8 @@ export default function Welcome() {
         return (
             <WelcomeContainer>
                 <TextContainer>
-                    <Title>
-                        {welcome.title.rendered}
-                    </Title>
-                    <Text dangerouslySetInnerHTML={{__html: welcome.content.rendered}}>
-                    </Text>
+                    <Title dangerouslySetInnerHTML={{__html: welcome.title.rendered}}/>
+                    <Text dangerouslySetInnerHTML={{__html: welcome.content.rendered}}/>
                 </TextContainer>
                 <ImageContainer>
                     <Image src={imageUrl}/>

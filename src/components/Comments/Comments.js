@@ -5,7 +5,7 @@ import {retrieveComments} from '../../service/WPService'
 import styled, {css} from 'styled-components'
 
 const CommentSection = styled.section`
-margin-bottom:1.5em;
+    margin-bottom:1.5em;
 `
 
 const Button = styled.button`
@@ -13,7 +13,7 @@ const Button = styled.button`
     align-self:flex-end;
     border: none;
     background-color: transparent;
-    color: var(--s-dark);
+    color: var(--s-7);
     max-width:8em;
 `
 
@@ -73,8 +73,6 @@ export default function Comments(props) {
     }
 
     const updateComments = (newComment) => {
-        console.log('add')
-        console.log(newComment)
         showReplies(false);
         if(newComment === null){
             return;
@@ -89,7 +87,7 @@ export default function Comments(props) {
                         {depth===1 && <Button onClick={() => showForm(hideForm)}>{replyText}</Button>}
                         {(depth===0||hideForm) && 
                             <CommentForm
-                                updateComments = {a => updateComments(a)} 
+                                updateComments = {x => updateComments(x)} 
                                 post={id}
                                 parent={parent} 
                                 key={'commentForm'+{parent}} 

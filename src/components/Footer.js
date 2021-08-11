@@ -4,7 +4,7 @@ import styled from "styled-components";
 const Info = styled.div`
 position:relative;
 height:100px;;
-background-color:var(--p);
+background-color:var(--p-dark);
 z-index:2;
 `
 

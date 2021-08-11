@@ -2,19 +2,19 @@ import React, { useState, useEffect} from 'react';
 import {retrieveNavbar} from '../../service/WPService';
 import styled, {css} from 'styled-components'
 import ReorderIcon from '@material-ui/icons/Reorder'
+import WbSunnyIcon from '@material-ui/icons/WbSunny';
+import Brightness2Icon from '@material-ui/icons/Brightness2';
 
 const TopNav = styled.div`
     position:fixed;
     top:0;
     transition: all .5s ease-in-out;
-
     z-index:999;
     height:60px;
     width:100%;
     display:flex;
-    background-color:var(--p);
-    border-bottom: 2px white solid;
-
+    background-color:var(--p-dark);
+    border-bottom: 2px var(--p-vlight) solid;
     @media (max-width: 45em) {
         flex-direction:column;
         height:auto;
@@ -39,12 +39,12 @@ const NavLink = styled.a`
     width:auto;
     border-radius: .5em;
     padding:.8em;
-    color: white;
+    color: var(--p-vlight);
     :hover{
-        color: var(--s);
-        transition:1s;
-        -webkit-transition:1s;
-        background-color:var(--p-dark);
+        color: var(--s-5);
+        transition:1.5s;
+        -webkit-transition:1.5s;
+        background-color:var(--p-vdark);
         border-radius:.3em;
     }
     @media (max-width: 45em) {
@@ -54,14 +54,12 @@ const NavLink = styled.a`
 const Logo = styled(NavLink)`
     font-family: w3-cursive;
     margin-right: auto;
+    color: var(--p-vlight);
     @media (max-width: 45em) {
         width:8em;
     }
     :hover{
-        color: var(--s);
-        transition:1s;
-        -webkit-transition:1s;
-        background-color:var(--p);
+        background-color:var(--p-dark);
     }
 `
 
@@ -69,13 +67,12 @@ const Right = styled.div`
 display:flex;
 flex-direction:row;
 margin-left:auto;
-background-color:var(--p);
-
 @media (max-width: 45em) {
+    background-color:var(--p-dark);
     flex-direction:column;
     margin-left:0;
     margin-bot:5em;
-    border-bottom: 2px white solid;
+    border-bottom: 2px var(--p-vlight) solid;
     ${props => !props.show && css`
     display:none;
 `}
@@ -87,7 +84,7 @@ const Left = styled.div`
 `
 
 const Burger = styled.a`
-    color:white;
+    color:var(--p-vlight);
     display:none;
     text-align: center;
     transition: all 0.3s ease;
@@ -102,12 +99,42 @@ const Burger = styled.a`
         -webkit-transition:1s;
     }
 `
-export default function Navbar () {
+
+const Button = styled.button`
+    border: none;
+    min-width:100px;
+    text-align: center;
+    text-decoration: none;
+    width:auto;
+    border-radius: .5em;
+    padding:.8em;
+    color: var(--p-vlight);
+    background-color: transparent;
+    :hover{
+        color: var(--s-5);
+        transition:1.5s;
+        -webkit-transition:1.5s;
+        border-radius:.3em;
+    }
+    @media (max-width: 45em) {
+        width:100%;
+    }
+`
+
+export default function Navbar (props) {
     const [listItems, setListItems] = useState([]);
     const [loaded, setLoaded] = useState(false);
     const [clicked, setClicked] = useState(false);
+    const [themeChanger, setThemeChanger] = useState(<Brightness2Icon/>);
 
     useEffect( () => {
+        const current = localStorage.getItem('theme');
+        if(current==='dark'){
+            setThemeChanger(<WbSunnyIcon/>)
+        } else if(current==='light'){
+            setThemeChanger(<Brightness2Icon/>)
+        }
+
         retrieveNavbar()
         .then(res => {
             const Items = res.items.map((item) =>
@@ -128,6 +155,18 @@ export default function Navbar () {
         setClicked(!show)
     }
 
+    const changeTheme = () => {
+        if(props.theme==='dark'){
+          props.setTheme('light')
+          localStorage.setItem('theme', 'light');
+          setThemeChanger(<Brightness2Icon/>)
+        } else {
+          props.setTheme('dark')
+          localStorage.setItem('theme', 'dark');
+          setThemeChanger(<WbSunnyIcon/>)
+        }
+    }
+
     if(loaded){
         return (
                 <TopNav>
@@ -141,6 +180,7 @@ export default function Navbar () {
                     </Left>
                     <Right show={clicked}>
                         {listItems}
+                        <Button onClick={changeTheme}> {themeChanger} </Button>
                     </Right>
                 </TopNav>
         )

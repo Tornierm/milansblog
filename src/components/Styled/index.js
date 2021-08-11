@@ -32,5 +32,6 @@ export const Button = styled.button`
         color:black;
         transition: .5s;
         border: 1px black solid;
+    }
 `
 

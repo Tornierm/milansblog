@@ -1,13 +1,11 @@
+import {useState, useEffect} from 'react'
 import Posts from './components/Posts'
 import Navbar from './components/Nav/Navbar'
 import Footer from './components/Footer'
 import PostPage from './components/PostPage'
 import Welcome from './components/Welcome'
 import BlogCardContainer from './components/CategoryList/BlogCardContainer'
-
-
-
-import styled from 'styled-components'
+import styled, {css} from 'styled-components'
 
 import {
   BrowserRouter as Router,
@@ -16,28 +14,67 @@ import {
 } from "react-router-dom";
 
 const Site= styled.div`
-  --secondary600: #bb4d00;
-
-  --p: #78909c;
-  --p-vlight:#cfd8dc;
-  --p-light: #a7c0cd;
-  --p-dark: #4b636e;
-  --s: #f57c00;
-  --s-vlight: white;
-  --s-light: #ffad42;
-  --s-dark: #bb4d00;
+  --p-vlight:#dbe2e6;
+  --p-light: #9fb2bc;
+  --p: #607D8B;
+  --p-dark: #3B4c54;
+  --p-vdark: #212b30;
+  
+  --s-vlight: #fbe2da;
+  --s-light: #f1997e;
+  --s: #E64A19;
+  --s-dark: #932f10;
+  --s-vdark: #371206;
+  ${props => props.theme === 'light' && css`
+    --p-9: var(--p-vlight);
+    --p-7: var(--p-light);
+    --p-5: var(--p);
+    --p-3: var(--p-dark);
+    --p-1: var(--p-vdark);
+    
+    --s-9: var(--s-vlight);
+    --s-7: var(--s-light);
+    --s-5: var(--s);
+    --s-3: var(--s-dark);
+    --s-1: var(--s-vdark);
+  `}
+  ${props => props.theme === 'dark' && css`
+  --p-9: var(--p-vdark);
+  --p-7: var(--p-dark);
+  --p-5: var(--p);
+  --p-3: var(--p-light);
+  --p-1: var(--p-vlight);
+  
+  --s-9: var(--s-vdark);
+  --s-7: var(--s-dark);
+  --s-5: var(--s);
+  --s-3: var(--s-light);
+  --s-1: var(--s-vlight);
+    `}
 `
 
 const Main = styled.main`
   min-height: calc(100vh);
-  background-color:var(--p-vlight);
+  background-color:var(--p-9);
   padding:1em;
 `
 
 function App() {
+
+  const [theme, setTheme] = useState()
+
+  useEffect(() =>{
+    const current = localStorage.getItem('theme');
+    if(current){
+      setTheme(current)
+    } else {
+      setTheme('light')
+    }
+  },[])
+
   return (
-    <Site>
-      <Navbar navItems=""/>
+    <Site theme={theme}>
+      <Navbar theme={theme} setTheme={x => setTheme(x)}/>
       <Main>
         <Router>
           <Switch>
