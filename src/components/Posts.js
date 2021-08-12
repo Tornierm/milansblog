@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { retrievePosts } from '../service/WPService';
+import { retrievePostsByCategory, retrievePosts, retrieveCategoryIdByName , retrieveCategories } from '../service/WPService';
 import PostItem from './PostItem'
 import styled from "styled-components";
 import {Wrapper, Loading} from './Styled'
@@ -16,20 +16,30 @@ const PostSection = styled.div`
 
 export default function Posts(props) {
 
+    const [category] = useState(props.category)
+    const [categoryId, setCategoryId] = useState()
     const [posts, setPosts] = useState([])
     const [isLoaded, setIsLoaded] = useState(false)
 
     useEffect( () => {
+        console.log(category)
+
+        retrieveCategoryIdByName(category)
+        .then( res => {
+            if(typeof res[0] === 'undefined'){
+
+            } else {
+                retrievePostsByCategory(res[0].id)
+                .then(res => {
+                    setPosts(res)
+                    setIsLoaded(true)
+                })
+                .catch(err => console.log(err));
+            }
+        })
         
 
-        retrievePosts()
-        .then(res => {
-            setPosts(res)
-            setIsLoaded(true)
-        })
-        .catch(err => console.log(err));
-
-    },[])
+    },[category])
 
     if(isLoaded){
         return (

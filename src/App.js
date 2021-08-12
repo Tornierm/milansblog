@@ -4,7 +4,6 @@ import Navbar from './components/Nav/Navbar'
 import Footer from './components/Footer'
 import PostPage from './components/PostPage'
 import Welcome from './components/Welcome'
-import BlogCardContainer from './components/CategoryList/BlogCardContainer'
 import styled, {css} from 'styled-components'
 
 import {
@@ -82,7 +81,10 @@ function App() {
               <Welcome/>
             </Route>
             <Route exact path="/blog">
-              <Posts/>
+              <Posts category="blog"/>
+            </Route>
+            <Route exact path="/photos">
+              <Posts category="photos"/>
             </Route>
             <Route path="/post/:id" component={PostPage}/>
           </Switch>

@@ -3,7 +3,45 @@ import axios from 'axios'
 const url = "https://live-milantornier.pantheonsite.io";
 
 export async function retrievePosts(){
-    const res = await axios.get(url+'/wp-json/wp/v2/posts')
+    const res = await axios.get(url+`/wp-json/wp/v2/posts`)
+    .catch(err => console.error(err))
+    if (!res) {
+        return null;
+    }
+    return res.data
+}
+
+export async function retrievePostsByCategory(categoryId){
+    console.log(categoryId + 'wp')
+    const res = await axios.get(url+`/wp-json/wp/v2/posts/?categories=${categoryId}`)
+    .catch(err => console.error(err))
+    if (!res) {
+        return null;
+    }
+    console.log(res.data)
+    return res.data
+}
+
+export async function retrievePost(id){
+    const res = await axios(url+`/wp-json/wp/v2/posts/${id}`)    
+    .catch(err => console.error(err))
+    if (!res) {
+        return null;
+    }
+    return res.data
+}
+
+export async function retrieveCategories(){
+    const res = await axios(url+`/wp-json/wp/v2/categories`)    
+    .catch(err => console.error(err))
+    if (!res) {
+        return null;
+    }
+    return res.data
+}
+
+export async function retrieveCategoryIdByName(category){
+    const res = await axios(url+`/wp-json/wp/v2/categories/?slug=${category}`)    
     .catch(err => console.error(err))
     if (!res) {
         return null;
@@ -21,7 +59,6 @@ export async function retrieveComments(id, parent){
     if (!res) {
         return null;
     }
-    console.log(res.data)
     return res.data
 }
 
@@ -39,15 +76,6 @@ export async function postComment(data){
         return null;
     }
     console.log(res.data)
-    return res.data
-}
-
-export async function retrievePost(id){
-    const res = await axios(url+`/wp-json/wp/v2/posts/${id}`)    
-    .catch(err => console.error(err))
-    if (!res) {
-        return null;
-    }
     return res.data
 }
 
@@ -75,7 +103,6 @@ export async function retrieveNavbar(){
     if (!res) {
         return null;
     }
-    console.log(res.data)
     return res.data
 }
 

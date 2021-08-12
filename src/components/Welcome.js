@@ -16,7 +16,7 @@ const WelcomeContainer = styled.section`
         justify-content:space-between;
         margin:4em 0 0 0;
     }
-    border:2px var(--p-3) solid;
+    border:2px var(--p-5) solid;
 `
 
 const ImageContainer = styled.div`
