@@ -83,8 +83,8 @@ function App() {
             <Route exact path="/blog">
               <Posts category="blog"/>
             </Route>
-            <Route exact path="/photos">
-              <Posts category="photos"/>
+            <Route exact path="/photo">
+              <Posts category="photo"/>
             </Route>
             <Route path="/post/:id" component={PostPage}/>
           </Switch>
