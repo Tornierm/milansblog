@@ -86,7 +86,9 @@ export default function PostPage ({match}) {
             return retrieveFeaturedMedia(res.featured_media)
         })
         .then(res => {
-            setImageUrl(res.media_details.sizes.full.source_url)
+            if(!(res === null)){
+                setImageUrl(res.media_details.sizes.full.source_url)
+            }
             setIsLoaded(true)
         })
         

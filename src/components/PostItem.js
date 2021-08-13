@@ -129,7 +129,9 @@ export default function PostItem (props) {
         const getImageUrl = retrieveFeaturedMedia(post.featured_media)
         const getAuthor = retrieveAuthor(post.author)
         Promise.all([getImageUrl, getAuthor]).then(res => {
-            setImageUrl(res[0].media_details.sizes.full.source_url)
+            if(!(res[0] === null)){
+                setImageUrl(res[0].media_details.sizes.full.source_url)
+            }
             setIsLoaded(true)
         });
     },[post.author, post.featured_media])
