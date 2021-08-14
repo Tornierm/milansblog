@@ -20,7 +20,6 @@ const WelcomeContainer = styled.section`
     background-color:var(--p-9);
     padding:2em;
     @media (max-width: 45em) {
-        padding:1em;
         height:auto;
         flex-direction:column;
     }
@@ -35,7 +34,6 @@ const ImageContainer = styled.div`
     width:50%;
     @media (max-width: 45em) {
         justify-content:center;
-        padding:2em;
         width:100%;
         height:60vh;
         background: none; 
@@ -53,7 +51,7 @@ const TextContainer = styled.div`
     padding:0em 0em 0em 0em;
     margin-right:2em;
     @media (max-width: 45em) {
-        padding:2em 2em 2em 2em;
+        padding:2em 0em 2em 0em;
         width:100%;
         max-width:100%;
         height:auto;
@@ -77,6 +75,7 @@ const Title = styled.h1`
     font-size:5em;
     @media (max-width: 45em) {
         margin-bottom:.5em;
+        font-size:3em;
     }
 `
 

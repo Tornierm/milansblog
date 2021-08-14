@@ -69,7 +69,7 @@ const Item = styled.div`
         border:1px solid var(--p-5);
         flex-direction:column; 
         margin:0 0 1em 0;
-        background: none;
+        background: var(--p-9);
         width: 90vw;
         max-width:30em;
     }
@@ -80,8 +80,8 @@ const Item = styled.div`
         margin-right:0;
         @media (max-width: 45em) {
             margin:0;
-            background: none;
-         }
+            background: var(--p-9);
+        }
     }
     :nth-child(even) ${ImageContainer}{
         transform: translate(-2.5em, 5em);
