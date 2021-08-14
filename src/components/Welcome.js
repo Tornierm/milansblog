@@ -1,20 +1,28 @@
 import React, {useState, useEffect} from 'react'
 import styled from 'styled-components'
 import { retrieveFeaturedMedia, retrievePageByName } from '../service/WPService';
-import {Loading} from './Styled'
+import {Loading, Line} from './Styled'
+
+const Wrapper = styled.section`
+    display:flex;
+    justify-content:center;
+    align-items:center;
+`
 
 const WelcomeContainer = styled.section`
+    width:100%;
+    max-width:80em;
     Display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
     height: calc(100vh - 8em);
-    margin:5em 1em 0em 1em;
-    background: linear-gradient(90deg, var(--p-9) 75%, var(--p-5) 10em);
+    margin-top:4em;
+    background-color:var(--p-9);
+    padding:2em;
     @media (max-width: 45em) {
-        min-height: calc(100vh - 6em);
+        padding:1em;
         height:auto;
-        background:none;
         flex-direction:column;
-        justify-content:space-between;
-        margin:4em 0 0 0;
     }
     border:2px var(--p-5) solid;
 `
@@ -22,63 +30,53 @@ const WelcomeContainer = styled.section`
 const ImageContainer = styled.div`
     display:flex;
     align-items:center;
-    justify-content:center;
+    justify-content:flex-end;
     height:100%;
     width:50%;
     @media (max-width: 45em) {
-        background:  var(--p-7);
         justify-content:center;
+        padding:2em;
         width:100%;
-        height:50%;
-        margin-left:0em;
+        height:60vh;
+        background: none; 
     }
 `
 
 const TextContainer = styled.div`
     height:100%;
     width:50%;
+    max-width: 30em;
     display:flex;
     flex-direction:column;
-    align-items:flex-end;
-    justify-content:center;
-    margin-left:1em;
-    margin-top:1em;
-    padding:0 2em;
-    overflow:scroll;
+    align-items:flex-start;
+    justify-content:flex-end;
+    padding:0em 0em 0em 0em;
+    margin-right:2em;
     @media (max-width: 45em) {
-        align-items:center;
+        padding:2em 2em 2em 2em;
         width:100%;
-        max-width: none;
-        height:50%;
-        order 2;
-        margin-left:0;
-        margin-top:1em;
-        padding:1em;
+        max-width:100%;
+        height:auto;
     }
 `
 
 const Image = styled.img`
-    margin:1em;    
     object-fit: cover;
     display:block;
-    width:90%;
-    height:auto;
-    max-height:24em;
-    max-width:24em;
-    border-radius:50%;
-    border: 2px var(--p-9) solid;
+    width:100%;
+    height:100%;
+    max-width:35em;
     @media (max-width: 45em) {
-        height:16em;
-        width:16em;
+        
     }
 `
 
 const Title = styled.h1`    
     color:var(--p-1);
-    align-self:center;
-    margin-bottom:2em;
+    margin-bottom:1em;
+    font-size:5em;
     @media (max-width: 45em) {
-        margin-bottom:1em;
+        margin-bottom:.5em;
     }
 `
 
@@ -86,10 +84,9 @@ const Text = styled.div`
     p{
         color:var(--p-1);
     }
-    max-width: 30em;
-    text-align:left;
+    text-align:justify;
+    margin: 2em 0;
     @media (max-width: 45em) {
-        text-align:justify;
     }
 `
 
@@ -124,15 +121,19 @@ export default function Welcome() {
 
     if(isLoaded){
         return (
-            <WelcomeContainer>
-                <TextContainer>
-                    <Title dangerouslySetInnerHTML={{__html: welcome.title.rendered}}/>
-                    <Text dangerouslySetInnerHTML={{__html: welcome.content.rendered}}/>
-                </TextContainer>
-                <ImageContainer>
-                    <Image src={imageUrl}/>
-                </ImageContainer>
-            </WelcomeContainer>
+            <Wrapper>
+                <WelcomeContainer>
+                    <TextContainer>
+                        <Title dangerouslySetInnerHTML={{__html: welcome.title.rendered}}/>
+                        <Line height='2px'/>
+                        <Text dangerouslySetInnerHTML={{__html: welcome.content.rendered}}/>
+                        <Line height='2px'/>
+                    </TextContainer>
+                    <ImageContainer img={imageUrl}>
+                        <Image src={imageUrl}/>
+                    </ImageContainer>
+                </WelcomeContainer>
+            </Wrapper>
         )
     }
     else{

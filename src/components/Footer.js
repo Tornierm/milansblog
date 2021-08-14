@@ -6,6 +6,7 @@ position:relative;
 height:100px;;
 background-color:var(--p-dark);
 z-index:2;
+border-top: 2px var(--p-vlight) solid;
 `
 
 export default function Footer () {

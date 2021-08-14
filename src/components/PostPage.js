@@ -19,19 +19,25 @@ const Header = styled.div`
     background-attachment: scroll;
     top: 0;
     bottom: 0;
-    left: 0;
-    right: 0;
+    left: 50%;
+    right: auto;
     position:fixed;
     height:100vh;
     width:100vw;
+    max-width:52em;
     z-index:1;
+    margin-left:-26em;
+    @media (max-width: 52em) {
+        margin-left:0;
+        left:0;
+    }
 `
 
 const Margin = styled.div`
     padding:.5em;
     background-color: var(--p-7);
+    opacity:90%;
     z-index:2;
-
 `
 
 const Article = styled.article`
@@ -68,7 +74,6 @@ const Content = styled.div`
     display:flex;
     flex-direction:column;
     align-items:center; 
-
     p{
         color:var(--p-1);
         text-align: justify;

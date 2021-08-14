@@ -57,7 +57,6 @@ const Image = styled.img`
     display:block; 
     @media (max-width: 45em) {
         width: 100%;
-        
     }
 `
 const Item = styled.div`
@@ -121,17 +120,17 @@ const Excerpt = styled.div`
 
 const Button = styled(Link)`
     background-color: var(--p-9);
-    color: var(--s-dark);
+    color: var(--s-1);
     display: inline-block;
     text-align: flex-start;
     align-self:flex-start;
     text-decoration: none;
-    border:2px solid var(--s-dark);
+    border:2px solid var(--s-3);
     width: 10em;
     padding:.5em;
     :hover{
-        border:2px solid var(--p-dark);
-        color: var(--p-dark);
+        border:2px solid var(--p-9);
+        color: var(--s-3);
         transition: .5s;
     }
     @media (max-width: 45em) {

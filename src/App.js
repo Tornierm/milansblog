@@ -13,11 +13,14 @@ import {
 } from "react-router-dom";
 
 const Site= styled.div`
+  --p-white:white;
   --p-vlight:#dbe2e6;
   --p-light: #9fb2bc;
   --p: #607D8B;
   --p-dark: #3B4c54;
   --p-vdark: #212b30;
+  --p-black:black;
+
   
   --s-vlight: #fbe2da;
   --s-light: #f1997e;
@@ -25,11 +28,14 @@ const Site= styled.div`
   --s-dark: #932f10;
   --s-vdark: #371206;
   ${props => props.theme === 'light' && css`
+    --p-10: var(--p-white);
     --p-9: var(--p-vlight);
     --p-7: var(--p-light);
     --p-5: var(--p);
     --p-3: var(--p-dark);
     --p-1: var(--p-vdark);
+    --p-0: var(--p-black);
+
     
     --s-9: var(--s-vlight);
     --s-7: var(--s-light);
@@ -38,11 +44,13 @@ const Site= styled.div`
     --s-1: var(--s-vdark);
   `}
   ${props => props.theme === 'dark' && css`
+  --p-10: var(--p-black);
   --p-9: var(--p-vdark);
   --p-7: var(--p-dark);
   --p-5: var(--p);
   --p-3: var(--p-light);
   --p-1: var(--p-vlight);
+  --p-0: var(--p-white);
   
   --s-9: var(--s-vdark);
   --s-7: var(--s-dark);
@@ -54,7 +62,7 @@ const Site= styled.div`
 
 const Main = styled.main`
   min-height: calc(100vh);
-  background-color:var(--p-9);
+  background-color:var(--p-7);
   padding:1em;
 `
 

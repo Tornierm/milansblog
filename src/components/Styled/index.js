@@ -14,7 +14,7 @@ export const Loading = styled.section`
 
     display:flex;
     justify-content:center;
-    align-item:center;
+    align-items:center;
 `
 
 export const Button = styled.button`
@@ -23,7 +23,7 @@ export const Button = styled.button`
     color:white;
     border-radius: .4em;
     display: inline-block;
-    text-align: center;
+    text-align: justify;
     text-decoration: none;
     width: 10em;
     margin:1em 0em 0em 0em;
@@ -33,5 +33,12 @@ export const Button = styled.button`
         transition: .5s;
         border: 1px black solid;
     }
+`
+
+export const Line = styled.hr`
+    width: 100%;               
+    opacity: 1;
+    border-top: ${props => props.height} solid var(--p-1);
+    margin:0;
 `
 
