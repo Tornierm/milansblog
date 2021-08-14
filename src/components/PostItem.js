@@ -38,7 +38,7 @@ const Image = styled.img`
     width:20em;
     height:25em;
     object-fit: cover;
-    display:block;
+    display:block; 
     @media (max-width: 45em) {
         display:none;
     }

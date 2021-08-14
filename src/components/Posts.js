@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { retrievePostsByCategory, retrievePosts, retrieveCategoryIdByName , retrieveCategories } from '../service/WPService';
+import { retrievePostsByCategory, retrieveCategoryIdByName } from '../service/WPService';
 import PostItem from './PostItem'
 import styled from "styled-components";
 import {Wrapper, Loading} from './Styled'
@@ -17,7 +17,6 @@ const PostSection = styled.div`
 export default function Posts(props) {
 
     const [category] = useState(props.category)
-    const [categoryId, setCategoryId] = useState()
     const [posts, setPosts] = useState([])
     const [isLoaded, setIsLoaded] = useState(false)
 

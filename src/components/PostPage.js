@@ -66,9 +66,21 @@ const Content = styled.div`
     max-width:100%;
     background-color:var(--p-9);
     padding:2em;
+    display:flex;
+    flex-direction:column;
+    align-items:center; 
+
     p{
         color:var(--p-1);
         text-align: justify;
+    }
+    img{
+        height:auto;
+        max-height:calc(80vh);
+        width:auto;
+        max-width:100%;
+        object-fit: cover;
+        display:block;
     }
 `
 export default function PostPage ({match}) {
