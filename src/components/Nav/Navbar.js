@@ -52,7 +52,6 @@ const NavLink = styled.a`
     }
 `
 const Logo = styled(NavLink)`
-    font-family: w3-cursive;
     margin-right: auto;
     color: var(--p-vlight);
     @media (max-width: 45em) {

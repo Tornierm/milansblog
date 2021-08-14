@@ -3,23 +3,36 @@ import {Link} from "react-router-dom";
 import styled from "styled-components";
 import { retrieveFeaturedMedia, retrieveAuthor } from '../service/WPService';
 
+const Line = styled.hr`
+    width: 100%;               
+    margin:.5em;
+    opacity: 1;
+    border-top: ${props => props.height} solid var(--p-1);
+`
+
+const Date = styled.span`
+    color:var(--p-1);
+    font-size:.8em;
+    align-self:flex-start;
+`
 
 const Info = styled.div`
     width: 25em;
     height: 25em;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
-    border:2px solid var(--p-5);
+    border:1px solid var(--p-5);
     transform: translate(0em, 2.5em);
     background-color:var(--p-9);
     padding:1em 2em 1em 2em;
     @media (max-width: 45em) {
-        width: 95vw;
+        border:none;
+        width: 100%;
         max-width:30em;
+        height:auto;
         transform: translate(0em, 0em);
-        background: url(${props => props.img}) no-repeat center center scroll; 
         -webkit-background-size: cover;
         -moz-background-size: cover;
         -o-background-size: cover;
@@ -31,7 +44,10 @@ const ImageContainer = styled.div`
     margin-right:0;
     transform: translate(2.5em, -5em);
     @media (max-width: 45em) {
-        display:none;
+        padding:1em;
+        transform: translate(0, 0);
+        width:100%;
+        margin:0;
     }
 `
 const Image = styled.img`
@@ -40,7 +56,8 @@ const Image = styled.img`
     object-fit: cover;
     display:block; 
     @media (max-width: 45em) {
-        display:none;
+        width: 100%;
+        
     }
 `
 const Item = styled.div`
@@ -50,8 +67,12 @@ const Item = styled.div`
     margin: 7em 0em 0em 0em;
     margin-right:auto;
     @media (max-width: 45em) {
-       flex-direction:column; 
-       margin:2.5em 0 0 0;
+        border:1px solid var(--p-5);
+        flex-direction:column; 
+        margin:0 0 1em 0;
+        background: none;
+        width: 90vw;
+        max-width:30em;
     }
     :nth-child(even){
         background: linear-gradient(to left, var(--p-3) 10em, transparent 10em);
@@ -60,14 +81,20 @@ const Item = styled.div`
         margin-right:0;
         @media (max-width: 45em) {
             margin:0;
-            margin:2.5em 0 0 0;
+            background: none;
          }
     }
     :nth-child(even) ${ImageContainer}{
         transform: translate(-2.5em, 5em);
-        order:2;
         margin-left:0;
         margin-right:auto;
+        order:2;
+        @media (max-width: 45em) {
+            transform: translate(0, 0);
+            margin:0 0 0 0;
+            background: none;
+            order:0;
+         }
     }
     :nth-child(even) ${Info}{
         transform: translate(0em, 12.5em);
@@ -79,22 +106,11 @@ const Item = styled.div`
 `
 const Titel = styled.h1`
     color:var(--p-1);
-    text-align: center;
-    margin: 0em;
-    padding: 0em;
-    @media (max-width: 45em) {
-        padding:.2em 1em;
-        margin:0;
-        color:var(--p-1);
-        background-color:var(--p-9);
-        border-radius:.1em;
-     }
+    align-self:flex-start;
 `
 const Excerpt = styled.div`
     overflow: hidden;
     text-align:justify;
-    margin: 0em;
-    padding: 0em;
     @media (max-width: 45em) {
         display:none;
     }
@@ -103,21 +119,23 @@ const Excerpt = styled.div`
     }
 `
 
-const ReadMore = styled(Link)`
-    background-color: var(--s-dark);
-    color:white;
-    border-radius: .4em;
+const Button = styled(Link)`
+    background-color: var(--p-9);
+    color: var(--s-dark);
     display: inline-block;
-    text-align: center;
+    text-align: flex-start;
+    align-self:flex-start;
     text-decoration: none;
-    border:none;
+    border:2px solid var(--s-dark);
     width: 10em;
-    margin:1em 0em 0em 0em;
     padding:.5em;
     :hover{
-        background-color: Black;
-        color:var(--s-dark);
+        border:2px solid var(--p-dark);
+        color: var(--p-dark);
         transition: .5s;
+    }
+    @media (max-width: 45em) {
+        margin:1em 0;
     }
 `
 export default function PostItem (props) {
@@ -126,6 +144,7 @@ export default function PostItem (props) {
     const [isLoaded, setIsLoaded] = useState(false);
 
     useEffect( () => {
+        console.log(post)
         const getImageUrl = retrieveFeaturedMedia(post.featured_media)
         const getAuthor = retrieveAuthor(post.author)
         Promise.all([getImageUrl, getAuthor]).then(res => {
@@ -134,7 +153,7 @@ export default function PostItem (props) {
             }
             setIsLoaded(true)
         });
-    },[post.author, post.featured_media])
+    },[post])
 
     if(isLoaded){
         return (
@@ -143,13 +162,17 @@ export default function PostItem (props) {
                     <Image src={imageUrl} alt={post.title.rendered}/>
                 </ImageContainer>
                 <Info img={imageUrl}>
+                    <Line height='2px'/>
                     <Titel dangerouslySetInnerHTML={{__html: post.title.rendered}}/>
+                    <Date dangerouslySetInnerHTML={{__html: post.date}}/>
+                    <Line height='1px'/>
                     <Excerpt dangerouslySetInnerHTML={{__html: post.excerpt.rendered.substring(0,300) }}/>
-                    <ReadMore to={{
+                    <Button to={{
                         pathname: `/post/${post.id}`
                     }}>
                         Read More.
-                    </ReadMore>
+                    </Button>
+                    <Line height='2px'/>
                 </Info>
             </Item>
         )
