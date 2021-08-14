@@ -8,7 +8,6 @@ const PostWrapper = styled(Wrapper)`
     max-width:50em;
     display:flex;
     flex-direction:column;
-    padding-top:5em
 `
 
 const Header = styled.div`
