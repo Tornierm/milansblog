@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react'
+import {Link} from "react-router-dom";
 import styled from 'styled-components'
 import { retrieveFeaturedMedia, retrievePageByName } from '../service/WPService';
 import {Loading, Line} from './Styled'
@@ -11,19 +12,19 @@ const Wrapper = styled.section`
 
 const WelcomeContainer = styled.section`
     width:100%;
-    max-width:80em;
+    max-width:60em;
     Display:flex;
     justify-content:space-between;
     align-items:flex-start;
-    height: calc(100vh - 8em);
-    margin-top:4em;
+    height: calc(70vh - 8em);
+    margin: 20vh 0;
     background-color:var(--p-9);
-    padding:2em;
     @media (max-width: 45em) {
+        margin: 0;
         height:auto;
         flex-direction:column;
     }
-    border:2px var(--p-5) solid;
+    border:1px var(--p-1) solid;
 `
 
 const ImageContainer = styled.div`
@@ -35,7 +36,7 @@ const ImageContainer = styled.div`
     @media (max-width: 45em) {
         justify-content:center;
         width:100%;
-        height:60vh;
+        height:40vh;
         background: none; 
     }
 `
@@ -47,11 +48,11 @@ const TextContainer = styled.div`
     display:flex;
     flex-direction:column;
     align-items:flex-start;
-    justify-content:flex-end;
+    justify-content:space-around;
     padding:0em 0em 0em 0em;
+    padding:2em;
     margin-right:2em;
     @media (max-width: 45em) {
-        padding:2em 0em 2em 0em;
         width:100%;
         max-width:100%;
         height:auto;
@@ -63,7 +64,6 @@ const Image = styled.img`
     display:block;
     width:100%;
     height:100%;
-    max-width:35em;
     @media (max-width: 45em) {
         
     }
@@ -72,7 +72,7 @@ const Image = styled.img`
 const Title = styled.h1`    
     color:var(--p-1);
     margin-bottom:1em;
-    font-size:5em;
+    font-size:3em;
     @media (max-width: 45em) {
         margin-bottom:.5em;
         font-size:3em;
@@ -84,8 +84,27 @@ const Text = styled.div`
         color:var(--p-1);
     }
     text-align:justify;
-    margin: 2em 0;
     @media (max-width: 45em) {
+    }
+`
+
+const Button = styled(Link)`
+    background-color: var(--p-9);
+    color: var(--s-1);
+    display: inline-block;
+    text-align: flex-start;
+    align-self:flex-start;
+    text-decoration: none;
+    border:2px solid var(--s-3);
+    width: 10em;
+    padding:.5em;
+    :hover{
+        border:2px solid var(--p-9);
+        color: var(--s-3);
+        transition: .5s;
+    }
+    @media (max-width: 45em) {
+        margin:1em 0;
     }
 `
 
@@ -123,10 +142,13 @@ export default function Welcome() {
             <Wrapper>
                 <WelcomeContainer>
                     <TextContainer>
+                        <Line height="2px"/>
                         <Title dangerouslySetInnerHTML={{__html: welcome.title.rendered}}/>
-                        <Line height='2px'/>
+                        <Line height="1px"/>
                         <Text dangerouslySetInnerHTML={{__html: welcome.content.rendered}}/>
-                        <Line height='2px'/>
+                        <Line height="1px"/>
+                        <Button to={{pathname: `/blog`}}>Read Blog.</Button>
+                        <Line height="2px"/>
                     </TextContainer>
                     <ImageContainer img={imageUrl}>
                         <Image src={imageUrl}/>

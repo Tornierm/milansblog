@@ -10,7 +10,7 @@ const TopNav = styled.div`
     top:0;
     transition: all .5s ease-in-out;
     z-index:999;
-    height:60px;
+    height:4em;
     width:100%;
     display:flex;
     background-color:var(--p-dark);
