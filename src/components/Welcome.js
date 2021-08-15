@@ -142,7 +142,6 @@ export default function Welcome() {
                         <Title dangerouslySetInnerHTML={{__html: welcome.title.rendered}}/>
                         <Line height="1px"/>
                         <Text dangerouslySetInnerHTML={{__html: welcome.content.rendered}}/>
-                        <Line height="1px"/>
                         <Button to={{pathname: `/blog`}}>Read Blog.</Button>
                         <Line height="2px"/>
                     </TextContainer>

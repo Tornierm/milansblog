@@ -25,7 +25,7 @@ const Header = styled.div`
     left: 50%;
     right: auto;
     position:fixed;
-    height:100vh;
+    height:calc(100vh - 5em);
     width:100vw;
     max-width:52em;
     z-index:1;
@@ -88,9 +88,6 @@ const Content = styled.div`
         max-width:100%;
         object-fit: cover;
         display:block;
-    }
-    @media (max-width: 45em) {
-        padding:1em;
     }
 `
 export default function PostPage ({match}) {
