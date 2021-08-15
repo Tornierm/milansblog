@@ -50,6 +50,7 @@ const TextContainer = styled.div`
         width:100%;
         max-width:100%;
         height:auto;
+        margin-left:0;
     }
 `
 
