@@ -61,9 +61,9 @@ const Site= styled.div`
 `
 
 const Main = styled.main`
-  min-height: calc(100vh);
+  min-height: calc(100vh + 10em);
   background-color:var(--p-7);
-  padding:4em 1em 0 1em;
+  padding:5em 1em 0 1em;
 `
 
 function App() {

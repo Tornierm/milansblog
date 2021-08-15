@@ -63,7 +63,7 @@ const Item = styled.div`
     background: linear-gradient(90deg, var(--p-3) 10em, transparent 10em);
     max-width: 800px;
     display: flex;
-    margin: 7em 0em 0em 0em;
+    margin: 5em 0em 0em 0em;
     margin-right:auto;
     @media (max-width: 45em) {
         border:1px solid var(--p-5);
@@ -75,7 +75,7 @@ const Item = styled.div`
     }
     :nth-child(even){
         background: linear-gradient(to left, var(--p-3) 10em, transparent 10em);
-        margin: 0em 0em 20em 0em;
+        margin: 0em 0em 13.5em 0em;
         margin-left:auto;
         margin-right:0;
         @media (max-width: 45em) {
@@ -101,7 +101,6 @@ const Item = styled.div`
             transform: translate(0em, 0em);
          }
     }
-    
 `
 const Titel = styled.h1`
     color:var(--p-1);

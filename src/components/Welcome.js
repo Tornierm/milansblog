@@ -13,14 +13,13 @@ const Wrapper = styled.section`
 const WelcomeContainer = styled.section`
     width:100%;
     max-width:60em;
-    Display:flex;
-    justify-content:space-between;
-    align-items:flex-start;
-    height: calc(70vh - 8em);
-    margin: 20vh 0;
+    align-items:center;
+    display:flex;
+    margin: 15vh 0;
     background-color:var(--p-9);
     @media (max-width: 45em) {
-        margin: 0;
+        max-width:30em;
+        margin: 0 0 1em 0;
         height:auto;
         flex-direction:column;
     }
@@ -28,15 +27,13 @@ const WelcomeContainer = styled.section`
 `
 
 const ImageContainer = styled.div`
-    display:flex;
-    align-items:center;
-    justify-content:flex-end;
     height:100%;
     width:50%;
+    padding:1em;
     @media (max-width: 45em) {
         justify-content:center;
         width:100%;
-        height:40vh;
+        height:25em;
         background: none; 
     }
 `
@@ -44,14 +41,11 @@ const ImageContainer = styled.div`
 const TextContainer = styled.div`
     height:100%;
     width:50%;
-    max-width: 30em;
     display:flex;
     flex-direction:column;
-    align-items:flex-start;
-    justify-content:space-around;
-    padding:0em 0em 0em 0em;
+    justify-content: space-between;
     padding:2em;
-    margin-right:2em;
+    margin-left:2em;
     @media (max-width: 45em) {
         width:100%;
         max-width:100%;
@@ -71,11 +65,8 @@ const Image = styled.img`
 
 const Title = styled.h1`    
     color:var(--p-1);
-    margin-bottom:1em;
     font-size:3em;
     @media (max-width: 45em) {
-        margin-bottom:.5em;
-        font-size:3em;
     }
 `
 
@@ -141,6 +132,9 @@ export default function Welcome() {
         return (
             <Wrapper>
                 <WelcomeContainer>
+                    <ImageContainer img={imageUrl}>
+                        <Image src={imageUrl}/>
+                    </ImageContainer>
                     <TextContainer>
                         <Line height="2px"/>
                         <Title dangerouslySetInnerHTML={{__html: welcome.title.rendered}}/>
@@ -150,9 +144,6 @@ export default function Welcome() {
                         <Button to={{pathname: `/blog`}}>Read Blog.</Button>
                         <Line height="2px"/>
                     </TextContainer>
-                    <ImageContainer img={imageUrl}>
-                        <Image src={imageUrl}/>
-                    </ImageContainer>
                 </WelcomeContainer>
             </Wrapper>
         )

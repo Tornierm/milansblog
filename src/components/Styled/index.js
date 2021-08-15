@@ -39,6 +39,6 @@ export const Line = styled.hr`
     width: 100%;               
     opacity: 1;
     border-top: ${props => props.height} solid var(--p-1);
-    margin:0;
+    margin:.5em 0;
 `
 
