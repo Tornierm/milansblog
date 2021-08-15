@@ -8,6 +8,9 @@ const PostWrapper = styled(Wrapper)`
     max-width:50em;
     display:flex;
     flex-direction:column;
+    @media (max-width: 50em) {
+        margin:0;
+    }
 `
 
 const Header = styled.div`
@@ -85,6 +88,9 @@ const Content = styled.div`
         max-width:100%;
         object-fit: cover;
         display:block;
+    }
+    @media (max-width: 45em) {
+        padding:1em;
     }
 `
 export default function PostPage ({match}) {

@@ -8,6 +8,7 @@ const Wrapper = styled.section`
     display:flex;
     justify-content:center;
     align-items:center;
+    padding:1em;
 `
 
 const WelcomeContainer = styled.section`
