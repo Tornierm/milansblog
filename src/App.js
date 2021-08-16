@@ -5,6 +5,7 @@ import Footer from './components/Footer'
 import PostPage from './components/PostPage'
 import Welcome from './components/Welcome'
 import styled, {css} from 'styled-components'
+import ScrollToTop from './components/ScrollToTop'
 
 import {
   BrowserRouter as Router,
@@ -84,6 +85,7 @@ function App() {
       <Navbar theme={theme} setTheme={x => setTheme(x)}/>
       <Main>
         <Router>
+          <ScrollToTop/>
           <Switch>
             <Route exact path="/">
               <Welcome/>

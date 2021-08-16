@@ -70,7 +70,7 @@ const Info = styled.div`
     padding:2em;
     display:flex;
     flex-direction:column;
-    justify-content:flex-end;
+    justify-content:flex-start;
 `
 
 const Title = styled.h1`
