@@ -11,6 +11,7 @@ export const Loading = styled.section`
     margin-left:  auto; /* 1 */
 
     max-width: 60em; /* 2 */
+    height:100vh;
 
     display:flex;
     justify-content:center;

@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {Wrapper, Loading} from './Styled'
+import {Wrapper, Loading, Line} from './Styled'
 import styled from 'styled-components'
 import Comments from './Comments/Comments'
 import { retrieveFeaturedMedia, retrievePost } from '../service/WPService';
@@ -25,7 +25,7 @@ const Header = styled.div`
     left: 50%;
     right: auto;
     position:fixed;
-    height:calc(100vh - 5em);
+    height:calc(100vh);
     width:100vw;
     max-width:52em;
     z-index:1;
@@ -51,21 +51,23 @@ const Article = styled.article`
     z-index:2;
 `
 
-const Info = styled.div`
+const InfoSection = styled.div`
     display:flex;
     justify-content: center;
     align-items: center;
     max-width:100%;
     max-height:100%;
-    height: 100vh;
+    height: calc(100vh - 5em);
     width: 100vw;
     z-index:2;
 `
 
-const Title = styled.h1`
+const Info = styled.div`
     background-color:var(--p-9);
-    border-radius:.1em;
-    padding:.2em;
+    padding:1em;
+`
+
+const Title = styled.h1`
     color:var(--p-1);
 `
 
@@ -89,6 +91,12 @@ const Content = styled.div`
         object-fit: cover;
         display:block;
     }
+`
+
+const Date = styled.span`
+    color:var(--p-1);
+    font-size:.8em;
+    align-self:flex-start;
 `
 export default function PostPage ({match}) {
     const [post, setPost] = useState('');
@@ -118,9 +126,15 @@ export default function PostPage ({match}) {
             <PostWrapper>
                 <Header img={imageUrl}>
                 </Header>
-                <Info>
-                    <Title dangerouslySetInnerHTML={{__html: post.title.rendered}}/>
-                </Info>
+                <InfoSection>
+                    <Info>
+                        <Line height="2px"/>
+                        <Title dangerouslySetInnerHTML={{__html: post.title.rendered}}/>
+                        <Line height="1px"/>
+                        <Date dangerouslySetInnerHTML={{__html: post.date}}/>
+                        <Line height="2px"/>
+                    </Info>
+                </InfoSection>
                 <Article>
                     <Content dangerouslySetInnerHTML={{__html: post.content.rendered}}/>
                 </Article>

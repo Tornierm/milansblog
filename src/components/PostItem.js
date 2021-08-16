@@ -2,13 +2,7 @@ import React, { useState, useEffect } from 'react';
 import {Link} from "react-router-dom";
 import styled from "styled-components";
 import { retrieveFeaturedMedia, retrieveAuthor } from '../service/WPService';
-
-const Line = styled.hr`
-    width: 100%;               
-    margin:.5em;
-    opacity: 1;
-    border-top: ${props => props.height} solid var(--p-1);
-`
+import {Line} from './Styled';
 
 const Date = styled.span`
     color:var(--p-1);
