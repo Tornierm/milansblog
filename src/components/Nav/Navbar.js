@@ -13,8 +13,9 @@ const TopNav = styled.div`
     height:4em;
     width:100%;
     display:flex;
+    justify-content:center;
     background-color:var(--p-dark);
-    border-bottom: 2px var(--p-vlight) solid;
+    border-bottom: 1px var(--p-vlight) solid;
     @media (max-width: 45em) {
         flex-direction:column;
         height:auto;
@@ -37,15 +38,15 @@ const NavLink = styled.a`
     text-align: center;
     text-decoration: none;
     width:auto;
-    border-radius: .5em;
-    padding:.8em;
+    padding:.6em;
+    margin:0 .5em;
     color: var(--p-vlight);
+    border: 1px var(--p-vlight) solid;
     :hover{
         color: var(--s-5);
         transition:1.5s;
         -webkit-transition:1.5s;
-        background-color:var(--p-vdark);
-        border-radius:.3em;
+        border: 1px var(--s-5) solid;
     }
     @media (max-width: 45em) {
         width:100%;
@@ -54,32 +55,42 @@ const NavLink = styled.a`
 const Logo = styled(NavLink)`
     margin-right: auto;
     color: var(--p-vlight);
+    border: 1px var(--p-dark) solid;
     @media (max-width: 45em) {
         width:8em;
     }
     :hover{
-        background-color:var(--p-dark);
     }
 `
 
 const Right = styled.div`
 display:flex;
 flex-direction:row;
-margin-left:auto;
+justify-content:flex-end;
+width:50%;
+max-width:30em;
 @media (max-width: 45em) {
     background-color:var(--p-dark);
     flex-direction:column;
     margin-left:0;
     margin-bot:5em;
     border-bottom: 2px var(--p-vlight) solid;
+    width:100%;
+    max-width:100%;
     ${props => !props.show && css`
     display:none;
 `}
 }
 `
 const Left = styled.div`
+    width:50%;
+    max-width:30em;
     display:flex;
     justify-content:space-between;
+    @media (max-width: 45em) {
+        width:100%;
+        max-width:100%;
+    }
 `
 
 const Burger = styled.a`

@@ -11,6 +11,7 @@ const PostWrapper = styled(Wrapper)`
     @media (max-width: 50em) {
         margin:0;
     }
+    border: 1px var(--s-7) solid;
 `
 
 const Header = styled.div`
@@ -27,9 +28,9 @@ const Header = styled.div`
     position:fixed;
     height:calc(100vh);
     width:100vw;
-    max-width:52em;
+    max-width:50em;
     z-index:1;
-    margin-left:-26em;
+    margin-left:-25em;
     @media (max-width: 52em) {
         margin-left:0;
         left:0;
@@ -54,7 +55,7 @@ const Article = styled.article`
 const InfoSection = styled.div`
     display:flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-end;
     max-width:100%;
     max-height:100%;
     height: calc(100vh - 5em);
@@ -63,8 +64,13 @@ const InfoSection = styled.div`
 `
 
 const Info = styled.div`
+    height:33vh;
+    width:100%;
     background-color:var(--p-9);
-    padding:1em;
+    padding:2em;
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-end;
 `
 
 const Title = styled.h1`
