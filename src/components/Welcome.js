@@ -8,7 +8,7 @@ const Wrapper = styled.section`
     display:flex;
     justify-content:center;
     align-items:center;
-    padding:1em;
+    padding: 0em 1em 1em 1em;
 `
 
 const WelcomeContainer = styled.section`
@@ -67,7 +67,6 @@ const Image = styled.img`
 
 const Title = styled.h1`    
     color:var(--p-1);
-    font-size:3em;
     @media (max-width: 45em) {
     }
 `
@@ -150,6 +149,6 @@ export default function Welcome() {
         )
     }
     else{
-        return <Loading></Loading>
+        return <Loading> Loading ...</Loading>
     }
 }

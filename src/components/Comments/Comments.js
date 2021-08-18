@@ -6,15 +6,30 @@ import styled, {css} from 'styled-components'
 
 const CommentSection = styled.section`
     margin-bottom:1.5em;
+    background-color: var(--p-9);
+    padding:1em;
 `
 
+
+
 const Button = styled.button`
-    margin-left:4em;
     align-self:flex-end;
-    border: none;
-    background-color: transparent;
-    color: var(--s-7);
-    max-width:8em;
+    width:8em;
+    text-align: center;
+    margin:0em 0em 0em .5em;
+    color: var(--p-1);
+    background-color:transparent;
+    border:none;
+    border-bottom: 1px var(--p-1) solid;
+    :hover{
+        color: var(--s-5);
+        transition:1.5s;
+        -webkit-transition:1.5s;
+        border-bottom: 1px var(--s-5) solid;
+    }
+    @media (max-width: 45em) {
+        width:100%;
+    }
 `
 
 const Container = styled.section`
@@ -23,6 +38,12 @@ const Container = styled.section`
     ${props => props.depth === 1 && css`
         margin-left: 2em;
     `}
+`
+
+const Buttons = styled.div`
+    display:flex;
+    justify-content:flex-end;
+    margin-bottom:.5em;
 `
 
 export default function Comments(props) {
@@ -84,7 +105,10 @@ export default function Comments(props) {
             return (
                 <CommentSection>
                     <Container depth={depth}>
-                        {depth===1 && <Button onClick={() => showForm(hideForm)}>{replyText}</Button>}
+                        <Buttons>
+                            {depth===1 && <Button onClick={() => showForm(hideForm)}>{replyText}</Button>}
+                            {depth===1 && <Button onClick={() => showReplies(hideReplies)}>{showRepliesText}</Button> }
+                        </Buttons>
                         {(depth===0||hideForm) && 
                             <CommentForm
                                 updateComments = {x => updateComments(x)} 
@@ -93,7 +117,7 @@ export default function Comments(props) {
                                 key={'commentForm'+{parent}} 
                             />
                         }
-                        {depth===1 && <Button onClick={() => showReplies(hideReplies)}>{showRepliesText}</Button> }
+                        <br/>
                         {(depth===0||hideReplies) && comments.map(comment => (
                             <CommentItem 
                                 depth={depth+1}

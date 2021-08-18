@@ -8,12 +8,17 @@ const Form = styled.form`
     flex-direction:column;
     align-items:center;
     padding-bottom:1em;
+    background-color: var(--p-9);
+    border: 1px var(--p-1) solid;
+    padding:1em;
 `
+
 const Label = styled.label`
-    color:var(--p);
+    color:var(--p-3);
 `
 const Info = styled.div`
     display:flex;
+    justify-content:space-between;
     width:100%;
     @media (max-width: 45em) {
         flex-direction:column;
@@ -22,9 +27,9 @@ const Info = styled.div`
 
 const Input = styled.input`
     border: none;
-    background-color: white;
-    margin:0 .5em;
-    border-bottom:2px var(--p) solid;
+    background-color: var(--p-white);
+    margin:0;
+    border-bottom:1px var(--p-1) solid;
 `
 
 const Comment = styled.textarea`
@@ -32,14 +37,15 @@ const Comment = styled.textarea`
     width=100%;
     border: none;
     background-color: white;
-    margin:0 .5em;
-    border:2px var(--p) solid;
+    margin:0 ;
+    border-bottom:1px var(--p-1) solid;
 `
 const FormItem = styled.div`
     display:flex;
     Flex-Direction:column;
     width:100%;
     overflow:scroll;
+    margin:.5em;
 `
 
 

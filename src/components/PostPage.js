@@ -26,7 +26,7 @@ const Header = styled.div`
     left: 50%;
     right: auto;
     position:fixed;
-    height:calc(100vh);
+    height:calc(70vh);
     width:100vw;
     max-width:50em;
     z-index:1;
@@ -38,10 +38,8 @@ const Header = styled.div`
 `
 
 const Margin = styled.div`
-    padding:.5em;
-    background-color: var(--p-7);
-    opacity:90%;
     z-index:2;
+    background-color: var(--p-9);
 `
 
 const Article = styled.article`
@@ -50,6 +48,7 @@ const Article = styled.article`
     justify-content: center;
     align-items: center;
     z-index:2;
+    background-color:var(--p-9);
 `
 
 const InfoSection = styled.div`
@@ -64,7 +63,7 @@ const InfoSection = styled.div`
 `
 
 const Info = styled.div`
-    height:33vh;
+    height:30vh;
     width:100%;
     background-color:var(--p-9);
     padding:2em;
@@ -80,7 +79,6 @@ const Title = styled.h1`
 const Content = styled.div`
     width:100vw;
     max-width:100%;
-    background-color:var(--p-9);
     padding:2em;
     display:flex;
     flex-direction:column;
@@ -103,6 +101,13 @@ const Date = styled.span`
     color:var(--p-1);
     font-size:.8em;
     align-self:flex-start;
+`
+
+const H1 = styled.h1`
+    text-align: left;
+    align-self: flex-start;
+    margin-left:1em;
+    color: var(--p-1);
 `
 export default function PostPage ({match}) {
     const [post, setPost] = useState('');
@@ -143,6 +148,8 @@ export default function PostPage ({match}) {
                 </InfoSection>
                 <Article>
                     <Content dangerouslySetInnerHTML={{__html: post.content.rendered}}/>
+                    <Line height="2px"/>
+                    <H1>Comments</H1>
                 </Article>
                 <Margin>
                     <Comments parent="0" post={post.id} depth={depth}/>

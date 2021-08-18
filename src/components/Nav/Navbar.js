@@ -147,13 +147,17 @@ export default function Navbar (props) {
 
         retrieveNavbar()
         .then(res => {
-            const Items = res.items.map((item) =>
-            <NavItem key={item.title}>
-                <NavLink key={item.title} href={item.url}>{item.title}</NavLink>
-            </NavItem>
-            );
-            setLoaded(true);
-            setListItems(Items)
+            if(res.items.type === 'undefined'){
+
+            } else {
+                const Items = res.items.map((item) =>
+                <NavItem key={item.title}>
+                    <NavLink key={item.title} href={item.url}>{item.title}</NavLink>
+                </NavItem>
+                );
+                setListItems(Items)
+                setLoaded(true);
+            }
         });
         return () => {
             setLoaded(false);

@@ -5,10 +5,10 @@ import Comments from './Comments'
 
 const Container = styled.div`
     display:flex;
-    background-color: rgba(255,255,255,1);
-    border-radius:.5em;
+    background-color: var(--p-9);
     padding:0.5em;
     transition: opacity 1s;
+    border: 1px var(--p-1) solid;
 `
 
 const Comment = styled.div`
@@ -42,17 +42,18 @@ const Avatar = styled.img`
 const Author = styled.p`
     margin:0;
     padding:0;
-    color:var(--p);
+    color:var(--p-3);
 `
 const Text = styled.div`
     p{
         margin:0 0em;
+        color:var(--p-1);
     }
 `
 const Date = styled.div`
     p{
         font-size:.6em;
-        color:var(--p);
+        color:var(--p-3);
         margin:0;
     }
     align-self:flex-end;

@@ -19,20 +19,20 @@ export const Loading = styled.section`
 `
 
 export const Button = styled.button`
-    background-color: var(--s-dark);
-    border: 1px var(--s-dark) solid;
-    color:white;
-    border-radius: .4em;
-    display: inline-block;
-    text-align: justify;
-    text-decoration: none;
+    background-color: transparent;
+    color: var(--s-1);
+    text-align: left;
+    border:2px solid var(--s-3);
     width: 10em;
-    margin:1em 0em 0em 0em;
     padding:.5em;
+    margin-top:1em;
     :hover{
-        color:black;
+        border:2px solid var(--p-9);
+        color: var(--s-3);
         transition: .5s;
-        border: 1px black solid;
+    }
+    @media (max-width: 45em) {
+        margin:1em 0;
     }
 `
 
@@ -42,4 +42,3 @@ export const Line = styled.hr`
     border-top: ${props => props.height} solid var(--p-1);
     margin:.5em 0;
 `
-
