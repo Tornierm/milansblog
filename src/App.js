@@ -1,9 +1,9 @@
 import {useState, useEffect} from 'react'
-import Posts from './components/Posts'
-import Navbar from './components/Nav/Navbar'
+import Posts from './components/Posts/Posts'
+import Navbar from './components/Navbar'
 import Footer from './components/Footer'
-import PostPage from './components/PostPage'
-import Welcome from './components/Welcome'
+import PostPage from './components/Posts/PostPage'
+import Welcome from './components/Pages/Welcome'
 import styled, {css} from 'styled-components'
 import ScrollToTop from './components/ScrollToTop'
 
@@ -22,7 +22,6 @@ const Site= styled.div`
   --p-vdark: #212b30;
   --p-black:black;
 
-  
   --s-vlight: #fbe2da;
   --s-light: #f1997e;
   --s: #E64A19;
