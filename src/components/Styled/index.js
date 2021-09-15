@@ -16,6 +16,7 @@ export const Loading = styled.section`
     display:flex;
     justify-content:center;
     align-items:center;
+    color: var(--s-1);
 `
 
 export const Button = styled.button`

@@ -14,13 +14,13 @@ import {
 } from "react-router-dom";
 
 const Site= styled.div`
-  --p-white:white;
+  --p-white:#BCC8CE;
   --p-vlight:#dbe2e6;
   --p-light: #9fb2bc;
   --p: #607D8B;
   --p-dark: #3B4c54;
   --p-vdark: #212b30;
-  --p-black:black;
+  --p-black:#0D222C;
 
   --s-vlight: #fbe2da;
   --s-light: #f1997e;
@@ -62,7 +62,7 @@ const Site= styled.div`
 
 const Main = styled.main`
   min-height: calc(100vh + 10em);
-  background-color:var(--p-9);
+  background-color:var(--p-10);
   padding:5em 0 1px 0;
 `
 

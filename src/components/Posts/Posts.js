@@ -5,7 +5,7 @@ import styled from "styled-components";
 import {Wrapper, Loading} from '../Styled'
 
 const PostSection = styled.div`
-    padding: 0em 1em 1em 1em;
+    padding: 0em 1em 5em 1em;
     @media (max-width: 45em) {
         display:flex;
         flex-direction:column;

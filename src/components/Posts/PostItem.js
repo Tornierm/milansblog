@@ -69,7 +69,7 @@ const Item = styled.div`
     }
     :nth-child(even){
         background: linear-gradient(to left, var(--p-3) 10em, transparent 10em);
-        margin: 0em 0em 13.5em 0em;
+        margin: 0em 0em 20em 0em;
         margin-left:auto;
         margin-right:0;
         @media (max-width: 45em) {
