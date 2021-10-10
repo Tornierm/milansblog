@@ -8,7 +8,6 @@ const Form = styled.form`
     flex-direction:column;
     align-items:center;
     background-color: var(--p-9);
-    border: 1px var(--p-1) solid;
     padding:1em;
 `
 

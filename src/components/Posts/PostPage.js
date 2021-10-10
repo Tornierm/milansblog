@@ -49,7 +49,7 @@ const Article = styled.article`
     justify-content: center;
     align-items: flex-start;
     z-index:2;
-    background-color:var(--p-9);
+    background-color:var(--p-10);
     padding:2em;
 `
 
@@ -67,7 +67,7 @@ const InfoSection = styled.div`
 const Info = styled.div`
     height:30vh;
     width:100%;
-    background-color:var(--p-9);
+    background-color:var(--p-10);
     padding:2em;
     display:flex;
     flex-direction:column;

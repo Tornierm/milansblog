@@ -15,6 +15,8 @@ import {
 } from "react-router-dom";
 
 const Site= styled.div`
+background-color:var(--p-10);
+
   --p-white:white;
   --p-vlight:#F3F5F7;
   --p-light: #abbcc4;

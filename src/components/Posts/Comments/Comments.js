@@ -6,7 +6,7 @@ import styled, {css} from 'styled-components'
 
 const CommentSection = styled.section`
     margin-bottom:1.5em;
-    background-color: var(--p-9);
+    background-color: var(--p-10);
     padding:1em;
 `
 
