@@ -43,7 +43,6 @@ const FormItem = styled.div`
     display:flex;
     Flex-Direction:column;
     width:100%;
-    overflow:scroll;
     margin:0 .5em;
     @media (max-width: 45em) {
         margin:0em;

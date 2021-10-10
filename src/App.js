@@ -1,5 +1,6 @@
 import {useState, useEffect} from 'react'
 import Posts from './components/Posts/Posts'
+import PostSlider from './components/Posts/PostSlider'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import PostPage from './components/Posts/PostPage'
@@ -14,13 +15,13 @@ import {
 } from "react-router-dom";
 
 const Site= styled.div`
-  --p-white:#BCC8CE;
-  --p-vlight:#dbe2e6;
-  --p-light: #9fb2bc;
+  --p-white:white;
+  --p-vlight:#F3F5F7;
+  --p-light: #abbcc4;
   --p: #607D8B;
-  --p-dark: #3B4c54;
-  --p-vdark: #212b30;
-  --p-black:#0D222C;
+  --p-dark: #324148;
+  --p-vdark: #111618;
+  --p-black:black;
 
   --s-vlight: #fbe2da;
   --s-light: #f1997e;
@@ -61,7 +62,7 @@ const Site= styled.div`
 `
 
 const Main = styled.main`
-  min-height: calc(100vh + 10em);
+  min-height: calc(100vh);
   background-color:var(--p-10);
   padding:5em 0 1px 0;
 `
@@ -88,6 +89,7 @@ function App() {
           <Switch>
             <Route exact path="/">
               <Welcome/>
+              <PostSlider category="photo"/>
             </Route>
             <Route exact path="/blog">
               <Posts category="blog"/>

@@ -17,14 +17,12 @@ const WelcomeContainer = styled.section`
     align-items:center;
     display:flex;
     margin: 15vh 0;
-    background-color:var(--p-9);
     @media (max-width: 45em) {
         max-width:30em;
         margin: 0 0 0 0;
         height:auto;
         flex-direction:column;
     }
-    border:1px var(--p-1) solid;
 `
 
 const ImageContainer = styled.div`
@@ -139,7 +137,6 @@ export default function Welcome() {
                     <TextContainer>
                         <Line height="2px"/>
                         <Title dangerouslySetInnerHTML={{__html: welcome.title.rendered}}/>
-                        <Line height="1px"/>
                         <Text dangerouslySetInnerHTML={{__html: welcome.content.rendered}}/>
                         <Button to={{pathname: `/blog`}}>Read Blog.</Button>
                         <Line height="2px"/>
