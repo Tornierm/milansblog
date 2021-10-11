@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { retrievePostsByCategory, retrieveCategoryIdByName } from '../../service/WPService';
+import { retrievePosts } from '../../service/WPService';
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
 import styled from "styled-components";
@@ -20,8 +20,8 @@ import SwiperCore, {
 SwiperCore.use([Navigation, Pagination]);
 
 const SwiperWrapper = styled(Wrapper)`
-  margin-top:4em;
-  min-height:calc(100vh-4em);
+  margin-top:0em;
+  min-height:calc(100vh - 10em);
 
   .swiper-container{
     .swiper-button-prev{
@@ -70,24 +70,15 @@ export default function PostSlider (props) {
   const [isLoaded, setIsLoaded] = useState(false)
 
   useEffect( () => {
-      console.log(category)
+     
+    retrievePosts()
+    .then(res => {
+        setPosts(res.slice(0, 5))
+        setIsLoaded(true)
+    })
+    .catch(err => console.log(err));
 
-      retrieveCategoryIdByName(category)
-      .then( res => {
-          if(typeof res[0] === 'undefined'){
-
-          } else {
-              retrievePostsByCategory(res[0].id)
-              .then(res => {
-                  setPosts(res)
-                  setIsLoaded(true)
-              })
-              .catch(err => console.log(err));
-          }
-      })
-      
-
-  },[category])
+  },[])
 
   if(isLoaded){
     return (

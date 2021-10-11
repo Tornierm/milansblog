@@ -5,6 +5,7 @@ import { retrieveFeaturedMedia, retrievePageByName } from '../../service/WPServi
 import {Loading, Line} from '../Styled'
 
 const Wrapper = styled.section`
+    min-height:100vh;
     display:flex;
     justify-content:center;
     align-items:center;
@@ -138,7 +139,6 @@ export default function Welcome() {
                         <Line height="2px"/>
                         <Title dangerouslySetInnerHTML={{__html: welcome.title.rendered}}/>
                         <Text dangerouslySetInnerHTML={{__html: welcome.content.rendered}}/>
-                        <Button to={{pathname: `/blog`}}>Read Blog.</Button>
                         <Line height="2px"/>
                     </TextContainer>
                 </WelcomeContainer>
