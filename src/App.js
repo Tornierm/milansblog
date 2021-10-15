@@ -2,9 +2,10 @@ import {useState, useEffect} from 'react'
 import Posts from './components/Posts/Posts'
 import PostSlider from './components/Posts/PostSlider'
 import Navbar from './components/Navbar'
+import Sidebar from './components/Sidebar'
 import Footer from './components/Footer'
 import PostPage from './components/Posts/PostPage'
-import Welcome from './components/Pages/Welcome'
+import Welcome from './components/Sections/Welcome'
 import styled, {css} from 'styled-components'
 import ScrollToTop from './components/ScrollToTop'
 
@@ -16,6 +17,8 @@ import {
 
 const Site= styled.div`
 background-color:var(--p-10);
+  --navbar-height:4em;
+  --sidebar-height:4em;
 
   --p-white:white;
   --p-vlight:#F3F5F7;
@@ -66,7 +69,6 @@ background-color:var(--p-10);
 const Main = styled.main`
   min-height: calc(100vh);
   background-color:var(--p-10);
-  padding:5em 0 1px 0;
 `
 
 function App() {
@@ -90,7 +92,8 @@ function App() {
           <ScrollToTop/>
           <Switch>
             <Route exact path="/">
-              <Welcome/>
+              <Sidebar/>
+              <Welcome />
               <PostSlider category="photo"/>
             </Route>
             <Route exact path="/blog">

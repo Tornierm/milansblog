@@ -1,9 +1,12 @@
 import styled from 'styled-components'
 
 export const Wrapper = styled.section`
+    padding-top: var(--navbar-height);
+    padding-bottom: var(--sidebar-height);
     margin-right: auto; /* 1 */
     margin-left:  auto; /* 1 */
     max-width: 60em; /* 2 */
+    min-height:100vh;
 `
 
 export const Loading = styled.section`  

@@ -20,8 +20,9 @@ import SwiperCore, {
 SwiperCore.use([Navigation, Pagination]);
 
 const SwiperWrapper = styled(Wrapper)`
-  margin-top:0em;
-  min-height:calc(100vh - 10em);
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
 
   .swiper-container{
     .swiper-button-prev{
@@ -50,7 +51,6 @@ const SwiperWrapper = styled(Wrapper)`
     max-width: 640px;
     width:100%;
   }
-  
   @media (max-width: 768px) {
     max-width: 768px;
   }
@@ -65,7 +65,6 @@ const Title = styled.h1`
 
 export default function PostSlider (props) {
 
-  const [category] = useState(props.category)
   const [posts, setPosts] = useState([])
   const [isLoaded, setIsLoaded] = useState(false)
 
@@ -82,9 +81,11 @@ export default function PostSlider (props) {
 
   if(isLoaded){
     return (
-      <SwiperWrapper>
+      <SwiperWrapper id="recents" >
+        <div>
       <Title>Recent Posts</Title>
       <Swiper
+        grabCursor={true}  
         modules={[Navigation, Pagination]}
         navigation
         pagination={{
@@ -93,12 +94,16 @@ export default function PostSlider (props) {
         }}
         slidesPerView={1}
         breakpoints={{
-          "640": {
+          "480": {
             "slidesPerView": 1,
             "spaceBetween": 0
           },
-          "768": {
+          "550": {
             "slidesPerView": 2,
+            "spaceBetween": 0
+          },
+          "800": {
+            "slidesPerView": 3,
             "spaceBetween": 0
           }
         }}
@@ -111,6 +116,7 @@ export default function PostSlider (props) {
           </SwiperSlide>
         ))}
       </Swiper>
+      </div>
     </SwiperWrapper>
     )
   } else {

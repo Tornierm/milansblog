@@ -10,7 +10,7 @@ const TopNav = styled.div`
     top:0;
     transition: all .5s ease-in-out;
     z-index:999;
-    height:4em;
+    height:var(--navbar-height);
     width:100%;
     display:flex;
     justify-content:center;
@@ -38,14 +38,14 @@ const AnchorButton = styled.a`
     text-align: center;
     text-decoration: none;
     width:auto;
-    padding:.6em;
+    padding:.5em;
     margin:0 .5em;
     color: var(--p-vlight);
     border: 1px var(--p-vlight) solid;
     :hover{
         color: var(--s-5);
-        transition:1.5s;
-        -webkit-transition:1.5s;
+        transition:.5s;
+        -webkit-transition:.5s;
         border: 1px var(--s-5) solid;
     }
     @media (max-width: 45em) {

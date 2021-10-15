@@ -1,0 +1,11 @@
+body {
+    margin:0;
+    padding:0;
+    scroll-behavior: smooth;
+}
+body::-webkit-scrollbar {
+    width:0.25;
+}
+body::-webkit-scrollbar-track {
+    background: red;
+}
