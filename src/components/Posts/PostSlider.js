@@ -111,7 +111,7 @@ export default function PostSlider (props) {
         onSwiper={(swiper) => console.log(swiper)}
       >
         { posts.map(post => (
-          <SwiperSlide>
+          <SwiperSlide key={'s'+post.id}>
             <PostSliderItem key={post.id} post={post}/>
           </SwiperSlide>
         ))}

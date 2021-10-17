@@ -73,6 +73,16 @@ export default function Sidebar () {
                 >
                     Recents
                 </NavLink> 
+                <NavLink
+                    activeClass="active"
+                    to="ig"
+                    spy={true}
+                    smooth={true}
+                    offset={0}
+                    duration={500}
+                >
+                    Instagram
+                </NavLink> 
             </SideNav>
     )
 }

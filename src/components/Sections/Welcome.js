@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import styled from 'styled-components'
 import { retrieveFeaturedMedia, retrievePageByName } from '../../service/WPService';
-import {Loading, Line, Wrapper as StyledWrapper} from '../Styled'
+import {Spinner, Line, Wrapper as StyledWrapper} from '../Styled'
 
 const Wrapper = styled(StyledWrapper)`
     display:flex;
@@ -122,6 +122,10 @@ export default function Welcome() {
         )
     }
     else{
-        return <Loading> Loading ...</Loading>
+        return (
+            <Wrapper id="ig">
+                <Spinner/>
+            </Wrapper>
+        )
     }
 }

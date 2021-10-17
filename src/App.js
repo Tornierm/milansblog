@@ -6,6 +6,8 @@ import Sidebar from './components/Sidebar'
 import Footer from './components/Footer'
 import PostPage from './components/Posts/PostPage'
 import Welcome from './components/Sections/Welcome'
+import InstaPreview from './components/Sections/InstaPreview'
+
 import styled, {css} from 'styled-components'
 import ScrollToTop from './components/ScrollToTop'
 
@@ -95,6 +97,7 @@ function App() {
               <Sidebar/>
               <Welcome />
               <PostSlider category="photo"/>
+              <InstaPreview/>
             </Route>
             <Route exact path="/blog">
               <Posts category="blog"/>
