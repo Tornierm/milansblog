@@ -1,15 +1,12 @@
 import {useState, useEffect} from 'react'
-import Posts from './components/Posts/Posts'
-import PostSlider from './components/Posts/PostSlider'
-import Navbar from './components/Navbar'
-import Sidebar from './components/Sidebar'
-import Footer from './components/Footer'
-import PostPage from './components/Posts/PostPage'
-import Welcome from './components/Sections/Welcome'
-import InstaPreview from './components/Sections/InstaPreview'
+import Posts from './Pages/Posts'
+import Navbar from './components/Nav/Navbar'
+import Footer from './components/Nav/Footer'
+import PostPage from './Pages/PostPage'
+import Home from './Pages/Home'
 
 import styled, {css} from 'styled-components'
-import ScrollToTop from './components/ScrollToTop'
+import ScrollToTop from './components/Nav/ScrollToTop'
 
 import {
   BrowserRouter as Router,
@@ -20,7 +17,14 @@ import {
 const Site= styled.div`
 background-color:var(--p-10);
   --navbar-height:4em;
-  --sidebar-height:4em;
+  --footer-height:10em;
+  --sidebar-width:4em;
+
+  --bp-small:32em;
+  --bp-med:48em;
+  --bp-large:64em;
+
+  --margin:1em;
 
   --p-white:white;
   --p-vlight:#F3F5F7;
@@ -94,10 +98,7 @@ function App() {
           <ScrollToTop/>
           <Switch>
             <Route exact path="/">
-              <Sidebar/>
-              <Welcome />
-              <PostSlider category="photo"/>
-              <InstaPreview/>
+              <Home/>
             </Route>
             <Route exact path="/blog">
               <Posts category="blog"/>

@@ -98,11 +98,11 @@ export default function PostSlider (props) {
             "slidesPerView": 1,
             "spaceBetween": 0
           },
-          "550": {
+          "800": {
             "slidesPerView": 2,
             "spaceBetween": 0
           },
-          "800": {
+          "1000": {
             "slidesPerView": 3,
             "spaceBetween": 0
           }

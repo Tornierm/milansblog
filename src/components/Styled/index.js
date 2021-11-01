@@ -1,26 +1,19 @@
 import styled, {keyframes} from 'styled-components'
 
 export const Wrapper = styled.section`
-    padding-top: var(--navbar-height);
-    padding-bottom: var(--sidebar-height);
-    margin-right: auto; /* 1 */
-    margin-left:  auto; /* 1 */
-    max-width: 60em; /* 2 */
+    margin-right: auto;
+    margin-left:  auto;
+    max-width: 64em;
     min-height:100vh;
-    overflow:visible:
+    border: 2px solid var(--p-9);
 `
 
 export const Loading = styled.section`  
     margin-right: auto; /* 1 */
     margin-left:  auto; /* 1 */
-
     max-width: 60em; /* 2 */
-    height:100vh;
-
+    height:100vh;   
     display:flex;
-    justify-content:center;
-    align-items:center;
-    color: var(--s-1);
 `
 
 export const Button = styled.button`
