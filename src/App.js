@@ -86,7 +86,7 @@ function App() {
     if(current){
       setTheme(current)
     } else {
-      setTheme('light')
+      setTheme('dark')
     }
   },[])
 

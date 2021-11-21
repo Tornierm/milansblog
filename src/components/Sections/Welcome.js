@@ -31,41 +31,29 @@ const Image = styled.img`
     height:100%;
     margin-bottom:var(--margin);
     @media (min-width: 32em) {
-        width:33%;
+        width:50%;
         margin-bottom:0;
+        order:3;
+    }
+`
+
+
+
+const Info = styled.div`
+    display:flex;  
+    flex-direction:column;
+    justify-content:space-between;
+    height:auto;
+    @media (min-width: 32em) {
+        width:50%;
         margin-right:var(--margin);
     }
 `
-
-
-
-const Lower = styled.div`
-    display:flex;  
-    flex-direction:column;
-    height:auto;
-    @media (min-width: 32em) {
-        flex-direction:row;
-    }
-`
 const Social = styled.div`
-    display:flex;
-    flex-direction:column;
-    margin-top:var(--margin);
-    ::after{
-        content: "";
-        height: 2px;
-        background-color: var(--p-1);
-    }
-    ::before{
-        content: "";
-        height: 1px;
-        background-color: var(--p-1);
-    }
+    
     @media (min-width: 32em) {
-        order:-1;
-        width:33%;
-        bottom:0;
-        margin:auto var(--margin) 0 0;
+        margin:calc(var(--margin)) 0;
+        order:3;
     }
 `
 
@@ -74,10 +62,12 @@ const SocialList = styled.ul`
     justify-content:flex-end;
     margin:0;
     padding:0;
+    width:100%;
+    justify-content:flex-start;
     @media (min-width: 32em) {
-        flex-direction:column;
         align-items:flex-start;
-        justify-content:flex-end;
+        justify-content:flex-start;
+
     }
 `
 
@@ -89,6 +79,7 @@ const SocialItem = styled.li`
     padding:calc(var(--margin)/2) calc(var(--margin)) calc(var(--margin)/2) calc(var(--margin));
     @media (min-width: 32em) {
         padding:calc(var(--margin)/2) 0 0 0;
+        margin:0 2em 0 0;
     }
 `
 
@@ -103,15 +94,16 @@ const SocialLink = styled.a`
 `
 
 const Text = styled.div`
-    margin:0 1em;
+    margin:1em;
     p{
         color:var(--p-1);
         margin:0;
     }
     text-align:justify;
     @media (min-width: 32em) {
-        width:67%;
-        min-height:100%;
+        width:100%;
+        margin:0;
+        order:2;
     }
 `
 
@@ -148,21 +140,21 @@ export default function Welcome() {
             <StyledWrapper>
                 <Upper>
                     <Image src={imageUrl}/>
-                    <Title dangerouslySetInnerHTML={{__html: welcome.title.rendered}}/>
+                    <Info>
+                        <Title dangerouslySetInnerHTML={{__html: welcome.title.rendered}}/>
+                        <Text dangerouslySetInnerHTML={{__html: welcome.content.rendered}}/>
+                        <Social>
+                            <SocialList>
+                                <SocialItem>
+                                    <SocialLink href="/"><Instagram/></SocialLink>
+                                </SocialItem> 
+                                <SocialItem>
+                                    <SocialLink href="/"><LinkedIn/></SocialLink>
+                                </SocialItem>
+                            </SocialList>
+                        </Social>
+                    </Info>
                 </Upper>
-                <Lower>
-                    <Text dangerouslySetInnerHTML={{__html: welcome.content.rendered}}/>
-                    <Social>
-                        <SocialList>
-                            <SocialItem>
-                                <SocialLink href="/"><Instagram/></SocialLink>
-                            </SocialItem> 
-                            <SocialItem>
-                                <SocialLink href="/"><LinkedIn/></SocialLink>
-                            </SocialItem>
-                        </SocialList>
-                    </Social>
-                </Lower>
             </StyledWrapper>
         )
     }

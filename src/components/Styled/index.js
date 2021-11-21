@@ -83,7 +83,7 @@ export const Title = styled.h1`
     ::after{
         content: "";
         margin-top:calc(var(--margin)/4);
-        height: 1px;
+        height: 2px;
         background-color: var(--p-1);
     }
 `

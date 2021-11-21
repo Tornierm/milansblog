@@ -1,10 +1,29 @@
 import React, { useState, useEffect} from 'react';
 import {retrieveNavbar} from '../../service/WPService';
-import styled, {css} from 'styled-components'
+import styled, {css, keyframes} from 'styled-components'
 import ReorderIcon from '@material-ui/icons/Reorder'
 import WbSunnyIcon from '@material-ui/icons/WbSunny';
 import Brightness2Icon from '@material-ui/icons/Brightness2';
 import Close from '@material-ui/icons/Close';
+
+const changeBackground = keyframes`
+    from {
+        background-color: var(--p-dark);
+    }
+    to {
+        background-color:transparent;
+        border-bottom: none;
+    }
+`;
+const changeBackgroundBack = keyframes`
+    from {
+        background-color:transparent;
+        border-bottom: none;
+    }
+    to {
+        background-color: var(--p-dark);
+    }
+`;
 
 const NavContainer = styled.div`
     position:fixed;
@@ -12,11 +31,12 @@ const NavContainer = styled.div`
     z-index:500;
     width:100%;
     background-color: var(--p-dark);
+    animation: ${changeBackgroundBack} 1s forwards;
     border-bottom: 1px var(--p-vlight) solid;
-
+    -webkit-transition: all 0.5s ease-in-out;
     ${props => props.transparent && css`
-        background-color:transparent;
-        border-bottom: none;
+        
+        animation: ${changeBackground} 1s forwards;
     `}
 `
 
@@ -102,6 +122,24 @@ const Cancel = styled.a`
     }
 `
 
+const showMenu = keyframes`
+    from {
+        right:-100vw;
+    }
+    to {
+        right:0vw;
+    }
+`;
+
+const hideMenu = keyframes`
+    from {
+        right:0vw;
+    }
+    to {
+        right:-100vw;
+    }
+`;
+
 const Menu = styled.div`
     z-index:750;
     position:fixed;
@@ -111,8 +149,11 @@ const Menu = styled.div`
     width:100%;
     padding:var(--margin);
     background-color:var(--p-dark);   
-    transition: .3s; 
+    transition: all 0.5s ease-in-out;
+    -webkit-transition: all 0.5s ease-in-out;
+
     ${props => props.show && css`
+        animation: ${showMenu} .3s forwards ease-in-out;
         right:0vw;
         display:flex;
         flex-direction:column;
