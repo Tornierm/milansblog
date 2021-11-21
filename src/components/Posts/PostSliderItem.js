@@ -3,7 +3,7 @@ import {Link} from "react-router-dom";
 
 import { retrieveFeaturedMedia, retrieveAuthor } from '../../service/WPService';
 import styled from "styled-components";
-import {Line} from '../Styled';
+import {Title} from '../Styled';
 
 
 const Item = styled.section`
@@ -16,11 +16,6 @@ const Item = styled.section`
     -webkit-box-shadow: 2px 5px 10px 0px var(--p-0);
     -moz-box-shadow: 2px 5px 10px 0px var(--p-0);
     box-shadow: 2px 5px 10px 0px var(--p-0);
-`
-
-const Titel = styled.h1`
-    color:var(--p-1);
-    align-self:flex-start;
 `
 
 const Info = styled.div`
@@ -78,8 +73,7 @@ export default function PostSliderItem(props)  {
             <Item>
                 <Image src={imageUrl} alt={post.title.rendered}/>
                 <Info>
-                    <Titel dangerouslySetInnerHTML={{__html: post.title.rendered}}/> 
-                    <Line height="1px"/>
+                    <Title dangerouslySetInnerHTML={{__html: post.title.rendered}}/> 
                     <Button to={{
                         pathname: `/post/${post.id}`
                     }}>

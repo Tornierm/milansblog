@@ -79,7 +79,7 @@ const Main = styled.main`
 
 function App() {
 
-  const [theme, setTheme] = useState()
+  const [theme, setTheme] = useState();
 
   useEffect(() =>{
     const current = localStorage.getItem('theme');

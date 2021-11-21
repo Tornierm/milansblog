@@ -5,7 +5,7 @@ export const Wrapper = styled.section`
     margin-left:  auto;
     max-width: 64em;
     min-height:100vh;
-    border: 2px solid var(--p-9);
+    padding-top:calc(var(--navbar-height) + var(--margin));
 `
 
 export const Loading = styled.section`  
@@ -16,7 +16,25 @@ export const Loading = styled.section`
     display:flex;
 `
 
-export const Button = styled.button`
+export const PrimaryButton = styled.button`
+    background-color: transparent;
+    color: var(--s-1);
+    text-align: left;
+    border:2px solid var(--s-3);
+    width: 10em;
+    padding:.5em;
+    margin-top:1em;
+    :hover{
+        border:2px solid var(--p-9);
+        color: var(--s-3);
+        transition: .5s;
+    }
+    @media (max-width: 45em) {
+        margin:1em 0;
+    }
+`
+
+export const SecondaryButton = styled.button`
     background-color: transparent;
     color: var(--s-1);
     text-align: left;
@@ -41,8 +59,33 @@ export const Line = styled.hr`
     margin:.5em 0;
 `
 
-export const Title = styled.h1`
+export const SectionTitle = styled.h1` 
+    width:100%;
     color:var(--p-1);
+    display: flex;
+    flex-direction:column;
+    margin:calc(var(--margin)) 0;
+    align-items:center;
+`
+
+export const Title = styled.h1` 
+    width:100%;
+    color:var(--p-1);
+    display: flex;
+    flex-direction:column;
+    margin:0;
+    ::before{
+        content: "";
+        margin-bottom:calc(var(--margin)/4);
+        height: 2px;
+        background-color: var(--p-1);
+    }
+    ::after{
+        content: "";
+        margin-top:calc(var(--margin)/4);
+        height: 1px;
+        background-color: var(--p-1);
+    }
 `
 
 const pulse = keyframes`
