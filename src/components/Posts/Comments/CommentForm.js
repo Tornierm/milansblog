@@ -1,6 +1,6 @@
 import {useState} from 'react'
 import styled from 'styled-components'
-import {Button} from '../../Styled'
+import {PrimaryButton} from '../../Styled'
 import {postComment} from '../../../service/WPService'
 
 const Form = styled.form`
@@ -85,7 +85,7 @@ export default function CommentForm(props) {
                     <Label htmlFor="comment">Comment</Label>
                     <Comment type="text" id="comment" name="comment" value={comment} onChange={(event) => {setComment(event.target.value)}}/>
                 </FormItem>
-                <Button type="submit" >Comment</Button>
+                <PrimaryButton type="submit" >Comment</PrimaryButton>
             </Form>
         );
     }

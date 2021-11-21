@@ -5,9 +5,8 @@ import styled from 'styled-components'
 const SideNav = styled.div`
     position:fixed;
     top:50%;
-    transform: translateY(-10em);
+    transform: translatey(-50%);
     width:var(--sidebar-width);
-    height:20em;
     display:flex;
     flex-direction: column;
     justify-content: center;
@@ -53,39 +52,21 @@ const NavLink = styled(Link)`
     }
 `
 
-export default function Sidebar () {
+export default function Sidebar (props) {
    return (
             <SideNav>
+                { props.data.map(item => (
                 <NavLink
-                        activeClass="active"
-                        to="about"
-                        spy={true}
-                        smooth={true}
-                        offset={0}
-                        duration={500}
-                    >
-                    About
-                </NavLink>
-                <NavLink
-                    activeClass="active"
-                    to="recents"
-                    spy={true}
-                    smooth={true}
-                    offset={0}
-                    duration={500}
+                activeClass="active"
+                to={item.id}
+                spy={true}
+                smooth={true}
+                offset={0}
+                duration={500}
                 >
-                    Recents
+                    {item.label}
                 </NavLink> 
-                <NavLink
-                    activeClass="active"
-                    to="ig"
-                    spy={true}
-                    smooth={true}
-                    offset={0}
-                    duration={500}
-                >
-                    Instagram
-                </NavLink> 
+                ))}
             </SideNav>
     )
 }

@@ -1,17 +1,17 @@
 import React, {useState, useEffect} from 'react'
 import styled from 'styled-components'
 import { retrieveFeaturedMedia, retrievePageByName } from '../../service/WPService';
-import {Spinner, Loading, Wrapper} from '../Styled'
+import {Spinner, Loading, Wrapper, Title} from '../Styled'
 import Instagram from '@material-ui/icons/Instagram';
 import LinkedIn from '@material-ui/icons/LinkedIn';
 
 
 const StyledWrapper = styled(Wrapper)`
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    padding:calc(var(--navbar-height) + var(--margin)) 0;
+    margin:0 var(--margin);
+    @media (max-width: 32em) {
+        padding-top:0;
+        margin:0;
+    }
 `
 
 const Upper = styled.div`
@@ -37,25 +37,7 @@ const Image = styled.img`
     }
 `
 
-const Title = styled.h1` 
-    width:100%;
-    color:var(--p-1);
-    display: flex;
-    flex-direction:column;
-    margin:0;
-    ::before{
-        content: "";
-        margin-bottom:calc(var(--margin)/4);
-        height: 2px;
-        background-color: var(--p-1);
-    }
-    ::after{
-        content: "";
-        margin-top:calc(var(--margin)/4);
-        height: 1px;
-        background-color: var(--p-1);
-    }
-`
+
 
 const Lower = styled.div`
     display:flex;  
@@ -104,7 +86,7 @@ const SocialItem = styled.li`
     display:flex;
     align-items:center;
     justify-content:center;
-    padding:calc(var(--margin)/2) 0 calc(var(--margin)/2) calc(2*var(--margin));
+    padding:calc(var(--margin)/2) calc(var(--margin)) calc(var(--margin)/2) calc(var(--margin));
     @media (min-width: 32em) {
         padding:calc(var(--margin)/2) 0 0 0;
     }
@@ -121,6 +103,7 @@ const SocialLink = styled.a`
 `
 
 const Text = styled.div`
+    margin:0 1em;
     p{
         color:var(--p-1);
         margin:0;
@@ -162,7 +145,7 @@ export default function Welcome() {
 
     if(isLoaded){
         return (
-            <StyledWrapper id="about">
+            <StyledWrapper>
                 <Upper>
                     <Image src={imageUrl}/>
                     <Title dangerouslySetInnerHTML={{__html: welcome.title.rendered}}/>

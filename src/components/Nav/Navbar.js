@@ -4,42 +4,47 @@ import styled, {css} from 'styled-components'
 import ReorderIcon from '@material-ui/icons/Reorder'
 import WbSunnyIcon from '@material-ui/icons/WbSunny';
 import Brightness2Icon from '@material-ui/icons/Brightness2';
+import Close from '@material-ui/icons/Close';
 
-const TopNav = styled.div`
+const NavContainer = styled.div`
     position:fixed;
     top:0;
-    transition: all .5s ease-in-out;
-    z-index:999;
+    z-index:500;
+    width:100%;
+    background-color: var(--p-dark);
+    border-bottom: 1px var(--p-vlight) solid;
+
+    ${props => props.transparent && css`
+        background-color:transparent;
+        border-bottom: none;
+    `}
+`
+
+const TopNav = styled.div`
     height:var(--navbar-height);
     width:100%;
+    max-width:80em;
+    margin:0 auto;
     display:flex;
     justify-content:center;
-    background-color:var(--p-dark);
-    border-bottom: 1px var(--p-vlight) solid;
-    @media (max-width: 48em) {
-        flex-direction:column;
-        height:auto;
+    @media (min-width: 48em) {
     }
 `
-const NavItem = styled.li`
-    list-style-type: none;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    transition: all 0.3s ease;
-    margin:.2em;
-    @media (max-width: 48em) {
-        width:auto;
+
+const Links = styled.div`
+    display:none;
+    @media (min-width: 48em) {
+        display:flex;
+        justify-content:center;
     }
 `
 
 const AnchorButton = styled.a`
-    min-width:100px;
     text-align: center;
+    margin:.5em;
     text-decoration: none;
     width:auto;
     padding:.5em;
-    margin:0 .5em 0 0;
     color: var(--p-vlight);
     border: 1px var(--p-vlight) solid;
     :hover{
@@ -48,61 +53,48 @@ const AnchorButton = styled.a`
         -webkit-transition:.5s;
         border: 1px var(--s-5) solid;
     }
-    @media (max-width: 48em) {
-        width:100%;
-    }
-`
-const Logo = styled(AnchorButton)`
-    margin-right: auto;
-    color: var(--p-vlight);
-    border: 1px var(--p-dark) solid;
-    @media (max-width: 48em) {
+    @media (min-width: 48em) {
         width:8em;
     }
-    :hover{
+    ${props => props.transparent && css`
+        color: var(--p-vdark);
+        border: 1px var(--p-1) solid;
+        @media (min-width: 32em) {
+            color: var(--p-1);
+        }
+    `}
+`
+const LogoButton = styled(AnchorButton)`
+    margin-right: auto;
+    border: 1px transparent solid;
+    width:8em;
+    @media (min-width: 48em) {
+    }
+    
+`
+
+const Burger = styled(AnchorButton)`
+    border:none;
+    @media (min-width: 48em) {
+        display:none;
+    }
+    :hover{ 
+        border:none;
     }
 `
 
-const Right = styled.div`
-display:flex;
-flex-direction:row;
-justify-content:flex-end;
-width:50%;
-max-width:32em;
-@media (max-width: 48em) {
-    background-color:var(--p-dark);
-    flex-direction:column;
-    margin-left:0;
-    margin-bot:5em;
-    border-bottom: 2px var(--p-vlight) solid;
-    width:100%;
-    max-width:100%;
-    ${props => !props.show && css`
-    display:none;
-`}
-}
-`
-const Left = styled.div`
-    width:50%;
-    max-width:32em;
-    display:flex;
-    justify-content:space-between;
-    @media (max-width: 48em) {
-        width:100%;
-        max-width:100%;
+const ThemeChanger = styled(AnchorButton)`
+    border:none;
+    :hover{ 
+        border:none;
     }
 `
 
-const Burger = styled.a`
-    color:var(--p-vlight);
-    display:none;
-    text-align: center;
-    transition: all 0.3s ease;
-    text-decoration: none;
-    padding:.8em;
-    @media (max-width: 48em) {
-        display:inline;
-    }
+const Cancel = styled.a`
+    position:absolute;
+    top:12px;
+    right:16px;
+    color: var(--p-vlight);
     :hover{
         color: var(--s);
         transition:1s;
@@ -110,24 +102,24 @@ const Burger = styled.a`
     }
 `
 
-const Button = styled.button`
-    border: none;
-    min-width:100px;
-    text-align: center;
-    text-decoration: none;
-    width:auto;
-    border-radius: .5em;
-    padding:.8em;
-    color: var(--p-vlight);
-    background-color: transparent;
-    :hover{
-        color: var(--s-5);
-        transition:1.5s;
-        -webkit-transition:1.5s;
-        border-radius:.3em;
-    }
-    @media (max-width: 48em) {
-        width:100%;
+const Menu = styled.div`
+    z-index:750;
+    position:fixed;
+    top:0;
+    right:-100vw;
+    height:100vh;
+    width:100%;
+    padding:var(--margin);
+    background-color:var(--p-dark);   
+    transition: .3s; 
+    ${props => props.show && css`
+        right:0vw;
+        display:flex;
+        flex-direction:column;
+        justify-content:center;
+    `}
+    @media (min-width: 48em) {
+        display:none;
     }
 `
 
@@ -136,8 +128,19 @@ export default function Navbar (props) {
     const [loaded, setLoaded] = useState(false);
     const [clicked, setClicked] = useState(false);
     const [themeChanger, setThemeChanger] = useState(<Brightness2Icon/>);
+    const [transparent, setTransparent] = useState(true);
+
+    const changeTransparent = () =>{
+        if(window.scrollY >= 28){
+            setTransparent(false);
+        } else {
+            setTransparent(true);  
+        }
+    }
 
     useEffect( () => {
+
+        window.addEventListener("scroll", changeTransparent);
         const current = localStorage.getItem('theme');
         if(current==='dark'){
             setThemeChanger(<WbSunnyIcon/>)
@@ -151,9 +154,7 @@ export default function Navbar (props) {
 
             } else {
                 const Items = res.items.map((item) =>
-                <NavItem key={item.title}>
-                    <AnchorButton key={item.title} href={item.url}>{item.title}</AnchorButton>
-                </NavItem>
+                    <AnchorButton transparent={transparent} key={item.title} href={item.url}>{item.title}</AnchorButton>
                 );
                 setListItems(Items)
                 setLoaded(true);
@@ -161,12 +162,20 @@ export default function Navbar (props) {
         });
         return () => {
             setLoaded(false);
+            window.removeEventListener("scroll", changeTransparent);
         }
-    },[])
+    },[transparent])
 
-    const showLinks = () => {
-        let show = clicked;
-        setClicked(!show)
+    const showMenu = () => {
+        setClicked(true)
+        setTransparent(false)
+    }
+
+    const hideMenu = () => {
+        setClicked(false)
+        if(window.scrollY <= 60){
+            setTransparent(true);
+        }
     }
 
     const changeTheme = () => {
@@ -183,20 +192,21 @@ export default function Navbar (props) {
 
     if(loaded){
         return (
-                <TopNav>
-                    <Left>
-                        <NavItem>
-                            <Logo mr href='/'>Milan Tornier</Logo>
-                        </NavItem>
-                        <NavItem>
-                            <Burger onClick={showLinks}><ReorderIcon/></Burger>
-                        </NavItem>
-                    </Left>
-                    <Right show={clicked}>
+            <NavContainer transparent={transparent}>
+                <TopNav transparent={transparent}>
+                    <LogoButton transparent={transparent} mr href='/'>Milan Tornier</LogoButton>
+                    <Burger transparent={transparent} onClick={showMenu}><ReorderIcon/></Burger>
+                    <Links>
                         {listItems}
-                        <Button onClick={changeTheme}> {themeChanger} </Button>
-                    </Right>
+                        <ThemeChanger transparent={transparent} onClick={changeTheme}> {themeChanger} </ThemeChanger>
+                    </Links>
+                    <Menu show={clicked}>
+                        {listItems}
+                        <Cancel onClick={hideMenu}><Close/></Cancel>
+                        <ThemeChanger transparent={transparent} onClick={changeTheme}> {themeChanger} </ThemeChanger>
+                    </Menu>
                 </TopNav>
+            </NavContainer>
         )
     }
     else {

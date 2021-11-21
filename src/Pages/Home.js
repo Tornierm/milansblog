@@ -2,11 +2,9 @@ import React from 'react'
 import Sidebar from '../components/Nav/Sidebar'
 import Welcome from '../components/Sections/Welcome'
 import PostSlider from '../components/Posts/PostSlider'
-import InstaPreview from '../components/Sections/InstaPreview'
 import styled from 'styled-components';
 
 const Page = styled.div`
-    padding:0 var(--margin);
     @media (min-width: 48em) {
         padding:0 calc(2*var(--margin));
         max-width:80em;
@@ -26,16 +24,26 @@ const Sections = styled.div`
     }      
 `
 
-
 export default function Home() {
+    
+    const data=[
+        {
+            id:'about',
+            label:'About',
+        },
+        {
+            id:'blog',
+            label:'Blog',
+        },
+    ]
+
     return (
         <Page>
             <Sections>
-                <Welcome />
-                <PostSlider category="photo"/>
-                <InstaPreview/>
+                <div id='about'><Welcome/></div>
+                <div id='blog'><PostSlider category="photo"/></div>
             </Sections>
-            <Sidebar/>
+            <Sidebar data={data}/>
         </Page>
     )
 }
