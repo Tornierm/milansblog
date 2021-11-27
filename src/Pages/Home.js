@@ -1,7 +1,7 @@
 import React from 'react'
 import Sidebar from '../components/Nav/Sidebar'
 import Welcome from '../components/Sections/Welcome'
-import PostSlider from '../components/Posts/PostSlider'
+import PostSlider from '../components/Sections/PostSlider/PostSlider'
 import styled from 'styled-components';
 
 const Page = styled.div`

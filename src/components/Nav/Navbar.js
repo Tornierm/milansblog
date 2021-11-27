@@ -1,42 +1,23 @@
 import React, { useState, useEffect} from 'react';
 import {retrieveNavbar} from '../../service/WPService';
-import styled, {css, keyframes} from 'styled-components'
+import styled, {css} from 'styled-components'
 import ReorderIcon from '@material-ui/icons/Reorder'
 import WbSunnyIcon from '@material-ui/icons/WbSunny';
 import Brightness2Icon from '@material-ui/icons/Brightness2';
 import Close from '@material-ui/icons/Close';
 
-const changeBackground = keyframes`
-    from {
-        background-color: var(--p-dark);
-    }
-    to {
-        background-color:transparent;
-        border-bottom: none;
-    }
-`;
-const changeBackgroundBack = keyframes`
-    from {
-        background-color:transparent;
-        border-bottom: none;
-    }
-    to {
-        background-color: var(--p-dark);
-    }
-`;
-
 const NavContainer = styled.div`
+    z-index:500;
     position:fixed;
     top:0;
-    z-index:500;
     width:100%;
-    background-color: var(--p-dark);
-    animation: ${changeBackgroundBack} 1s forwards;
-    border-bottom: 1px var(--p-vlight) solid;
+    background-color: var(--p-10);
+    border-bottom: 1px var(--p-1) solid;
+    transition: all 0.5s ease-in-out;
     -webkit-transition: all 0.5s ease-in-out;
     ${props => props.transparent && css`
-        
-        animation: ${changeBackground} 1s forwards;
+        background-color:transparent;
+        border-bottom: transparent;
     `}
 `
 
@@ -47,7 +28,32 @@ const TopNav = styled.div`
     margin:0 auto;
     display:flex;
     justify-content:center;
+`
+
+const Menu = styled.div`
+    z-index:750;
+    position:fixed;
+    top:0;
+    right:0vw;
+    height:100vh;
+    width:100%;
+    padding:var(--margin);
+    background-color:var(--p-9);   
+    transition: all 0.5s ease-in-out;
+    -webkit-transition: all 0.5s ease-in-out;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    ${props => props.showMenu && css`
+        transform: translateX(0vw);
+        background-color: var(--p-9);
+    `}
+    ${props => !props.showMenu && css`
+        transform: translateX(100vw);
+    `}
     @media (min-width: 48em) {
+        display:none;
     }
 `
 
@@ -60,30 +66,51 @@ const Links = styled.div`
 `
 
 const AnchorButton = styled.a`
-    text-align: center;
+    text-align:center;
     margin:.5em;
     text-decoration: none;
     width:auto;
     padding:.5em;
-    color: var(--p-vlight);
-    border: 1px var(--p-vlight) solid;
+    color: var(--p-1);
+    border: 1px transparent solid;
+    transition:all .5s ease-in-out;
+    -webkit-transition:all .5s ease-in-out;
     :hover{
-        color: var(--s-5);
-        transition:.5s;
-        -webkit-transition:.5s;
-        border: 1px var(--s-5) solid;
+        color: var(--s-3);
     }
     @media (min-width: 48em) {
         width:8em;
     }
     ${props => props.transparent && css`
-        color: var(--p-vdark);
+        color: var(--p-1);
         border: 1px var(--p-1) solid;
         @media (min-width: 32em) {
             color: var(--p-1);
         }
     `}
 `
+
+const MenuButton = styled(AnchorButton)`
+        text-align:left;
+        width:80%;
+        min-width:8em;
+        padding:.5em 3em;
+        font-size:1.2em;
+    ${props => props.active && css`
+        color: var(--s-3);
+        border: 1px var(--s-3) solid;
+        border-radius: 2em;
+        padding:1em 2em;
+        font-size:1.3em;
+    `}
+    @media (min-width: 48em) {
+        width:8em;
+        padding:.5em;
+        font-size:1.2em;
+        text-align:center;
+    }
+`
+
 const LogoButton = styled(AnchorButton)`
     margin-right: auto;
     border: 1px transparent solid;
@@ -114,62 +141,22 @@ const Cancel = styled.a`
     position:absolute;
     top:12px;
     right:16px;
-    color: var(--p-vlight);
+    color: var(--p-1);
+    transition:1s;
+    -webkit-transition:1s;
     :hover{
         color: var(--s);
-        transition:1s;
-        -webkit-transition:1s;
-    }
-`
-
-const showMenu = keyframes`
-    from {
-        right:-100vw;
-    }
-    to {
-        right:0vw;
-    }
-`;
-
-const hideMenu = keyframes`
-    from {
-        right:0vw;
-    }
-    to {
-        right:-100vw;
-    }
-`;
-
-const Menu = styled.div`
-    z-index:750;
-    position:fixed;
-    top:0;
-    right:-100vw;
-    height:100vh;
-    width:100%;
-    padding:var(--margin);
-    background-color:var(--p-dark);   
-    transition: all 0.5s ease-in-out;
-    -webkit-transition: all 0.5s ease-in-out;
-
-    ${props => props.show && css`
-        animation: ${showMenu} .3s forwards ease-in-out;
-        right:0vw;
-        display:flex;
-        flex-direction:column;
-        justify-content:center;
-    `}
-    @media (min-width: 48em) {
-        display:none;
     }
 `
 
 export default function Navbar (props) {
     const [listItems, setListItems] = useState([]);
     const [loaded, setLoaded] = useState(false);
-    const [clicked, setClicked] = useState(false);
+    const [showMenu, setShowMenu] = useState(false);
+    const [active, setActive] = useState('home');
+
     const [themeChanger, setThemeChanger] = useState(<Brightness2Icon/>);
-    const [transparent, setTransparent] = useState(true);
+    const [transparent, setTransparent] = useState(false);
 
     const changeTransparent = () =>{
         if(window.scrollY >= 28){
@@ -177,6 +164,10 @@ export default function Navbar (props) {
         } else {
             setTransparent(true);  
         }
+    }
+
+    const displayMenu = () => {
+        setShowMenu(!showMenu)
     }
 
     useEffect( () => {
@@ -189,14 +180,14 @@ export default function Navbar (props) {
             setThemeChanger(<Brightness2Icon/>)
         }
 
+        setActive(localStorage.getItem('active'));
+
         retrieveNavbar()
         .then(res => {
             if(res.items.type === 'undefined'){
 
             } else {
-                const Items = res.items.map((item) =>
-                    <AnchorButton transparent={transparent} key={item.title} href={item.url}>{item.title}</AnchorButton>
-                );
+                const Items = res.items;
                 setListItems(Items)
                 setLoaded(true);
             }
@@ -207,43 +198,42 @@ export default function Navbar (props) {
         }
     },[transparent])
 
-    const showMenu = () => {
-        setClicked(true)
-        setTransparent(false)
-    }
-
-    const hideMenu = () => {
-        setClicked(false)
-        if(window.scrollY <= 60){
-            setTransparent(true);
-        }
-    }
-
     const changeTheme = () => {
         if(props.theme==='dark'){
-          props.setTheme('light')
-          localStorage.setItem('theme', 'light');
-          setThemeChanger(<Brightness2Icon/>)
+            props.setTheme('light')
+            localStorage.setItem('theme', 'light');
+            setThemeChanger(<Brightness2Icon/>)
         } else {
-          props.setTheme('dark')
-          localStorage.setItem('theme', 'dark');
-          setThemeChanger(<WbSunnyIcon/>)
+            props.setTheme('dark')
+            localStorage.setItem('theme', 'dark');
+            setThemeChanger(<WbSunnyIcon/>)
         }
+        setTransparent(true);
+    }
+
+    const select = (title) => {
+        localStorage.setItem('active', title);
+        setActive(title); 
     }
 
     if(loaded){
         return (
             <NavContainer transparent={transparent}>
-                <TopNav transparent={transparent}>
-                    <LogoButton transparent={transparent} mr href='/'>Milan Tornier</LogoButton>
-                    <Burger transparent={transparent} onClick={showMenu}><ReorderIcon/></Burger>
+                <TopNav>
+                    <LogoButton onClick={()=> {select('home')}} transparent={transparent} href='/'>Milan Tornier</LogoButton>
+                    <Burger transparent={transparent} onClick={displayMenu}><ReorderIcon/></Burger>
                     <Links>
-                        {listItems}
+                        {listItems.map((item) =>
+                            <MenuButton key={item.title} href={item.url} active={item.title === active} onClick={()=> {select(item.title)}}>{item.title}</MenuButton>
+                        )}
                         <ThemeChanger transparent={transparent} onClick={changeTheme}> {themeChanger} </ThemeChanger>
                     </Links>
-                    <Menu show={clicked}>
-                        {listItems}
-                        <Cancel onClick={hideMenu}><Close/></Cancel>
+                    <Menu showMenu={showMenu}>
+                        <MenuButton key={'home'} href={'/'} active={'home' === active} onClick={()=> {select('home')}}>home</MenuButton>
+                        {listItems.map((item) => 
+                            <MenuButton key={item.title} href={item.url} active={item.title === active} onClick={()=> {select(item.title)}}>{item.title}</MenuButton>
+                        )}
+                        <Cancel onClick={displayMenu}><Close/></Cancel>
                         <ThemeChanger transparent={transparent} onClick={changeTheme}> {themeChanger} </ThemeChanger>
                     </Menu>
                 </TopNav>

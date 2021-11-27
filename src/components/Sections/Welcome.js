@@ -7,10 +7,13 @@ import LinkedIn from '@material-ui/icons/LinkedIn';
 
 
 const StyledWrapper = styled(Wrapper)`
-    margin:0 var(--margin);
-    @media (max-width: 32em) {
-        padding-top:0;
-        margin:0;
+    padding-top:0;
+    margin:0;
+    @media (min-width: 32em) {
+        margin:0 var(--margin);
+        flex-direction:column;
+        justify-content:center;
+        display:flex;
     }
 `
 
@@ -37,16 +40,16 @@ const Image = styled.img`
     }
 `
 
-
-
 const Info = styled.div`
     display:flex;  
     flex-direction:column;
     justify-content:space-between;
     height:auto;
+    padding:var(--margin);
     @media (min-width: 32em) {
         width:50%;
         margin-right:var(--margin);
+        padding:0;
     }
 `
 const Social = styled.div`
@@ -103,6 +106,7 @@ const Text = styled.div`
     @media (min-width: 32em) {
         width:100%;
         margin:0;
+        padding:1em;
         order:2;
     }
 `

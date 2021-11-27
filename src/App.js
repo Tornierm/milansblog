@@ -14,8 +14,7 @@ import {
   Route
 } from "react-router-dom";
 
-const Site= styled.div`
-background-color:var(--p-10);
+const Site = styled.div`
   --navbar-height:4em;
   --footer-height:10em;
   --sidebar-width:4em;
@@ -26,13 +25,13 @@ background-color:var(--p-10);
 
   --margin:1em;
 
-  --p-white:white;
-  --p-vlight:#F3F5F7;
+  --p-white:#F3F5F7;
+  --p-vlight:#E7EBEF;
   --p-light: #abbcc4;
   --p: #607D8B;
   --p-dark: #324148;
-  --p-vdark: #111618;
-  --p-black:black;
+  --p-vdark: #101719;
+  --p-black: #080B0C;
 
   --s-vlight: #fbe2da;
   --s-light: #f1997e;

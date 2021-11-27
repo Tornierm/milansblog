@@ -8,7 +8,7 @@ display:flex;
 justify-content:center;
 align-items:center;
 height:var(--footer-height);
-background-color:var(--p-dark);
+background-color:var(--p-10);
 z-index:2;
 border-top: 2px var(--p-vlight) solid;
 `

@@ -18,8 +18,9 @@ const Info = styled.div`
     justify-content: space-between;
     align-items: center;
     border:1px solid var(--p-5);
+    border-radius:5px;
     transform: translate(0em, 2.5em);
-    background-color:var(--p-9);
+    background-color:var(--p-10);
     padding:1em 2em 1em 2em;
     @media (max-width: 45em) {
         border:none;

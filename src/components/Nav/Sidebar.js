@@ -5,19 +5,19 @@ import styled from 'styled-components'
 const SideNav = styled.div`
     position:fixed;
     top:50%;
-    transform: translatey(-50%);
+    transform: translateY(-50%);
     width:var(--sidebar-width);
     display:flex;
     flex-direction: column;
     justify-content: center;
-    background-color:var(--p-dark);
+    background-color:var(--p-10);
     align-items: center;
     z-index:10;
     padding: 2em .5em;
     border-radius:3em;
     @media (max-width: 48em) {
         transform: translateY(0em);
-        border-top: 1px var(--p-10) solid;
+        border-top: 1px var(--p-0) solid;
         height:var(--sidebar-width);
         flex-direction:row;
         border-radius:0;
@@ -35,7 +35,7 @@ const NavLink = styled(Link)`
     text-align: center;
     padding: 1em .5em;
     font-size:12px;
-    color:var(--p-vlight);
+    color:var(--p-1);
     text-decoration:none;
     margin .5em 0 0 0;
     transition:.5s ease-in-out;
@@ -54,18 +54,19 @@ const NavLink = styled(Link)`
 
 export default function Sidebar (props) {
    return (
-            <SideNav>
+            <SideNav key='sidebar'>
                 { props.data.map(item => (
-                <NavLink
-                activeClass="active"
-                to={item.id}
-                spy={true}
-                smooth={true}
-                offset={0}
-                duration={500}
-                >
-                    {item.label}
-                </NavLink> 
+                    <NavLink
+                    key={item.label}
+                    activeClass="active"
+                    to={item.id}
+                    spy={true}
+                    smooth={true}
+                    offset={0}
+                    duration={500}
+                    >
+                        {item.label}
+                    </NavLink> 
                 ))}
             </SideNav>
     )
