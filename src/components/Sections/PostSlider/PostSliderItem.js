@@ -117,6 +117,7 @@ const Excerpt= styled.div`
     color:var(--p-1);
     text-align: justify;
     overflow:scroll;
+    padding:.5em;
 `
 
 const Cancel = styled.a`
@@ -139,7 +140,6 @@ export default function PostSliderItem(props)  {
 
 
     useEffect( () => {
-        console.log(post)
         const getImageUrl = retrieveFeaturedMedia(post.featured_media)
         const getAuthor = retrieveAuthor(post.author)
         Promise.all([getImageUrl, getAuthor]).then(res => {

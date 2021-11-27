@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const Info = styled.div`
 position:relative;
-padding-bottom:var(--sidebar-width);
+padding-bottom:4em;
 display:flex;
 justify-content:center;
 align-items:center;

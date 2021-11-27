@@ -38,7 +38,6 @@ const Menu = styled.div`
     height:100vh;
     width:100%;
     padding:var(--margin);
-    background-color:var(--p-9);   
     transition: all 0.5s ease-in-out;
     -webkit-transition: all 0.5s ease-in-out;
     display:flex;
@@ -47,7 +46,7 @@ const Menu = styled.div`
     align-items:center;
     ${props => props.showMenu && css`
         transform: translateX(0vw);
-        background-color: var(--p-9);
+        background-color: var(--p-10);
     `}
     ${props => !props.showMenu && css`
         transform: translateX(100vw);
@@ -82,7 +81,7 @@ const AnchorButton = styled.a`
         width:8em;
     }
     ${props => props.transparent && css`
-        color: var(--p-1);
+        color: var(--p-black);
         border: 1px var(--p-1) solid;
         @media (min-width: 32em) {
             color: var(--p-1);
@@ -131,6 +130,7 @@ const Burger = styled(AnchorButton)`
 `
 
 const ThemeChanger = styled(AnchorButton)`
+    color: var(--p-1);
     border:none;
     :hover{ 
         border:none;
@@ -196,7 +196,7 @@ export default function Navbar (props) {
             setLoaded(false);
             window.removeEventListener("scroll", changeTransparent);
         }
-    },[transparent])
+    },[])
 
     const changeTheme = () => {
         if(props.theme==='dark'){
@@ -208,7 +208,6 @@ export default function Navbar (props) {
             localStorage.setItem('theme', 'dark');
             setThemeChanger(<WbSunnyIcon/>)
         }
-        setTransparent(true);
     }
 
     const select = (title) => {

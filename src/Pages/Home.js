@@ -2,6 +2,8 @@ import React from 'react'
 import Sidebar from '../components/Nav/Sidebar'
 import Welcome from '../components/Sections/Welcome'
 import PostSlider from '../components/Sections/PostSlider/PostSlider'
+import InstaPreview from '../components/Sections/InstaPreview'
+
 import styled from 'styled-components';
 
 const Page = styled.div`
@@ -17,8 +19,8 @@ const Page = styled.div`
 const Sections = styled.div`
     margin:0;
     @media (min-width: 48em) {
-        margin-left:calc(var(--sidebar-width) +  2*var(--margin));
-        margin-right:calc(var(--sidebar-width) +  2*var(--margin));
+        margin-left:calc(var(--sidebar-width));
+        margin-right:calc(var(--sidebar-width));
     }  
     @media (min-width: 64em) {
     }      
@@ -35,6 +37,10 @@ export default function Home() {
             id:'blog',
             label:'Blog',
         },
+        {
+            id:'ig',
+            label:'Instagram',
+        },
     ]
 
     return (
@@ -42,6 +48,7 @@ export default function Home() {
             <Sections>
                 <div id='about'><Welcome/></div>
                 <div id='blog'><PostSlider category="photo"/></div>
+                <div id='ig'><InstaPreview/></div>
             </Sections>
             <Sidebar data={data}/>
         </Page>

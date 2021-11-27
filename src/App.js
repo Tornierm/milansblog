@@ -15,9 +15,10 @@ import {
 } from "react-router-dom";
 
 const Site = styled.div`
+  scroll-behavior: smooth;
   --navbar-height:4em;
   --footer-height:10em;
-  --sidebar-width:4em;
+  --sidebar-width:8em;
 
   --bp-small:32em;
   --bp-med:48em;
@@ -74,6 +75,7 @@ const Site = styled.div`
 const Main = styled.main`
   min-height: calc(100vh);
   background-color:var(--p-10);
+  scroll-behavior: smooth;
 `
 
 function App() {

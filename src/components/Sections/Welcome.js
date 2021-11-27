@@ -119,7 +119,6 @@ export default function Welcome() {
 
     const setStuff = async () => {
         const page = await retrievePageByName("Welcome");
-        console.log(page)
         setWelcome(page)
         if(page===null){
             return;
