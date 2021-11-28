@@ -149,12 +149,52 @@ const LogoButton = styled(AnchorButton)`
     `}
 `
 
-const ThemeChanger = styled(AnchorButton)`
-    color: var(--p-1);
-    border:none;
-    :hover{ 
-        border:none;
-    }
+const ThemeChanger = styled.div`
+    margin-top:2em;
+    width:4em;
+    height:2em;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background-color: var(--p-0);
+    border-radius:1em;
+    box-shadow: 0 0 0 2px var(--p-0);
+`
+
+const Highlight = styled.div`
+        z-index:875;    
+        height:2em;
+        width:2em;
+        position:absolute;
+        background-color:var(--s-3);
+        transition: all .5s ease-in-out;
+        border-radius:1em;
+        ${props => props.themeChanger === 'light' && css`
+            transform: translateX(2em);
+        `}
+`
+
+const Icons = styled.div`
+    width:100%;
+    display:flex;
+    align-items:space-around;
+    justify-content:space-around;
+`
+
+const Sun = styled(WbSunnyIcon)`
+    color:var(--p-10);
+    z-index:800;
+    display:flex;
+    align-items:space-around;
+    justify-content:space-around;
+`
+
+const Moon = styled(Brightness2Icon)`
+    color:var(--p-10);
+    z-index:800;
+    display:flex;
+    align-items:space-around;
+    justify-content:space-around;
 `
 
 const BurgerContainer = styled.div`
@@ -228,7 +268,8 @@ export default function Navbar (props) {
     const [active, setActive] = useState('home');
     const [open, setOpen] = useState(false);
 
-    const [themeChanger, setThemeChanger] = useState(<Brightness2Icon/>);
+
+    const [themeChanger, setThemeChanger] = useState(true);
     const [transparent, setTransparent] = useState(true);
 
     const changeTransparent = () =>{
@@ -248,9 +289,9 @@ export default function Navbar (props) {
         window.addEventListener("scroll", changeTransparent);
         const current = localStorage.getItem('theme');
         if(current==='dark'){
-            setThemeChanger(<WbSunnyIcon/>)
+            setThemeChanger('dark')
         } else if(current==='light'){
-            setThemeChanger(<Brightness2Icon/>)
+            setThemeChanger('light')
         }
 
         setActive(localStorage.getItem('active'));
@@ -275,11 +316,11 @@ export default function Navbar (props) {
         if(props.theme==='dark'){
             props.setTheme('light')
             localStorage.setItem('theme', 'light');
-            setThemeChanger(<Brightness2Icon/>)
+            setThemeChanger('light')
         } else {
             props.setTheme('dark')
             localStorage.setItem('theme', 'dark');
-            setThemeChanger(<WbSunnyIcon/>)
+            setThemeChanger('dark')
         }
     }
 
@@ -309,7 +350,13 @@ export default function Navbar (props) {
                             {listItems.map((item) => 
                                 <MenuButton key={item.title} href={item.url} active={item.title === active} onClick={()=> {select(item.title)}}>{item.title}</MenuButton>
                             )}
-                            <ThemeChanger transparent={transparent} onClick={changeTheme}> {themeChanger} </ThemeChanger>
+                            <ThemeChanger transparent={transparent} onClick={changeTheme}>
+                                <Highlight themeChanger={themeChanger}/>
+                                <Icons>
+                                    <Moon/>
+                                    <Sun/> 
+                                </Icons>
+                            </ThemeChanger>
                         </Menu>
                     </MenuContainer>
                 </TopNav>

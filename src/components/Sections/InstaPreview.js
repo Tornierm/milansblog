@@ -31,7 +31,7 @@ const ImageContainer = styled.div`
     background-repeat:no-repeat;
     background-size:cover; 
     box-shadow: 2px 4px 3px 0px var(--p-black);
-
+    
     ${({ clicked }) => clicked && css`
         grid-column:span 2;
         grid-row: span 2;

@@ -8,6 +8,7 @@ const PostSection = styled.div`
     padding: 0em 1em 5em 1em;
     padding-top: calc(var(--navbar-height) + 2em);
     @media (max-width: 45em) {
+        padding: 0em 1em 1em 1em;
         display:flex;
         flex-direction:column;
         align-items:center;    

@@ -20,7 +20,7 @@ const Info = styled.div`
     border:1px solid var(--p-5);
     border-radius:5px;
     transform: translate(0em, 2.5em);
-    background-color:var(--p-10);
+    background-color:var(--p-9);
     padding:1em 2em 1em 2em;
     @media (max-width: 45em) {
         border:none;
@@ -61,7 +61,7 @@ const Item = styled.div`
     margin: 5em 0em 0em 0em;
     margin-right:auto;
     @media (max-width: 45em) {
-        border:1px solid var(--p-5);
+        border:1px solid var(--p-1);
         flex-direction:column; 
         margin:0 0 1em 0;
         background: var(--p-9);
@@ -74,7 +74,7 @@ const Item = styled.div`
         margin-left:auto;
         margin-right:0;
         @media (max-width: 45em) {
-            margin:0;
+            margin:0 0 1em 0;
             background: var(--p-9);
         }
     }
@@ -122,10 +122,11 @@ const Button = styled(Link)`
     border:2px solid var(--s-3);
     width: 10em;
     padding:.5em;
+    transition: .5s;
     :hover{
+        padding-left:2em;
         border:2px solid var(--p-9);
         color: var(--s-3);
-        transition: .5s;
     }
     @media (max-width: 45em) {
         margin:1em 0;
