@@ -59,6 +59,7 @@ const NavLink = styled(Link)`
         color: var(--s-3);
     }
     @media (min-width: 48em) {
+        text-align:left;
         width:100%;
         margin: .5em 0 0 0;
         padding: 1em 2em;
@@ -90,11 +91,8 @@ export default function Sidebar (props) {
             tmp.forEach((section) => {
                 const sectionTop = section.offsetTop;
                 const sectionHeight = section.clientHeight;
-                console.log(sectionTop)
-                console.log(sectionHeight)
                 if (window.pageYOffset >= sectionTop - sectionHeight / 3 && window.pageYOffset < sectionTop + 2*sectionHeight/3 ) {
                     setCurrent(section.getAttribute("id"));
-                    console.log(section.getAttribute("id"))
                 }
             }); 
         }

@@ -1,10 +1,8 @@
 import React, { useState, useEffect} from 'react';
 import {retrieveNavbar} from '../../service/WPService';
 import styled, {css} from 'styled-components'
-import ReorderIcon from '@material-ui/icons/Reorder'
 import WbSunnyIcon from '@material-ui/icons/WbSunny';
 import Brightness2Icon from '@material-ui/icons/Brightness2';
-import Close from '@material-ui/icons/Close';
 
 const NavContainer = styled.div`
     z-index:500;
@@ -12,7 +10,7 @@ const NavContainer = styled.div`
     top:0;
     width:100%;
     background-color: var(--p-10);
-    border-bottom: 1px var(--p-1) solid;
+    border-bottom: transparent;
     transition: all 0.5s ease-in-out;
     -webkit-transition: all 0.5s ease-in-out;
     ${props => props.transparent && css`
@@ -29,24 +27,21 @@ const TopNav = styled.div`
     display:flex;
     justify-content:center;
 `
-
-const Menu = styled.div`
+const MenuContainer = styled.div`
+    height:100vh;
+    width:100%;
+    display:flex;
+    padding: var(--navbar-height) 0 var(--navbar-height) calc(2*var(--navbar-height));
+    justify-content:flex-end;
+    align-items:center;
     z-index:750;
     position:fixed;
     top:0;
-    right:0vw;
-    height:100vh;
-    width:100%;
-    padding:var(--margin);
+    right:0;
     transition: all 0.5s ease-in-out;
     -webkit-transition: all 0.5s ease-in-out;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
     ${props => props.showMenu && css`
         transform: translateX(0vw);
-        background-color: var(--p-10);
     `}
     ${props => !props.showMenu && css`
         transform: translateX(100vw);
@@ -54,6 +49,41 @@ const Menu = styled.div`
     @media (min-width: 48em) {
         display:none;
     }
+`
+
+const Blur = styled.div`
+    opacity:0;
+    position:fixed;
+    top:0;
+    right:0;
+    height:100vh;
+    width:100%;
+    transition: all 1s ease-in-out;
+    -webkit-transition: all 1s ease-in-out;
+    ${props => props.showMenu && css`
+        backdrop-filter: blur(2px);
+        opacity:100%;
+    `}
+`
+
+const Menu = styled.div`
+    background-color: var(--p-10);
+    height:100%;
+    width:100%;
+    padding:var(--margin);
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    border-radius: 3em 0 0 3em;
+    transition: all 0.5s ease-in-out;
+    -webkit-transition: all 0.5s ease-in-out;
+    ${props => props.showMenu && css`
+        transform: translateX(0vw);
+    `}
+    ${props => !props.showMenu && css`
+        transform: translateX(100vw);
+    `}
 `
 
 const Links = styled.div`
@@ -114,19 +144,9 @@ const LogoButton = styled(AnchorButton)`
     margin-right: auto;
     border: 1px transparent solid;
     width:8em;
-    @media (min-width: 48em) {
-    }
-    
-`
-
-const Burger = styled(AnchorButton)`
-    border:none;
-    @media (min-width: 48em) {
-        display:none;
-    }
-    :hover{ 
-        border:none;
-    }
+    ${props => props.transparent && css`
+        color: var(--p-1);
+    `}
 `
 
 const ThemeChanger = styled(AnchorButton)`
@@ -137,16 +157,68 @@ const ThemeChanger = styled(AnchorButton)`
     }
 `
 
-const Cancel = styled.a`
+const BurgerContainer = styled.div`
+    z-index:875;
     position:absolute;
-    top:12px;
-    right:16px;
-    color: var(--p-1);
-    transition:1s;
-    -webkit-transition:1s;
-    :hover{
-        color: var(--s);
+    top:0;
+    right:0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: var(--navbar-height);
+    height: var(--navbar-height);
+    cursor: pointer;
+    transition: all .5s ease-in-out;
+    border-radius:0 0 0 1em;
+    background-color:var(--s-3);
+    @media (min-width: 48em) {
+        display:none;
     }
+    ${props => props.transparent && css`
+        background-color:transparent;
+    `}
+`
+  
+const Burger = styled.div`
+    width: 1.5em;
+    height: .1em;
+    background: var(--p-1);
+    border-radius: .15em;
+    transition: all .5s ease-in-out;
+    ::before,::after {
+        content: '';
+        position: absolute;
+        width: 1.5em;
+        height: .15em;
+        background: var(--p-1);
+        border-radius: .1em;
+        transition: all .5s ease-in-out;
+    }
+    ::before {
+        transform: translateY(-.4em);
+    }
+    ::after {
+        transform: translateY(.4em);
+    }
+    ${props => props.open && css`
+        transform: translateX(50px);
+        background: transparent;
+        box-shadow: none;
+        ::before {
+            transform: rotate(45deg) translate(-35px, 35px);
+        }
+        ::after {
+            transform: rotate(-45deg) translate(-35px, -35px);
+        }
+    `}
+    ${props => props.transparent && css`
+        ::before,::after {
+            background: var(--p-1);;
+        }
+        @media (min-width: 32em) {
+            background: var(--p-1);
+        }
+    `}
 `
 
 export default function Navbar (props) {
@@ -154,9 +226,10 @@ export default function Navbar (props) {
     const [loaded, setLoaded] = useState(false);
     const [showMenu, setShowMenu] = useState(false);
     const [active, setActive] = useState('home');
+    const [open, setOpen] = useState(false);
 
     const [themeChanger, setThemeChanger] = useState(<Brightness2Icon/>);
-    const [transparent, setTransparent] = useState(false);
+    const [transparent, setTransparent] = useState(true);
 
     const changeTransparent = () =>{
         if(window.scrollY >= 28){
@@ -220,21 +293,25 @@ export default function Navbar (props) {
             <NavContainer transparent={transparent}>
                 <TopNav>
                     <LogoButton onClick={()=> {select('home')}} transparent={transparent} href='/'>Milan Tornier</LogoButton>
-                    <Burger transparent={transparent} onClick={displayMenu}><ReorderIcon/></Burger>
+                    <BurgerContainer transparent={transparent} onClick={() => {setOpen(!open); displayMenu()}}>
+                        <Burger transparent={transparent} open={open}/>
+                    </BurgerContainer>
                     <Links>
                         {listItems.map((item) =>
                             <MenuButton key={item.title} href={item.url} active={item.title === active} onClick={()=> {select(item.title)}}>{item.title}</MenuButton>
                         )}
                         <ThemeChanger transparent={transparent} onClick={changeTheme}> {themeChanger} </ThemeChanger>
                     </Links>
-                    <Menu showMenu={showMenu}>
-                        <MenuButton key={'home'} href={'/'} active={'home' === active} onClick={()=> {select('home')}}>home</MenuButton>
-                        {listItems.map((item) => 
-                            <MenuButton key={item.title} href={item.url} active={item.title === active} onClick={()=> {select(item.title)}}>{item.title}</MenuButton>
-                        )}
-                        <Cancel onClick={displayMenu}><Close/></Cancel>
-                        <ThemeChanger transparent={transparent} onClick={changeTheme}> {themeChanger} </ThemeChanger>
-                    </Menu>
+                    <MenuContainer showMenu={showMenu}>
+                        <Blur showMenu={showMenu} onClick={() => {setOpen(!open); displayMenu()}}/>
+                        <Menu showMenu={showMenu}>
+                            <MenuButton key={'home'} href={'/'} active={'home' === active} onClick={()=> {select('home')}}>home</MenuButton>
+                            {listItems.map((item) => 
+                                <MenuButton key={item.title} href={item.url} active={item.title === active} onClick={()=> {select(item.title)}}>{item.title}</MenuButton>
+                            )}
+                            <ThemeChanger transparent={transparent} onClick={changeTheme}> {themeChanger} </ThemeChanger>
+                        </Menu>
+                    </MenuContainer>
                 </TopNav>
             </NavContainer>
         )

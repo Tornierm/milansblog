@@ -8,7 +8,6 @@ import styled from 'styled-components';
 
 const Page = styled.div`
     @media (min-width: 48em) {
-        padding:0 calc(2*var(--margin));
         max-width:80em;
     }   
     @media (min-width: 64em) {

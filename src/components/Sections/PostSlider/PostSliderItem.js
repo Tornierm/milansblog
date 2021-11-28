@@ -13,7 +13,7 @@ const Item = styled.section`
     width:100%;
     max-width:14em;
     transform-style: preserve-3d;
-    transition: all 0.8s ease;
+    transition: all .5s ease-in-out;
     ${props => props.flip && css`
         transform: rotateY(180deg);
     `}

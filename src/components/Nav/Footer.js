@@ -10,11 +10,11 @@ align-items:center;
 height:var(--footer-height);
 background-color:var(--p-10);
 z-index:2;
-border-top: 2px var(--p-vlight) solid;
+border-top: 1px var(--p-1) solid;
 `
 
 const Text = styled.p`
-    color:var(--p-vlight);
+    color:var(--p-1);
     top:50;
 `
 
