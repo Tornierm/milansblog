@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {Wrapper, Loading, Line} from '../components/Styled'
+import {Wrapper, Loading, Line,  Spinner} from '../components/Styled'
 import styled from 'styled-components'
 import Comments from '../components/Posts/Comments/Comments'
 import { retrieveFeaturedMedia, retrievePost } from '../service/WPService';
@@ -160,7 +160,7 @@ export default function PostPage ({match}) {
         )
     } else {
         return (
-            <Loading>Loading...</Loading>
+            <Loading><Spinner/></Loading>
         )
     }
 }

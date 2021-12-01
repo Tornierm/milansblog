@@ -3,7 +3,7 @@ import { retrievePosts } from '../../../service/WPService';
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
 import styled from "styled-components";
-import {Wrapper, Loading, Spinner} from '../../Styled';
+import {Wrapper, Loading, Spinner, Title} from '../../Styled';
 import PostSliderItem from './PostSliderItem'
 
 // Import Swiper styles
@@ -22,8 +22,6 @@ SwiperCore.use([Navigation, Pagination]);
 const SwiperWrapper = styled(Wrapper)`
   display:flex;
   flex-direction:column;
-  justify-content:center;
-
   .swiper-container{
     .swiper-button-prev{
       color:var(--s-3);
@@ -56,11 +54,8 @@ const SwiperWrapper = styled(Wrapper)`
   }
 `
 
-const Title = styled.h1`    
-    color:var(--p-1);
-    text-align:center;
-    @media (max-width: 45em) {
-    }
+const SwiperContainer = styled.div`
+  
 `
 
 export default function PostSlider (props) {
@@ -81,42 +76,42 @@ export default function PostSlider (props) {
 
   if(isLoaded){
     return (
-      <SwiperWrapper id="recents" >
-        <div>
-      <Title>Recent Posts</Title>
-      <Swiper
-        grabCursor={true}  
-        modules={[Navigation, Pagination]}
-        navigation
-        pagination={{
-          "clickable": true,
-          "dynamicBullets": true
-        }}
-        slidesPerView={1}
-        breakpoints={{
-          "480": {
-            "slidesPerView": 1,
-            "spaceBetween": 0
-          },
-          "800": {
-            "slidesPerView": 2,
-            "spaceBetween": 0
-          },
-          "1000": {
-            "slidesPerView": 3,
-            "spaceBetween": 0
-          }
-        }}
-        onSlideChange={() => console.log('slide change')}
-        onSwiper={(swiper) => console.log(swiper)}
-      >
-        { posts.map(post => (
-          <SwiperSlide key={'s'+post.id}>
-            <PostSliderItem key={post.id} post={post}/>
-          </SwiperSlide>
-        ))}
-      </Swiper>
-      </div>
+      <SwiperWrapper>
+        <SwiperContainer>
+          <Title>Recent Posts</Title>
+          <Swiper
+            grabCursor={true}  
+            modules={[Navigation, Pagination]}
+            navigation
+            pagination={{
+              "clickable": true,
+              "dynamicBullets": true
+            }}
+            slidesPerView={1}
+            breakpoints={{
+              "480": {
+                "slidesPerView": 1,
+                "spaceBetween": 0
+              },
+              "800": {
+                "slidesPerView": 2,
+                "spaceBetween": 0
+              },
+              "1000": {
+                "slidesPerView": 3,
+                "spaceBetween": 0
+              }
+            }}
+            onSlideChange={() => console.log('slide change')}
+            onSwiper={(swiper) => console.log(swiper)}
+          >
+            { posts.map(post => (
+              <SwiperSlide key={'s'+post.id}>
+                <PostSliderItem key={post.id} post={post}/>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+      </SwiperContainer>
     </SwiperWrapper>
     )
   } else {

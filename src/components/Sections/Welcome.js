@@ -43,7 +43,7 @@ const Image = styled.img`
 const Info = styled.div`
     display:flex;  
     flex-direction:column;
-    justify-content:space-between;
+    justify-content:space-around;
     height:auto;
     padding:var(--margin);
     @media (min-width: 32em) {
@@ -79,7 +79,7 @@ const SocialItem = styled.li`
     display:flex;
     align-items:center;
     justify-content:center;
-    padding:calc(var(--margin)/2) calc(var(--margin)) calc(var(--margin)/2) calc(var(--margin));
+    padding:calc(var(--margin)/2) calc(2*var(--margin)) calc(var(--margin)/2) 0;
     @media (min-width: 32em) {
         padding:calc(var(--margin)/2) 0 0 0;
         margin:0 2em 0 0;

@@ -6,6 +6,9 @@ export const Wrapper = styled.section`
     max-width: 64em;
     min-height:100vh;
     padding-top:calc(var(--navbar-height) + var(--margin));
+    display:flex;
+    flex-direction:column;
+    justify-content:space-around;
 `
 
 export const Loading = styled.section`  
@@ -59,33 +62,11 @@ export const Line = styled.hr`
     margin:.5em 0;
 `
 
-export const SectionTitle = styled.h1` 
-    width:100%;
-    color:var(--p-1);
-    display: flex;
-    flex-direction:column;
-    margin:calc(var(--margin)) 0;
-    align-items:center;
-`
-
 export const Title = styled.h1` 
     width:100%;
     color:var(--p-1);
-    display: flex;
-    flex-direction:column;
     margin:0;
-    ::before{
-        content: "";
-        margin-bottom:calc(var(--margin)/4);
-        height: 2px;
-        background-color: var(--p-1);
-    }
-    ::after{
-        content: "";
-        margin-top:calc(var(--margin)/4);
-        height: 2px;
-        background-color: var(--p-1);
-    }
+    text-align:center;
 `
 
 const pulse = keyframes`

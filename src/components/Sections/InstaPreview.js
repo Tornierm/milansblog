@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import {retrieveIG} from '../../service/IGService';
-import {Wrapper, Spinner, SectionTitle, PrimaryButton} from '../Styled'
+import {Wrapper, Spinner, Title, PrimaryButton} from '../Styled'
 import styled, {css} from "styled-components";
 
 const GridWrapper = styled(Wrapper)`
@@ -8,6 +8,7 @@ const GridWrapper = styled(Wrapper)`
     flex-direction:column;
     justify-content:center;
     align-items:center;
+    padding:1em;
 `
 
 const ImageGrid = styled.div`
@@ -63,7 +64,7 @@ export default function InstaPreview () {
         if(isLoaded){
             return (
                 <GridWrapper id="ig">
-                    <SectionTitle>Instagram</SectionTitle>
+                    <Title>Instagram</Title>
                     <ImageGrid>
                         { posts.map((post, index) => (
                             <ImageContainer 

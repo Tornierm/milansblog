@@ -8,8 +8,8 @@ import Close from '@material-ui/icons/Close';
 
 const Item = styled.section`
     position:relative;
-    height:25em;
-    max-height:100%;
+    min-height:25em;
+    height:100%;
     width:100%;
     max-width:14em;
     transform-style: preserve-3d;

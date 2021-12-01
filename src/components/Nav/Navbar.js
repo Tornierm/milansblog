@@ -1,6 +1,6 @@
 import React, { useState, useEffect} from 'react';
 import {retrieveNavbar} from '../../service/WPService';
-import styled, {css} from 'styled-components'
+import styled, {css, keyframes} from 'styled-components'
 import WbSunnyIcon from '@material-ui/icons/WbSunny';
 import Brightness2Icon from '@material-ui/icons/Brightness2';
 
@@ -91,6 +91,7 @@ const Links = styled.div`
     @media (min-width: 48em) {
         display:flex;
         justify-content:center;
+        align-items:center;
     }
 `
 
@@ -140,13 +141,37 @@ const MenuButton = styled(AnchorButton)`
     }
 `
 
+const neon = keyframes`
+    0%,15%,17%,23%{
+        color: transparent;
+        text-shadow:none;
+    }
+    14%,16%,22%,50%,100%{
+        color: var(--p-vlight);
+        text-shadow:0 0 5px var(--s-3),
+        0 0 10px var(--s-3),
+        0 0 20px var(--s-3),
+        0 0 40px var(--s-3),
+        0 0 80px var(--s-3);
+        0 0 160px var(--s-3);
+    }
+`
+
 const LogoButton = styled(AnchorButton)`
+    font-style: Comforter Brush;
     margin-right: auto;
     border: 1px transparent solid;
-    width:8em;
+    width:auto;
+    padding-left:0;
+    font-size:1.5em;
+    padding:0;
+    outline:none;
     ${props => props.transparent && css`
         color: var(--p-1);
     `}
+    :hover{
+        color:var(-s--3);
+    }
 `
 
 const ThemeChanger = styled.div`
@@ -159,6 +184,9 @@ const ThemeChanger = styled.div`
     background-color: var(--p-0);
     border-radius:1em;
     box-shadow: 0 0 0 2px var(--p-0);
+    @media (min-width: 48em) {
+        margin-top:0em;
+    }
 `
 
 const Highlight = styled.div`
@@ -221,7 +249,7 @@ const BurgerContainer = styled.div`
   
 const Burger = styled.div`
     width: 1.5em;
-    height: .1em;
+    height: .15em;
     background: var(--p-1);
     border-radius: .15em;
     transition: all .5s ease-in-out;
@@ -341,7 +369,13 @@ export default function Navbar (props) {
                         {listItems.map((item) =>
                             <MenuButton key={item.title} href={item.url} active={item.title === active} onClick={()=> {select(item.title)}}>{item.title}</MenuButton>
                         )}
-                        <ThemeChanger transparent={transparent} onClick={changeTheme}> {themeChanger} </ThemeChanger>
+                        <ThemeChanger transparent={transparent} onClick={changeTheme}>
+                            <Highlight themeChanger={themeChanger}/>
+                            <Icons>
+                                <Moon/>
+                                <Sun/> 
+                            </Icons>
+                        </ThemeChanger>
                     </Links>
                     <MenuContainer showMenu={showMenu}>
                         <Blur showMenu={showMenu} onClick={() => {setOpen(!open); displayMenu()}}/>
