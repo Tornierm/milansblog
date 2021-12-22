@@ -1,8 +1,9 @@
 import React from 'react'
-import Sidebar from '../components/Nav/Sidebar'
-import Welcome from '../components/Sections/Welcome'
-import PostSlider from '../components/Sections/PostSlider/PostSlider'
-import InstaPreview from '../components/Sections/InstaPreview'
+import Sidebar from '../Nav/Sidebar'
+import Welcome from '../Sections/Welcome'
+import PostSlider from '../Sections/PostSlider/PostSlider'
+import PhotoSlider from '../Sections/PhotoSlider/PhotoSlider'
+
 
 import styled from 'styled-components';
 
@@ -37,8 +38,8 @@ export default function Home() {
             label:'Blog',
         },
         {
-            id:'ig',
-            label:'Instagram',
+            id:'photos',
+            label:'Photos',
         },
     ]
 
@@ -46,10 +47,11 @@ export default function Home() {
         <Page>
             <Sections>
                 <div id='about'><Welcome/></div>
-                <div id='blog'><PostSlider category="photo"/></div>
-                <div id='ig'><InstaPreview/></div>
+                <div id='blog'><PostSlider key="blogSlider" category="blog"/></div>
+                <div id='photos'><PhotoSlider key="photoSlider" category="photo"/></div>
             </Sections>
             <Sidebar data={data}/>
         </Page>
     )
 }
+//

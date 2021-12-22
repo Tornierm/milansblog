@@ -11,15 +11,19 @@ export async function retrievePosts(){
     return res.data
 }
 
-export async function retrievePostsByCategory(categoryId){
-    console.log(categoryId + 'wp')
+export async function retrievePostsByCategoryId(categoryId){
     const res = await axios.get(url+`/wp-json/wp/v2/posts/?categories=${categoryId}`)
     .catch(err => console.error(err))
     if (!res) {
         return null;
     }
-    console.log(res.data)
     return res.data
+}
+
+export async function retrievePostsByCategory(category){
+    const caregoryId = await retrieveCategoryIdByName(category);
+    const posts = await retrievePostsByCategoryId(caregoryId);
+    return posts
 }
 
 export async function retrievePost(id){
@@ -46,7 +50,7 @@ export async function retrieveCategoryIdByName(category){
     if (!res) {
         return null;
     }
-    return res.data
+    return res.data[0].id
 }
 
 export async function retrieveComments(id, parent){
@@ -63,8 +67,6 @@ export async function retrieveComments(id, parent){
 }
 
 export async function postComment(data){
-    console.log(data)
-    console.log(url+`/wp-json/wp/v2/comments`)
     const res = await axios({
         method: 'post',
             url: url+`/wp-json/wp/v2/comments`,
@@ -75,7 +77,6 @@ export async function postComment(data){
     if (!res) {
         return null;
     }
-    console.log(res.data)
     return res.data
 }
 
@@ -125,13 +126,11 @@ export async function retrievePages(){
 }
 
 export async function retrievePageByName(name){
-
     const pages = await retrievePages()
     for(const page of pages){
         if(page.title.rendered===name){
             return retrievePageById(page.id);
         }
     }
-    console.log('return null')
     return null;
 }

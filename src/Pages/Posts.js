@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { retrievePostsByCategory, retrieveCategoryIdByName } from '../service/WPService';
 import PostItem from '../components/Posts/PostItem'
 import styled from "styled-components";
-import {Wrapper, Loading} from '../components/Styled'
+import {Wrapper, Loading, Spinner} from '../components/Styled'
 
 const PostSection = styled.div`
     padding: 0em 1em 5em 1em;
@@ -53,7 +53,7 @@ export default function Posts(props) {
         )
     } else {
     return(               
-        <Loading>Loading...</Loading>
+        <Loading><Spinner/></Loading>
     )
     }
 }

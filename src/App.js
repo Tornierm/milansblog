@@ -1,12 +1,12 @@
 import {useState, useEffect} from 'react'
 import Posts from './Pages/Posts'
-import Navbar from './components/Nav/Navbar'
-import Footer from './components/Nav/Footer'
+import Navbar from './Nav/Navbar'
+import Footer from './Nav/Footer'
 import PostPage from './Pages/PostPage'
 import Home from './Pages/Home'
 
 import styled, {css} from 'styled-components'
-import ScrollToTop from './components/Nav/ScrollToTop'
+import ScrollToTop from './Nav/ScrollToTop'
 
 import {
   BrowserRouter as Router,
