@@ -24,20 +24,13 @@ export default function Posts(props) {
     useEffect( () => {
         console.log(category)
 
-        retrieveCategoryIdByName(category)
-        .then( res => {
-            if(typeof res[0] === 'undefined'){
-
-            } else {
-                retrievePostsByCategory(res[0].id)
-                .then(res => {
-                    setPosts(res)
-                    setIsLoaded(true)
-                })
-                .catch(err => console.log(err));
-            }
+        retrievePostsByCategory(category)
+        .then(res => {
+            setPosts(res)
+            setIsLoaded(true)
         })
-        
+        .catch(err => console.log(err));
+
 
     },[category])
 

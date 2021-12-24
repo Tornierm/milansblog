@@ -8,6 +8,7 @@ export async function retrievePosts(){
     if (!res) {
         return null;
     }
+    console.log(res);
     return res.data
 }
 
