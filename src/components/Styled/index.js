@@ -29,7 +29,7 @@ const pulse = keyframes`
     }
 `;
 
-const fadeIn = keyframes`
+export const fadeIn = keyframes`
     0% {
         opacity: 0;
         transform: translateX(-50px);

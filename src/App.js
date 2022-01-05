@@ -4,6 +4,7 @@ import Navbar from './Nav/Navbar'
 import Footer from './Nav/Footer'
 import PostPage from './Pages/PostPage'
 import Home from './Pages/Home'
+import Resume from './Pages/Resume'
 
 import styled, {css} from 'styled-components'
 import ScrollToTop from './Nav/ScrollToTop'
@@ -98,8 +99,11 @@ function App() {
         <Router>
           <ScrollToTop/>
           <Switch>
-            <Route exact path="/">
+          <Route exact path="/">
               <Home/>
+            </Route>
+            <Route exact path="/resume">
+              <Resume/>
             </Route>
             <Route exact path="/blog">
               <Posts category="blog"/>

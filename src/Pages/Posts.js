@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { retrievePostsByCategory, retrieveCategoryIdByName } from '../service/WPService';
+import { retrievePostsByCategory } from '../service/WPService';
 import PostItem from '../components/Posts/PostItem'
 import styled from "styled-components";
 import {Wrapper, Loading, Spinner} from '../components/Styled'
