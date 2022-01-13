@@ -20,7 +20,7 @@ const Polaroid = styled.div`
     width:100%;
     max-width:20em;
     max-height:30em;
-    background-color:var(--p-vlight);
+    background-color:white;
     padding:1em;
 `
 

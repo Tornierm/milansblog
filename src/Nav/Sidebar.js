@@ -81,14 +81,14 @@ export default function Sidebar (props) {
     const [current, setCurrent] = useState(props.data[0].id);
 
     useEffect( () => {
-        let tmp = [];
+        let sections = [];
         props.data.forEach(element => {
             let section = document.getElementById(element.id);
-            tmp = [...tmp ,section];
+            sections = [...sections ,section];
         });
 
         const setActive = () => {
-            tmp.forEach((section) => {
+            sections.forEach((section) => {
                 const sectionTop = section.offsetTop;
                 const sectionHeight = section.clientHeight;
                 if (window.pageYOffset >= sectionTop - sectionHeight / 3 && window.pageYOffset < sectionTop + 2*sectionHeight/3 ) {

@@ -3,34 +3,56 @@ import styled, {keyframes, css} from "styled-components";
 
 const roll = keyframes`
     0% {
-        transform:translateX(0em) rotateZ(0deg) ;
+        transform:translateX(12em) rotateZ(0deg) ;
+    }
+    80% {
+        transform:translateX(12em) rotateZ(360deg) ;
     }
     100% {
-        transform:translateX(0px) rotateZ(360deg) ;
+        transform:translateX(0em) rotateZ(180deg) ;
     }
 `;
 
+const rollMobile = keyframes`
+    0% {
+        transform:translateY(3em) rotateZ(0deg) ;
+    }
+    80% {
+        transform:translateY(3em) rotateZ(360deg) ;
+    }
+    100% {
+        transform:translateY(0em) rotateZ(180deg) ;
+    }
+`;
+
+
 const Container = styled.div`
-    height:800px;
-    width:800px;
+    height:6em;
+    width:6em;
+    z-index:10;
     position:relative;
     font-size:40px;
 
     --X:1.33em;
-    --Y:.35em;
+    --Y:.31em;
 
     --delay0: 0s;
     --delay1: 1s;
     --delay2: 1.3s;
     --delay3: 1.6s;
     --delay4: 1.9s;
-    --delay5: 2.1s;
+    --delay5: 2.2s;
     transform:translateX(0em) rotateZ(0deg);
-
-    animation:${roll} 2.5s linear forwards;
+    animation:${rollMobile} 3s ease-in-out forwards;
+    @media (min-width: 48em) {
+        animation:${roll} 3s ease-in-out forwards;
+    }  
 `
 
 const boxTransform1 = keyframes`
+    0% {
+        opacity: 1;
+    }
     100% {
         transform:translateY(-1.59em) translateX(-.91em) skew(60deg) rotateX(60deg);
     }
@@ -38,8 +60,7 @@ const boxTransform1 = keyframes`
 
 const boxTransform2 = keyframes`
     0% {
-        opacity: 1;
-        background-color:var(--p-1);
+        opacity: 0;
         transform:translateY(-1.59em) translateX(-.91em) skew(60deg) rotateX(60deg);
     }
     100% {
@@ -49,7 +70,7 @@ const boxTransform2 = keyframes`
 
 const boxTransform3 = keyframes`
     0% {
-        opacity: 1;
+        opacity: 0;
         transform:translateY(-.92em) translateX(-.24em) skew(30deg) rotateX(30deg);
     }
     100% {
@@ -59,7 +80,7 @@ const boxTransform3 = keyframes`
 
 const boxTransform4 = keyframes`
     0% {
-        opacity: 1;
+        opacity: 0;
         transform:translateY(0) translateX(0) skew(0) rotateX(0);
     }
     100% {
@@ -69,24 +90,24 @@ const boxTransform4 = keyframes`
 
 const boxTransform5 = keyframes`
     0% {
-        opacity: 1;
+        opacity: 0;
         transform:translateY(.92em) translateX(-.24em) skew(-30deg) rotateX(-30deg);
     }
-    
     100% {
         transform:translateY(1.59em) translateX(-.91em) skew(-60deg) rotateX(-60deg);
     }
 `;
 
 const Box = styled.div`
-    opacity: .8;
+    opacity: 1;
     height:.99em;
     width:.99em;
     position:absolute;
     border:solid .01em black;
-    background: linear-gradient(90deg,
-                                ${props => props.color} 0%, 
-                                var(--p-3) 130%);
+    background: 
+        linear-gradient(90deg,
+        ${props => props.color} 0%, 
+        var(--p-3) 130%);
     transform:translateY(-1.59em) translateX(-.91em) skew(60deg) rotateX(60deg);
     ${props => props.order === "1" && css`
         animation:${boxTransform1} .2s var(--delay1)  linear forwards;
@@ -111,7 +132,7 @@ const fadeInRow = keyframes`
         transform:rotateZ(0deg) translateY(var(--Y)) translateX(var(--X));
     }
     100% {
-        opacity: 100;
+        opacity: 1;
     }
 `;
 
@@ -155,7 +176,7 @@ export default function Figure() {
     return (
         <Container>
             <Row1>
-                <Box color="var(--s-5)" order="1" />
+                <Box color="var(--s-5)" order="1"/>
                 <Box color="var(--s-5)" order="2"/>
                 <Box color="var(--s-5)" order="3"/>
                 <Box color="var(--s-5)" order="4"/>
