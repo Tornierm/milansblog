@@ -1,7 +1,7 @@
 import React from 'react'
 import Sidebar from '../Nav/Sidebar'
-import Lebenslauf from '../components/Lebenslauf'
-import Vorstellung from '../components/Vorstellung'
+import Lebenslauf from '../components/Resume/Lebenslauf'
+import Vorstellung from '../components/Resume/Vorstellung'
 
 import styled from "styled-components";
 
