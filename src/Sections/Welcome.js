@@ -151,10 +151,10 @@ export default function Welcome() {
                         <Social>
                             <SocialList>
                                 <SocialItem>
-                                    <SocialLink href="/"><Instagram/></SocialLink>
+                                    <SocialLink href="https://www.instagram.com/milan.tornier/"><Instagram/></SocialLink>
                                 </SocialItem> 
                                 <SocialItem>
-                                    <SocialLink href="/"><LinkedIn/></SocialLink>
+                                    <SocialLink href="https://www.linkedin.com/in/milan-tornier-ab74bb136/"><LinkedIn/></SocialLink>
                                 </SocialItem>
                             </SocialList>
                         </Social>

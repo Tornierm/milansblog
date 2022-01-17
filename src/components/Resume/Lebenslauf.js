@@ -159,27 +159,21 @@ const StarH = styled(StarHalf)`
 `  
 
 export default function Lebenslauf() {
-    const [active, setActive] = useState(0);
-
-    const handleClick = (number) => {
-        if(number === active){
-            setActive(0)
-        } else {
-            setActive(number)
-        }
-    }
+    const [active1, setActive1] = useState(false);
+    const [active2, setActive2] = useState(false);
+    const [active3, setActive3] = useState(false);
 
     return (
         <Container>
             <Item>
-                <TopBar onClick={()=>handleClick(1)}>
+                <TopBar onClick={()=>setActive1(!active1)}>
                     <Circle>
                         <School/>
                     </Circle>
                     <Title>Education</Title>
                 </TopBar>
                 
-                <Info display={active===1}>
+                <Info display={active1}>
                     <Column>
                         <Dot delay={"0s"}/>
                         <Line delay={".2s"}/>
@@ -219,13 +213,13 @@ export default function Lebenslauf() {
                 
             </Item>
             <Item>
-                <TopBar onClick={()=>handleClick(2)}>
+                <TopBar onClick={()=>setActive2(!active2)}>
                     <Circle>
                         <Construction/>
                     </Circle>
                     <Title>Skills</Title>
                 </TopBar>
-                <Info display={active===2}>
+                <Info display={active2}>
                     <Column>
                         <Dot delay={"0s"}/>
                         <Line delay={".2s"}/>
@@ -266,15 +260,32 @@ export default function Lebenslauf() {
                 </Info>
             </Item>
             <Item>
-                <TopBar onClick={()=>handleClick(3)}>
+                <TopBar onClick={()=>setActive3(!active3)}>
                     <Circle>
                         <Camera/>
                     </Circle>
                     <Title>Interests</Title>
                 </TopBar>
-                {active===3 &&
-                    <p>expand</p>
-                }
+                <Info display={active3}>
+                    <Column>
+                        <Dot delay={"0s"}/>
+                        <Line delay={".2s"}/>
+                        <ColumnTitle delay={"0s"}>Photography</ColumnTitle>
+                        <Text>Ever since I got my first DSLR for my 18 birthday photography has been one of my passions. Some of my favorite photographs can be found on this website.</Text>
+                    </Column>
+                    <Column>
+                        <Dot delay={".4s"}/>
+                        <Line delay={".6s"}/>
+                        <ColumnTitle delay={".4s"}>Sports</ColumnTitle>
+                        <Text>Football was my earliest passion and I have always loved to take resposibility for my team. Besides I am big into calisthenics, weightlifting and running.</Text>
+                    </Column>
+                    <Column>
+                        <Dot delay={".8s"}/>
+                        <Line delay={"1s"}/>
+                        <ColumnTitle delay={".8s"}>Reading</ColumnTitle>
+                        <Text>My favorite books include "Hippy" by Paolo Coehlo, "The Wisdom of Insecurity" by Alan Watts and "The Subtle Art of not giving a Fuck" by Mark Manson.</Text>
+                    </Column>
+                </Info>
             </Item>
         </Container>
     )

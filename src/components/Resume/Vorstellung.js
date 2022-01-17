@@ -49,7 +49,13 @@ export default function Vorstellung() {
                 <Figure/>
                 <Info>
                     <H1>Milan Tornier</H1>
-                    <Paragraph>Student der Informatik und Frontend Developer.</Paragraph>
+                    <Paragraph>
+                        Student der Informatik und Frontend Developer. 
+                        <br/><br/>
+                        Ich bin auf der Suche nach einem Unternehmen, 
+                        in dem ich ab März mindestens 2 Semester als Werkstudent tätig sein kann 
+                        und meine Skills anbringen kann um eine gute User Experience zu schaffen.
+                    </Paragraph>
                 </Info>
         </Container>
         
