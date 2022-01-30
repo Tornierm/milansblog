@@ -15,11 +15,14 @@ const Form = styled.form`
     border: 2px solid var(--s-3);
     border-radius:.5em;
     padding:5em 1em;
-    width:40em;
+    width:100%;
     margin:0 auto;
     display:flex;
     flex-direction:column;
     align-items:center;
+    @media (min-width: 45em) {
+        min-width:40em;
+    }
 `
 
 const line = keyframes`
