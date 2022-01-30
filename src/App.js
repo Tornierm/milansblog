@@ -14,7 +14,7 @@ import {
   Switch,
   Route
 } from "react-router-dom";
-
+//080B0C
 const Site = styled.div`
   scroll-behavior: smooth;
   --navbar-height:4em;
@@ -33,7 +33,7 @@ const Site = styled.div`
   --p: #607D8B;
   --p-dark: #324148;
   --p-vdark: #101719;
-  --p-black: #080B0C;
+  --p-black: #192124;
 
   --s-vlight: #fbe2da;
   --s-light: #f1997e;

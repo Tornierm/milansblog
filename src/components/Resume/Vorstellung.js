@@ -50,11 +50,9 @@ export default function Vorstellung() {
                 <Info>
                     <H1>Milan Tornier</H1>
                     <Paragraph>
-                        Student der Informatik und Frontend Developer. 
+                        Computer Science Student and Frontend Developer. 
                         <br/><br/>
-                        Ich bin auf der Suche nach einem Unternehmen, 
-                        in dem ich ab März mindestens 2 Semester als Werkstudent tätig sein kann 
-                        und meine Skills anbringen kann um eine gute User Experience zu schaffen.
+                        Open for a student job in frontend development or creative projects. Feel free to submit inquiries using the contact form below on via LinkedIn.
                     </Paragraph>
                 </Info>
         </Container>

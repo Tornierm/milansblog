@@ -56,10 +56,10 @@ const Info = styled.div`
     min-height:100px;
     margin: 0 0 0 24px;
     transform-origin:top;
-    ${props => props.display && css`
+    ${props => props.$display  && css`
         animation:${dot} 1s linear forwards;
     `}
-    ${props => !props.display && css`
+    ${props => !props.$display && css`
         display:none;
     `}
 `
@@ -173,7 +173,7 @@ export default function Lebenslauf() {
                     <Title>Education</Title>
                 </TopBar>
                 
-                <Info display={active1}>
+                <Info $display={active1}>
                     <Column>
                         <Dot delay={"0s"}/>
                         <Line delay={".2s"}/>
@@ -219,15 +219,15 @@ export default function Lebenslauf() {
                     </Circle>
                     <Title>Skills</Title>
                 </TopBar>
-                <Info display={active2}>
+                <Info $display={active2}>
                     <Column>
                         <Dot delay={"0s"}/>
                         <Line delay={".2s"}/>
-                        <ColumnTitle delay={"0s"}>Css & HTML</ColumnTitle>
+                        <ColumnTitle delay={"0s"}>HTML & CSS</ColumnTitle>
                         <Time delay={"0s"}>
                             <StarR/><StarR/><StarR/><StarR/><StarH/>
                         </Time>
-                        <Text>Since 18 years old I have used HTML and CSS to Change the design of my Tumblr tamplate and have continued to develop those skills ever since.</Text>
+                        <Text>Since 18 years old I have used HTML and CSS to Change the design of my Tumblr blog template and have continued to develop those skills ever since.</Text>
                     </Column>
                     <Column>
                         <Dot delay={".4s"}/>
@@ -236,7 +236,7 @@ export default function Lebenslauf() {
                             <StarR/><StarR/><StarR/><StarO/><StarO/>
                         </Time>
                         <ColumnTitle delay={".4s"}>Java Script and Java Script Frame Works</ColumnTitle>
-                        <Text>Though I have worked on smaller assignments with Vue, Angular and Svelte I have developed this Website using React, which I consider my strengh.</Text>
+                        <Text>Though I have worked on smaller assignments with Vue, Angular and Svelte I have developed this Website using React, which I consider to be my strengh.</Text>
                     </Column>
                     <Column>
                         <Dot delay={".8s"}/>
@@ -266,7 +266,7 @@ export default function Lebenslauf() {
                     </Circle>
                     <Title>Interests</Title>
                 </TopBar>
-                <Info display={active3}>
+                <Info $display={active3}>
                     <Column>
                         <Dot delay={"0s"}/>
                         <Line delay={".2s"}/>

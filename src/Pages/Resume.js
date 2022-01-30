@@ -1,6 +1,7 @@
 import React from 'react'
 import Sidebar from '../Nav/Sidebar'
 import Lebenslauf from '../components/Resume/Lebenslauf'
+import Contact from '../components/Resume/Contact'
 import Vorstellung from '../components/Resume/Vorstellung'
 
 import styled from "styled-components";
@@ -29,20 +30,25 @@ export default function Resume() {
 
     const data=[
         {
-            id:'vorstellung',
-            label:'Vorstellung',
+            id:'about',
+            label:'About Me',
         },
         {
-            id:'lebenslauf',
-            label:'Lebenslauf',
+            id:'resume',
+            label:'Resume',
         },
+        {
+            id:'contact',
+            label:'Contact',
+        }
     ]
 
     return (
         <Page>
             <Sections>
-                <div id='vorstellung'><Vorstellung/></div>
-                <div id='lebenslauf'><Lebenslauf/></div>
+                <div id='about'><Vorstellung/></div>
+                <div id='resume'><Lebenslauf/></div>
+                <div id='contact'><Contact/></div>
             </Sections>
             <Sidebar data={data}/>
         </Page>
