@@ -30,7 +30,7 @@ const TopBar = styled.div`
     align-items:center;
     
     border-radius:24px 24px 24px 24px;
-    margin-bottom:1em;
+    margin: 0 .5em 1em .5em;
 `
 
 const Title = styled.h5`
@@ -54,7 +54,7 @@ const Info = styled.div`
     max-width:100%;
     color: white;
     min-height:100px;
-    margin: 0 0 0 24px;
+    margin: 1.5em 0 0 32px;
     transform-origin:top;
     ${props => props.$display  && css`
         animation:${dot} 1s linear forwards;
@@ -97,10 +97,8 @@ const ColumnTitle = styled.h6`
 const Text = styled.p`
     opacity:0;
     color: var(--p-0);
-    margin:0;
+    margin:12px 16px 0 16px;
     padding:0;
-    margin-left:16px;
-    margin-top:12px; 
     animation:${dot} 1s 2s ease-in-out forwards;
 `
 const Time = styled.span`
@@ -191,7 +189,7 @@ export default function Lebenslauf() {
                     <Column>
                         <Dot delay={".8s"}/>
                         <Line delay={"1s"}/>
-                        <ColumnTitle delay={".8s"}>Work and Travel in Australia and New Zealand</ColumnTitle>
+                        <ColumnTitle delay={".8s"}>Traveling in Australia and New Zealand</ColumnTitle>
                         <Time delay={".8s"}>jan 2018 - sep 2018</Time>
                         <Text>Using the Money I saved, I flew to Australia where I traveled and worked in constuction and on farms.</Text>
                     </Column>
