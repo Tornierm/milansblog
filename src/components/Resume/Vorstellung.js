@@ -52,7 +52,7 @@ export default function Vorstellung() {
                     <Paragraph>
                         Computer Science Student and Frontend Developer. 
                         <br/><br/>
-                        Open for a student job in frontend development or creative projects. Feel free to submit inquiries using the contact form below on via LinkedIn.
+                        Open for a student job in frontend development or creative projects. Feel free to reach out via milan.tornier@web.de
                     </Paragraph>
                 </Info>
         </Container>

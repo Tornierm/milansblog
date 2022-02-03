@@ -4,8 +4,7 @@ import Input from './Input'
 import TextField from './TextField'
 import styled, {keyframes} from "styled-components";
 
-<script src="https://smtpjs.com/v3/smtp.js">
-</script>
+import {contactFormSubmission} from "../../service/WPService.js"
 
 const Container = styled(Wrapper)`
     min-height:80vh;
@@ -52,7 +51,7 @@ export default function Contact() {
     const [name, setName] = useState('')
     const [eMail, setEMail] = useState('')
     const [message, setMessage] = useState('')
-    const [number, setNumber] = useState('')
+    const [subject, setSubject] = useState('')
 
     const [nameError, setNameError] = useState('')
     const [eMailError, setEMailError] = useState('')
@@ -80,15 +79,12 @@ export default function Contact() {
         }
     }
 
-    const numberChange = (number) => {
+    const subjectChange = (subject) => {
         
         if(
-            !number.match(
-                //eslint-disable-next-line
-                /^([0-9\(\)\/\+ \-]*)$/
-            )
+            subject.length === 0
             ){
-            setNumberError("invalid Number")
+            setNumberError("Whats your inquiry about ?")
         } else {
             setNumberError(null)
         }
@@ -106,7 +102,18 @@ export default function Contact() {
     }
 
     const submit = () => {
-        
+        let emailBody = {
+            "your-name": name,
+            "your-email": eMail,
+            "your-message": message,
+            "your-subject": subject,
+        };
+
+        const form = new FormData();
+        for (const field in emailBody) {
+            form.append(field, emailBody[field]);
+        }
+        contactFormSubmission(form);
     }
 
     return (
@@ -117,12 +124,11 @@ export default function Contact() {
                 {nameError ? <ValidationHints><p>{nameError}</p></ValidationHints>: null}
                 <Input label='E-Mail' onchange={(eMail) => emailChange(eMail)} value={eMail} setValue={(eMail) => setEMail(eMail)} />
                 {eMailError ? <ValidationHints><p>{eMailError}</p></ValidationHints>: null}
-                <Input label='Number' onchange={(number) => numberChange(number)} value={number} setValue={(number) => setNumber(number)} />
+                <Input label='Subject' onchange={(subject) => subjectChange(subject)} value={subject} setValue={(subject) => setSubject(subject)} />
                 {numberError ? <ValidationHints><p>{numberError}</p></ValidationHints>: null}
                 <TextField label='Message' onchange={(message) => messageChange(message)} value={message} setValue={(message) => setMessage(message)} />
                 {messageError ? <ValidationHints><p>{messageError}</p></ValidationHints>: null}
-                <PrimaryButton >Send</PrimaryButton>
-
+                <PrimaryButton onClick={(e) =>{e.preventDefault(); submit()}}>Send</PrimaryButton>
             </Form>
         </Container>
     )

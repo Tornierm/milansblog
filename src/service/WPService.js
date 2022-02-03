@@ -135,3 +135,19 @@ export async function retrievePageByName(name){
     }
     return null;
 }
+
+export async function contactFormSubmission(data){
+    console.log(data)
+    const res = await axios({
+        method: 'post',
+            url: url+`/wp-json/contact-form-7/v1/contact-forms/148/feedback`,
+            headers: {'Content-Type': 'application/json'}, 
+            data: data
+    })    
+    .catch(err => console.error(err))
+    if (!res) {
+        return null;
+    }
+    console.log(res.data)
+    return res.data
+}
