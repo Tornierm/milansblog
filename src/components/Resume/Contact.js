@@ -46,6 +46,13 @@ const ValidationHints = styled.div`
     transform:scale(0);
     animation:${line} .4s ease-in-out forwards;
 `
+const Feedback = styled.div`
+margin:1em;
+    p{
+        background-color:var(--s-3);
+        color:var(--p-10);
+    }
+`
 
 export default function Contact() {
     const [name, setName] = useState('')
@@ -57,6 +64,8 @@ export default function Contact() {
     const [eMailError, setEMailError] = useState('')
     const [messageError, setMessageError] = useState('')
     const [numberError, setNumberError] = useState('')
+
+    const [feedback, setFeedback] = useState('')
 
     const nameChange = (name) =>  {
         if(name.length < 3){
@@ -108,12 +117,11 @@ export default function Contact() {
             "your-message": message,
             "your-subject": subject,
         };
-
         const form = new FormData();
         for (const field in emailBody) {
             form.append(field, emailBody[field]);
         }
-        contactFormSubmission(form);
+        contactFormSubmission(form).then(res=>setFeedback(res.message));
     }
 
     return (
@@ -128,7 +136,8 @@ export default function Contact() {
                 {numberError ? <ValidationHints><p>{numberError}</p></ValidationHints>: null}
                 <TextField label='Message' onchange={(message) => messageChange(message)} value={message} setValue={(message) => setMessage(message)} />
                 {messageError ? <ValidationHints><p>{messageError}</p></ValidationHints>: null}
-                <PrimaryButton onClick={(e) =>{e.preventDefault(); submit()}}>Send</PrimaryButton>
+                <PrimaryButton  onClick={(e) =>{e.preventDefault(); submit()}}>Send</PrimaryButton>
+                <Feedback><p>{feedback}</p></Feedback>
             </Form>
         </Container>
     )
