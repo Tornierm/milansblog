@@ -15,7 +15,7 @@ const Container = styled(Wrapper)`
     align-items:center;
     justify-content:center;
     width:100%;
-    margin:10em 0 10em 0;
+    padding:10em 0 10em 0;
 `
 
 const Item = styled.div`
