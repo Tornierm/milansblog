@@ -137,7 +137,7 @@ export const Wrapper = styled.section`
     margin-right: auto;
     margin-left:  auto;
     max-width: 64em;
-    padding:calc(var(--navbar-height) + var(--margin)) 0;
+    padding:0 0;
     display:flex;
     flex-direction:column;
     justify-content:space-around;

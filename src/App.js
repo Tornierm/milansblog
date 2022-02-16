@@ -4,7 +4,6 @@ import Navbar from './Nav/Navbar'
 import Footer from './Nav/Footer'
 import PostPage from './Pages/PostPage'
 import Home from './Pages/Home'
-import Resume from './Pages/Resume'
 
 import styled, {css} from 'styled-components'
 import ScrollToTop from './Nav/ScrollToTop'
@@ -17,7 +16,7 @@ import {
 //080B0C
 const Site = styled.div`
   scroll-behavior: smooth;
-  --navbar-height:4em;
+  --navbar-height:56px;
   --footer-height:10em;
   --sidebar-width:8em;
 
@@ -99,12 +98,12 @@ function App() {
         <Router>
           <ScrollToTop/>
           <Switch>
-          <Route exact path="/">
+            <Route exact path="/">
               <Home/>
-            </Route>
+            </Route>  
             <Route exact path="/resume">
-              <Resume/>
-            </Route>
+              <Home/>
+            </Route>                
             <Route exact path="/blog">
               <Posts category="blog"/>
             </Route>

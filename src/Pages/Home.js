@@ -1,6 +1,10 @@
 import React from 'react'
 import Sidebar from '../Nav/Sidebar'
 import Welcome from '../Sections/Welcome'
+import Resume from '../Sections/Resume'
+import Contact from '../Sections/Contact'
+
+
 import PostSlider from '../Sections/PostSlider/PostSlider'
 import PhotoSlider from '../Sections/PhotoSlider/PhotoSlider'
 
@@ -16,8 +20,11 @@ const Page = styled.div`
         margin-right:auto;
     }    
 `
+
 const Sections = styled.div`
+    padding: 4em 0 0 0;
     margin:0;
+    
     @media (min-width: 48em) {
         margin-left:calc(var(--sidebar-width));
         margin-right:calc(var(--sidebar-width));
@@ -34,6 +41,14 @@ export default function Home() {
             label:'About',
         },
         {
+            id:'resume',
+            label:'Resume',
+        },
+        {
+            id:'contact',
+            label:'Contact',
+        },
+        {
             id:'blog',
             label:'Blog',
         },
@@ -47,6 +62,8 @@ export default function Home() {
         <Page>
             <Sections>
                 <div id='about'><Welcome/></div>
+                <div id='resume'><Resume/></div>
+                <div id='contact'><Contact/></div>
                 <div id='blog'><PostSlider key="blogSlider" category="blog"/></div>
                 <div id='photos'><PhotoSlider key="photoSlider" category="photo"/></div>
             </Sections>

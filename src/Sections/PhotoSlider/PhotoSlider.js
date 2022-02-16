@@ -6,7 +6,7 @@ import PostSliderItem from './PhotoSliderItem';
 import styled from 'styled-components';
 
 const Container = styled.div`
-    margin:3em 0;
+    margin:3em 0 0 0;
 `
 
 const createPhotoSliderItems = (posts) => {

@@ -3,13 +3,13 @@ import styled, {keyframes, css} from "styled-components";
 
 const roll = keyframes`
     0% {
-        transform:translateX(12em) rotateZ(0deg) ;
+        transform:translateX(-6em) rotateZ(0deg) ;
     }
     80% {
-        transform:translateX(12em) rotateZ(360deg) ;
+        transform:translateX(-6em) rotateZ(360deg) ;
     }
     100% {
-        transform:translateX(0em) rotateZ(180deg) ;
+        transform:translateX(0em) rotateZ(540deg) ;
     }
 `;
 

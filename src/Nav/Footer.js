@@ -2,15 +2,14 @@ import React from 'react'
 import styled from "styled-components";
 
 const Info = styled.div`
-position:relative;
-padding-bottom:4em;
-display:flex;
-justify-content:center;
-align-items:center;
-height:var(--footer-height);
-background-color:var(--p-10);
-z-index:2;
-border-top: 1px var(--p-1) solid;
+    position:relative;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:var(--footer-height);
+    background-color:var(--p-10);
+    border-top: 1px var(--p-1) solid;
+    padding-bottom:4em;
 `
 
 const Text = styled.p`
