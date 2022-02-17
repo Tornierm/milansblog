@@ -13,22 +13,23 @@ const roll = keyframes`
     }
 `;
 
-const rollMobile = keyframes`
-    0% {
-        transform: rotateZ(0deg) ;
-    }
-    100% {
-        transform: rotateZ(180deg) ;
-    }
-`;
+const Div = styled.div`
+    height:6em;
+    width:6em;
+    position:relative;
+    font-size:40px;
 
+    display:flex;
+    justify-content:center;
+    align-items:center;
+`
 
 const Container = styled.div`
     height:6em;
     width:6em;
     z-index:10;
     position:relative;
-    font-size:40px;
+    
 
     display:none;
 
@@ -176,6 +177,7 @@ const Row6 = styled(Row)`
 
 export default function Figure({appear}) {
     return (
+        <Div>
         <Container appear={appear}>
             <Row1>
                 <Box color="var(--s-5)" order="1"/>
@@ -220,6 +222,7 @@ export default function Figure({appear}) {
                 <Box color="var(--s-3)" order="5"/>
             </Row6>
         </Container>
+        </Div>
     )
 }
 

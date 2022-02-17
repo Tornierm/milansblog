@@ -1,4 +1,6 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
+import  {useInView} from 'react-intersection-observer'
+
 import {Wrapper, H1, PrimaryButton} from '../components/Styled';
 import Input from '../components/Basics/Input'
 import TextField from '../components/Basics/TextField'
@@ -62,6 +64,14 @@ const Feedback = styled.div`
 `
 
 export default function Contact({innerRef, appear}) {
+    const options1= {
+        "threshold": .5,
+        "rootMargin": "0px 0px"
+    }
+
+    const {ref: ref1, inView: visible1} = useInView(options1);
+    const [animate1, setAnimate1] = useState();
+
     const [name, setName] = useState('')
     const [eMail, setEMail] = useState('')
     const [message, setMessage] = useState('')
@@ -131,8 +141,14 @@ export default function Contact({innerRef, appear}) {
         contactFormSubmission(form).then(res=>setFeedback(res.message));
     }
 
+    useEffect(() => {
+        if(visible1){
+            setAnimate1(true)
+        }
+    }, [visible1])
+
     return (
-        <Container ref={innerRef} appear={appear}>
+        <Container ref={ref1} appear={animate1}>
             <Form>
                 <H1>Contact</H1>
                 <Input label='Name' onchange={(name) => nameChange(name)} value={name} setValue={(name) => setName(name)} />

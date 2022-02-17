@@ -43,7 +43,7 @@ const Info = styled.div`
         padding:0;
         order:0;
     }
-    transition: 1s ease-in-out;
+    transition: 2s ease-in-out;
     opacity:0;
     ${props => props.appear && css`
         opacity:1;
@@ -106,18 +106,27 @@ const Text = styled.div`
         padding:1em;
         order:2;
     }
+    
 `
 
 const Image= styled.img`
-    max-height:400px;
-    max-width:400px;
-    width:50%;
+    width:100%;
     transition: 1s ease-in-out;
-    transform: translateX(200px);
+    transform: translateY(-200px);
     opacity:0;
+    @media (min-width: 32em) {
+        max-height:400px;
+        max-width:400px;
+        width:50%;
+        transform: translateX(200px);
+            ${props => props.appear && css`
+            opacity:1;
+            transform: translateX(0px) translateY(0px);
+        `}
+    }
     ${props => props.appear && css`
         opacity:1;
-        transform: translateX(0px);
+        transform: translateX(0px) translateY(0px);
     `}
 `
 export default function Welcome({innerRef, appear}) {
@@ -153,7 +162,7 @@ export default function Welcome({innerRef, appear}) {
                 <Upper>
                     <Info appear={appear}>
                         <H1 dangerouslySetInnerHTML={{__html: welcome.title.rendered}}/>
-                        <Text  dangerouslySetInnerHTML={{__html: welcome.content.rendered}}/>
+                        <Text dangerouslySetInnerHTML={{__html: welcome.content.rendered}}/>
                         <Social>
                             <SocialList>
                                 <SocialItem>

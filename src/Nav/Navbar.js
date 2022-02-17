@@ -349,7 +349,7 @@ export default function Navbar (props) {
                     <LogoButton onClick={()=> {select('home')}} transparent={transparent} href='/'>Milan Tornier</LogoButton>
                     <BurgerContainer transparent={transparent} onClick={() => {setOpen(!open); displayMenu()}}>
                         <Burger transparent={transparent} open={open}/>
-                    </BurgerContainer>*/}
+                    </BurgerContainer>
                     <Links>
                         {listItems.map((item) =>
                             <MenuButton key={item.title} href={item.url} active={item.title === active} onClick={()=> {select(item.title)}}>{item.title}</MenuButton>

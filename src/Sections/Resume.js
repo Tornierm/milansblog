@@ -1,4 +1,6 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
+
+import  {useInView} from 'react-intersection-observer'
 
 import {Wrapper} from '../components/Styled';
 import styled, {keyframes, css} from "styled-components";
@@ -16,18 +18,26 @@ const Container = styled(Wrapper)`
     flex-direction:column; 
     
     justify-content:center;
+    align-items:center;
     width:100%;
     padding:0em 0 10em 0;
-    @media (min-width: 32em) {
+    @media (min-width: 56em) {
         flex-direction: row;
+        align-items:flex-start;
     }
 `
 
 const Items = styled.div`
-    width:50%;
+    width:100%;
     display:flex;
     flex-direction:column;
-    margin-left:3em;
+    justify-content:center;
+    align-items:center;
+    margin:2em 0 0 0em;
+    @media (min-width: 56em) {
+        margin:0 0 0 3em;
+        width:50%;
+    }
 `
 
 const Item = styled.div`
@@ -51,7 +61,7 @@ const TopBar = styled.div`
     align-items:center;
     
     border-radius:24px 24px 24px 24px;
-    margin: 0 .5em 1em .5em;
+    margin: .5em;
 `
 
 const Title = styled.h5`
@@ -178,15 +188,41 @@ const StarH = styled(StarHalf)`
 `  
 
 export default function Lebenslauf({innerRef, appear}) {
+
+    const options1 = {
+        "threshold": .5,
+        "rootMargin": "100px 0px"
+    }
+
+    const options2 = {
+        "threshold": 1,
+        "rootMargin": "0px 0px"
+    }
+
+    const {ref: ref1, inView: visible1} = useInView(options1);
+    const {ref: ref2, inView: visible2} = useInView(options2);
+
+    const [animate1, setAnimate1] = useState();
+    const [animate2, setAnimate2] = useState();
+
     const [active1, setActive1] = useState(false);
     const [active2, setActive2] = useState(false);
     const [active3, setActive3] = useState(false);
 
+    useEffect(() => {
+        if(visible1){
+            setAnimate1(true)
+        }
+        if(visible2){
+            setAnimate2(true)
+        }
+    }, [visible1, visible2])
+
     return (
-        <Container ref={innerRef}>
-            <Figure appear={appear}/>
-            <Items>
-                <Item appear={appear} delay={".2s"}>
+        <Container ref={ref1}>
+            <Figure appear={animate1}/>
+            <Items ref={ref2}>
+                <Item appear={animate2} delay={".2s"}>
                     <TopBar onClick={()=>setActive1(!active1)}>
                         <Circle>
                             <School/>
@@ -233,7 +269,7 @@ export default function Lebenslauf({innerRef, appear}) {
                     </Info>
                     
                 </Item>
-                <Item appear={appear} delay={".4s"}>
+                <Item appear={animate2} delay={".4s"}>
                     <TopBar onClick={()=>setActive2(!active2)}>
                         <Circle>
                             <Construction/>
@@ -280,7 +316,7 @@ export default function Lebenslauf({innerRef, appear}) {
                         </Column>
                     </Info>
                 </Item>
-                <Item appear={appear} delay={".6s"}>
+                <Item appear={animate2} delay={".6s"}>
                     <TopBar onClick={()=>setActive3(!active3)}>
                         <Circle>
                             <Camera/>
