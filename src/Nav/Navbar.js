@@ -347,13 +347,13 @@ export default function Navbar (props) {
             <NavContainer transparent={transparent}>
                 <TopNav>
                     <LogoButton onClick={()=> {select('home')}} transparent={transparent} href='/'>Milan Tornier</LogoButton>
-                    {/*<BurgerContainer transparent={transparent} onClick={() => {setOpen(!open); displayMenu()}}>
+                    <BurgerContainer transparent={transparent} onClick={() => {setOpen(!open); displayMenu()}}>
                         <Burger transparent={transparent} open={open}/>
                     </BurgerContainer>*/}
                     <Links>
-                        {/*{listItems.map((item) =>
+                        {listItems.map((item) =>
                             <MenuButton key={item.title} href={item.url} active={item.title === active} onClick={()=> {select(item.title)}}>{item.title}</MenuButton>
-                        )}*/}
+                        )}
                         <ThemeChanger transparent={transparent} onClick={changeTheme}>
                             <Highlight themeChanger={themeChanger}/>
                             <Icons>
@@ -365,7 +365,7 @@ export default function Navbar (props) {
                     <MenuContainer showMenu={showMenu}>
                         <Blur showMenu={showMenu} onClick={() => {setOpen(!open); displayMenu()}}/>
                         <Menu showMenu={showMenu}>
-                            <MenuButton key={'home'} href={'/'} active={'home' === active} onClick={()=> {select('home')}}>home</MenuButton>
+                            <MenuButton key={'home'} href={'/'} active={'home' === active} onClick={()=> {select('home')}}>Home</MenuButton>
                             {listItems.map((item) => 
                                 <MenuButton key={item.title} href={item.url} active={item.title === active} onClick={()=> {select(item.title)}}>{item.title}</MenuButton>
                             )}

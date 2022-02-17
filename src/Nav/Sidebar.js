@@ -15,11 +15,11 @@ const fadeIn = keyframes`
 const fadeInMobile = keyframes`
   from {
     opacity: 0;
-    transform: translateX(100vw);
+    transform: translateY(100vw);
 }
   to {
     opacity: 1;
-    transform: translateX(0vw);
+    transform: translateY(0vw);
 }
 `
 
@@ -31,6 +31,8 @@ const SideNav = styled.div`
     margin:0;
     overflow:scroll;
     animation: ${fadeInMobile} 1s forwards;
+    display:flex;
+    justify-content:center;
     @media (min-width: 48em) {
         animation: ${fadeIn} 1s forwards;
         top:50%;
@@ -43,16 +45,13 @@ const SideNav = styled.div`
 
 const Links = styled.div`
     display:flex;
+    justify-content:center;
     background-color:var(--p-9);
     align-items: center;
-    border: 2px solid var(--p-3);
+    border-top: 2px solid var(--p-3);
     padding:.5em 1em;
-    border-radius:2em;
-    width:min-content;
-    margin:1em;
-    
+    width:100%;
     @media (min-width: 48em) {
-        
         flex-direction:column;
         width:var(--sidebar-width);
         padding: 2em .5em;
@@ -64,7 +63,7 @@ const Links = styled.div`
 const NavLinkContainer = styled.div`
     width:6em;
     display:flex;
-    margin:0 auto;
+    margin:0 .5em;
 `
 
 const NavLink = styled(Link)`

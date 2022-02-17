@@ -1,5 +1,5 @@
 import {useState, useEffect} from 'react'
-import Posts from './Pages/Posts'
+import Blog from './Pages/Blog'
 import Navbar from './Nav/Navbar'
 import Footer from './Nav/Footer'
 import PostPage from './Pages/PostPage'
@@ -105,10 +105,7 @@ function App() {
               <Home/>
             </Route>                
             <Route exact path="/blog">
-              <Posts category="blog"/>
-            </Route>
-            <Route exact path="/photo">
-              <Posts category="photo"/>
+              <Blog category="blog"/>
             </Route>
             <Route path="/post/:id" component={PostPage}/>
           </Switch>

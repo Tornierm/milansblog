@@ -4,11 +4,6 @@ import Welcome from '../Sections/Welcome'
 import Resume from '../Sections/Resume'
 import Contact from '../Sections/Contact'
 
-
-import PostSlider from '../Sections/PostSlider/PostSlider'
-import PhotoSlider from '../Sections/PhotoSlider/PhotoSlider'
-
-
 import styled from 'styled-components';
 
 const Page = styled.div`
@@ -48,14 +43,6 @@ export default function Home() {
             id:'contact',
             label:'Contact',
         },
-        {
-            id:'blog',
-            label:'Blog',
-        },
-        {
-            id:'photos',
-            label:'Photos',
-        },
     ]
 
     return (
@@ -64,8 +51,6 @@ export default function Home() {
                 <div id='about'><Welcome/></div>
                 <div id='resume'><Resume/></div>
                 <div id='contact'><Contact/></div>
-                <div id='blog'><PostSlider key="blogSlider" category="blog"/></div>
-                <div id='photos'><PhotoSlider key="photoSlider" category="photo"/></div>
             </Sections>
             <Sidebar data={data}/>
         </Page>

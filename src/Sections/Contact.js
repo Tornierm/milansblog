@@ -8,7 +8,7 @@ import {contactFormSubmission} from "../service/WPService.js"
 
 const Container = styled(Wrapper)`
     min-height:60vh;
-    margin:1em;
+    padding 1em;
 `
 
 const Form = styled.form`
