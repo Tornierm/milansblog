@@ -46,7 +46,7 @@ const SideNav = styled.div`
 const Links = styled.div`
     display:flex;
     justify-content:center;
-    background-color:var(--p-9);
+    background-color:var(--p-10);
     align-items: center;
     border-top: 2px solid var(--p-3);
     padding:.5em 1em;
@@ -57,6 +57,7 @@ const Links = styled.div`
         padding: 2em .5em;
         border-radius:3em;  
         margin:0em;
+        border:none;
     }
 `
 
