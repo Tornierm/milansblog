@@ -2,13 +2,18 @@ import React, {useState} from 'react'
 import {Wrapper, H1, PrimaryButton} from '../components/Styled';
 import Input from '../components/Basics/Input'
 import TextField from '../components/Basics/TextField'
-import styled, {keyframes} from "styled-components";
+import styled, {keyframes, css} from "styled-components";
 
 import {contactFormSubmission} from "../service/WPService.js"
 
 const Container = styled(Wrapper)`
     min-height:60vh;
     padding 1em;
+    transition: 1.5s ease-in-out;
+    opacity:0;
+    ${props => props.appear && css`
+        opacity:1;
+    `}
 `
 
 const Form = styled.form`
@@ -56,7 +61,7 @@ const Feedback = styled.div`
     }
 `
 
-export default function Contact() {
+export default function Contact({innerRef, appear}) {
     const [name, setName] = useState('')
     const [eMail, setEMail] = useState('')
     const [message, setMessage] = useState('')
@@ -127,7 +132,7 @@ export default function Contact() {
     }
 
     return (
-        <Container>
+        <Container ref={innerRef} appear={appear}>
             <Form>
                 <H1>Contact</H1>
                 <Input label='Name' onchange={(name) => nameChange(name)} value={name} setValue={(name) => setName(name)} />

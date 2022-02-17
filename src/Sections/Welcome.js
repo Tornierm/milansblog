@@ -1,20 +1,9 @@
 import React, {useState, useEffect} from 'react'
-import styled, {keyframes} from 'styled-components'
+import styled, {css} from 'styled-components'
 import { retrieveFeaturedMedia, retrievePageByName } from '../service/WPService';
 import {Spinner, Loading, Wrapper, H1} from '../components/Styled';
 import Instagram from '@material-ui/icons/Instagram';
 import LinkedIn from '@material-ui/icons/LinkedIn';
-
-import Figure from '../components/Animations/Figure';
-
-const fadeIn = keyframes`
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
-`
 
 const StyledWrapper = styled(Wrapper)`
     background: linear-gradient(0deg ,var(--p-10) 0% ,var(--p-10) 50% ,var(--p-10) 100% );
@@ -48,14 +37,17 @@ const Info = styled.div`
     height:auto;
     padding:var(--margin);
     order:3;
-    opacity:0;
     @media (min-width: 32em) {
         width:50%;
         margin-right:var(--margin);
         padding:0;
         order:0;
     }
-    animation:${fadeIn} 1s 3s ease-in-out forwards;
+    transition: 1s ease-in-out;
+    opacity:0;
+    ${props => props.appear && css`
+        opacity:1;
+    `}
 `
 const Social = styled.div`
     
@@ -116,11 +108,24 @@ const Text = styled.div`
     }
 `
 
-export default function Welcome() {
+const Image= styled.img`
+    max-height:400px;
+    max-width:400px;
+    width:50%;
+    transition: 1s ease-in-out;
+    transform: translateX(200px);
+    opacity:0;
+    ${props => props.appear && css`
+        opacity:1;
+        transform: translateX(0px);
+    `}
+`
+export default function Welcome({innerRef, appear}) {
 
     const [welcome, setWelcome] = useState()
     const [isLoaded, setIsLoaded] = useState(false)
-    //const [imageUrl, setImageUrl] = useState('');
+
+    const [imageUrl, setImageUrl] = useState('');
 
     const setStuff = async () => {
         const page = await retrievePageByName("Welcome");
@@ -130,14 +135,13 @@ export default function Welcome() {
         }
         retrieveFeaturedMedia(page.featured_media)
         .then(res => {
-            //setImageUrl(res.media_details.sizes.full.source_url)
+            setImageUrl(res.media_details.sizes.full.source_url)
             setIsLoaded(true)
         })
     }
 
     useEffect( () => {   
         setStuff()
-
         return function cleanup() {
             setIsLoaded(false);
         }
@@ -145,11 +149,11 @@ export default function Welcome() {
 
     if(isLoaded){
         return (
-            <StyledWrapper>
+            <StyledWrapper ref={innerRef} appear={appear}>
                 <Upper>
-                    <Info>
+                    <Info appear={appear}>
                         <H1 dangerouslySetInnerHTML={{__html: welcome.title.rendered}}/>
-                        <Text dangerouslySetInnerHTML={{__html: welcome.content.rendered}}/>
+                        <Text  dangerouslySetInnerHTML={{__html: welcome.content.rendered}}/>
                         <Social>
                             <SocialList>
                                 <SocialItem>
@@ -161,7 +165,7 @@ export default function Welcome() {
                             </SocialList>
                         </Social>
                     </Info>
-                    <Figure/>
+                    <Image src={imageUrl} appear={appear}/>
                 </Upper>
             </StyledWrapper>
         )

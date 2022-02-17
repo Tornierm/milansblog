@@ -116,8 +116,6 @@ export default function Sidebar (props) {
 
         navRefs.current = navRefs.current.slice(0, props.data.length);
 
-        console.log(navRefs);
-
         const setActive = () => {
             sections.forEach((section, i) => {
                 const sectionTop = section.offsetTop;

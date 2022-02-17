@@ -3,25 +3,22 @@ import styled, {keyframes, css} from "styled-components";
 
 const roll = keyframes`
     0% {
-        transform:translateX(-6em) rotateZ(0deg) ;
+        transform: rotateZ(0deg) ;
     }
-    80% {
-        transform:translateX(-6em) rotateZ(360deg) ;
+    40% {
+        transform: rotateZ(0deg) ;
     }
     100% {
-        transform:translateX(0em) rotateZ(540deg) ;
+        transform: rotateZ(360deg) ;
     }
 `;
 
 const rollMobile = keyframes`
     0% {
-        transform:translateY(3em) rotateZ(0deg) ;
-    }
-    80% {
-        transform:translateY(3em) rotateZ(360deg) ;
+        transform: rotateZ(0deg) ;
     }
     100% {
-        transform:translateY(0em) rotateZ(180deg) ;
+        transform: rotateZ(180deg) ;
     }
 `;
 
@@ -33,6 +30,8 @@ const Container = styled.div`
     position:relative;
     font-size:40px;
 
+    display:none;
+
     --X:1.33em;
     --Y:.31em;
 
@@ -43,10 +42,13 @@ const Container = styled.div`
     --delay4: 1.9s;
     --delay5: 2.2s;
     transform:translateX(0em) rotateZ(0deg);
-    animation:${rollMobile} 3s ease-in-out forwards;
+    animation:${roll} 3s ease-in-out forwards;
     @media (min-width: 48em) {
         animation:${roll} 3s ease-in-out forwards;
     }  
+    ${props => props.appear && css`
+        display:inline;
+    `}
 `
 
 const boxTransform1 = keyframes`
@@ -172,9 +174,9 @@ const Row6 = styled(Row)`
     transform:rotateZ(-300deg) translateY(var(--Y)) translateX(var(--X));
 `
 
-export default function Figure() {
+export default function Figure({appear}) {
     return (
-        <Container>
+        <Container appear={appear}>
             <Row1>
                 <Box color="var(--s-5)" order="1"/>
                 <Box color="var(--s-5)" order="2"/>

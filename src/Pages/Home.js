@@ -1,8 +1,9 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import Sidebar from '../Nav/Sidebar'
 import Welcome from '../Sections/Welcome'
 import Resume from '../Sections/Resume'
 import Contact from '../Sections/Contact'
+import  {useInView} from 'react-intersection-observer'
 
 import styled from 'styled-components';
 
@@ -29,6 +30,20 @@ const Sections = styled.div`
 `
 
 export default function Home() {
+
+    const options = {
+        "threshold": .7,
+        "rootMargin": "100px 0px"
+    }
+
+    const {ref: ref1, inView: visible1} = useInView(options);
+    const {ref: ref2, inView: visible2} = useInView(options);
+    const {ref: ref3, inView: visible3} = useInView(options);
+    const [animate1, setAnimate1] = useState();
+    const [animate2, setAnimate2] = useState();
+    const [animate3, setAnimate3] = useState();
+
+    
     
     const data=[
         {
@@ -45,12 +60,24 @@ export default function Home() {
         },
     ]
 
+    useEffect(() => {
+        if(visible1){
+            setAnimate1(true)
+        }
+        if(visible2){
+            setAnimate2(true)
+        } 
+        if(visible3){
+            setAnimate3(true)
+        }
+    },[visible1, visible2, visible3])
+
     return (
         <Page>
             <Sections>
-                <div id='about'><Welcome/></div>
-                <div id='resume'><Resume/></div>
-                <div id='contact'><Contact/></div>
+                <div id='about'><Welcome innerRef={ref1} appear={animate1}/></div>
+                <div id='resume'><Resume innerRef={ref2} appear={animate2}/></div>
+                <div id='contact'><Contact innerRef={ref3} appear={animate3}/></div>
             </Sections>
             <Sidebar data={data}/>
         </Page>

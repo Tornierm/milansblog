@@ -10,18 +10,37 @@ import StarOutline from '@material-ui/icons/StarOutline';
 import StarRate from '@material-ui/icons/Star';
 import StarHalf from '@material-ui/icons/StarHalf';
 
+import Figure from '../components/Animations/Figure';
+
 const Container = styled(Wrapper)`
     flex-direction:column; 
-    align-items:center;
+    
     justify-content:center;
     width:100%;
-    padding:10em 0 10em 0;
+    padding:0em 0 10em 0;
+    @media (min-width: 32em) {
+        flex-direction: row;
+    }
+`
+
+const Items = styled.div`
+    width:50%;
+    display:flex;
+    flex-direction:column;
+    margin-left:3em;
 `
 
 const Item = styled.div`
     width:100%;
     max-width:30em;
     margin:.2em;
+    transform: translateX(300px);
+    transition: .8s ${props => props.delay} ease-in-out;
+    opacity:0;
+    ${props => props.appear && css`
+        transform: translateX(0);
+        opacity:1;
+    `}
 `
 
 const TopBar = styled.div`
@@ -158,14 +177,16 @@ const StarH = styled(StarHalf)`
     transform: scale(.7);
 `  
 
-export default function Lebenslauf() {
+export default function Lebenslauf({innerRef, appear}) {
     const [active1, setActive1] = useState(false);
     const [active2, setActive2] = useState(false);
     const [active3, setActive3] = useState(false);
 
     return (
-        <Container>
-                <Item>
+        <Container ref={innerRef}>
+            <Figure appear={appear}/>
+            <Items>
+                <Item appear={appear} delay={".2s"}>
                     <TopBar onClick={()=>setActive1(!active1)}>
                         <Circle>
                             <School/>
@@ -212,7 +233,7 @@ export default function Lebenslauf() {
                     </Info>
                     
                 </Item>
-                <Item>
+                <Item appear={appear} delay={".4s"}>
                     <TopBar onClick={()=>setActive2(!active2)}>
                         <Circle>
                             <Construction/>
@@ -259,7 +280,7 @@ export default function Lebenslauf() {
                         </Column>
                     </Info>
                 </Item>
-                <Item>
+                <Item appear={appear} delay={".6s"}>
                     <TopBar onClick={()=>setActive3(!active3)}>
                         <Circle>
                             <Camera/>
@@ -287,7 +308,7 @@ export default function Lebenslauf() {
                         </Column>
                     </Info>
                 </Item>
-            
+            </Items>
         </Container>
     )
 }
