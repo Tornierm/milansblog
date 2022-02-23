@@ -97,10 +97,18 @@ const PrimaryButton = styled(Link)`
     }
 `
 
-const SecondaryButton = styled(PrimaryButton)`
+const SecondaryButton = styled.button`
     background-color: transparent;
     color: var(--p-10);
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
     border:1px solid var(--p-9);
+    border-radius:1em;
+    width: 90%;
+    padding:.5em;
+    margin:.5em;
+    transition: .5s;
     :hover{
         background-color: transparent;
         border:1px solid var(--s-3);
@@ -153,7 +161,7 @@ export default function PostSliderItem(props)  {
                     <Info>
                         <ItemTitle dangerouslySetInnerHTML={{__html: post.title.rendered}}/> 
                         <Buttons>
-                            <SecondaryButton to="" onClick={() =>{ setFlip(!flip)}}>
+                            <SecondaryButton onClick={() =>{setFlip(!flip)}}>
                                 excerpt
                             </SecondaryButton>
                             <PrimaryButton to={{

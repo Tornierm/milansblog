@@ -65,7 +65,7 @@ const Feedback = styled.div`
 
 export default function Contact({innerRef, appear}) {
     const options1= {
-        "threshold": .5,
+        "threshold": 1,
         "rootMargin": "0px 0px"
     }
 
