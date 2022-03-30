@@ -4,6 +4,8 @@ import Navbar from './Nav/Navbar'
 import Footer from './Nav/Footer'
 import PostPage from './Pages/PostPage'
 import Home from './Pages/Home'
+import Writing from './Pages/Writing'
+import Photos from './Pages/Photos'
 
 import styled, {css} from 'styled-components'
 import ScrollToTop from './Nav/ScrollToTop'
@@ -13,7 +15,7 @@ import {
   Switch,
   Route
 } from "react-router-dom";
-//080B0C
+
 const Site = styled.div`
   scroll-behavior: smooth;
   --navbar-height:56px;
@@ -100,6 +102,12 @@ function App() {
           <Switch>
             <Route exact path="/">
               <Home/>
+            </Route>  
+            <Route exact path="/writing">
+              <Writing/>
+            </Route>  
+            <Route exact path="/photography">
+              <Photos/>
             </Route>  
             <Route exact path="/resume">
               <Home/>

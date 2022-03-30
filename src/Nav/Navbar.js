@@ -278,7 +278,7 @@ export default function Navbar (props) {
     const [listItems, setListItems] = useState([]);
     const [loaded, setLoaded] = useState(false);
     const [showMenu, setShowMenu] = useState(false);
-    const [active, setActive] = useState('home');
+    const [active, setActive] = useState('none');
     const [open, setOpen] = useState(false);
 
 
@@ -312,7 +312,7 @@ export default function Navbar (props) {
         retrieveNavbar()
         .then(res => {
             if(res.items.type === 'undefined'){
-
+                console.log(res)
             } else {
                 const Items = res.items;
                 setListItems(Items)
