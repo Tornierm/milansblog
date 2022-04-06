@@ -46,7 +46,7 @@ export default function Blog() {
         <Page>
             <Sections>
                 <div id='blog'><PostSlider key="blogSlider" category="blog"/></div>
-                <div id='photos'><PhotoSlider key="photoSlider" category="photo"/></div>
+                <div id='photos'><PhotoSlider key="photoSlider" category="photography"/></div>
             </Sections>
             <Sidebar data={data}/>
         </Page>
