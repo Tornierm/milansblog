@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const url = "https://wordpress.milantornier.de";
+const url = "https://live-milantornier.pantheonsite.io/";
 
 export async function retrievePosts(){
     const res = await axios.get(url+`/wp-json/wp/v2/posts`)
